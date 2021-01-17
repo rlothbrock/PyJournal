@@ -1,0 +1,28 @@
+en esta nueva version se va a realizar de la sgte manera:
+la app es modular, por lo que el diseño sera:
+una ventana principal con 3 tabs
+tab1 :
+	para mostrar los datos
+		esta tab va a contener el boton de filtros y cualquier otros neceisario
+tab2:
+	calculadora de billetes
+tab3:
+	formulario de estadisticas
+		en este formulario se van a generar los datos en el momento de cargar el form y con un boton actualizar que es el que "actualiza" los datos en el caso que la entrada no se refleje
+----
+las actividades de la app se vana realizar a traves de menus, los cuales van a llamar cuadros de dialogos que vana realizar cada uno una tarea
+los cuadros de dialogo van a bloquear la aplicacion para que no se pùedan llamar otros cuadros en el intermedio
+
+la logica de la app contiene los siguientes puntos :
+una tabla de registro o "diario" la cual va a recoger todas las operaciones que se hagan en la aplicacion y de esta manera se podran eliminar
+	-- el comportamiento de eliminar los datos es para futuras versiones
+una tabla de ventas que se va a autogenerar con los datos del diario
+una tabla de inventario que se va a generar con los datos del diario
+una tabla de capital que se va a generar con los datos del diario
+una tabla de estadisticas que se va a generar con los datos del diario
+
+es decir, que el diario es el que va a regir la logica de la app.
+todos los dialogos van a tributar al diario, mientras que el filtro es el que va a acceder a todas las tablas en el caso de que se desee mostrar los datos de manera simplificada 
+ningun cuadro de dialogo toca directamente las tablas que dependen del diario
+
+
