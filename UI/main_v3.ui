@@ -2304,7 +2304,7 @@
     <addaction name="actionGuardar_el_estado_de_la_aplicacion"/>
     <addaction name="separator"/>
     <addaction name="actionImportar_datos_desde_CSV"/>
-    <addaction name="actionExportar_tabla_actual_hacia_CSV"/>
+    <addaction name="actionExportar_Diario_hacia_CSV"/>
     <addaction name="separator"/>
     <addaction name="actionCerrar_la_aplicacion"/>
    </widget>
@@ -2321,6 +2321,7 @@
     <addaction name="actionVer_Inventario"/>
     <addaction name="actionVer_Ventas"/>
     <addaction name="actionVer_Capital"/>
+    <addaction name="actionVer_Diario"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
@@ -2480,9 +2481,9 @@
     <enum>Qt::ApplicationShortcut</enum>
    </property>
   </action>
-  <action name="actionExportar_tabla_actual_hacia_CSV">
+  <action name="actionExportar_Diario_hacia_CSV">
    <property name="text">
-    <string>Exportar tabla actual hacia archivo .CSV</string>
+    <string>Exportar Diario hacia archivo .CSV</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -2548,6 +2549,11 @@
   <action name="actionVer_Capital">
    <property name="text">
     <string>Ver Capital</string>
+   </property>
+  </action>
+  <action name="actionVer_Diario">
+   <property name="text">
+    <string>Ver Diario</string>
    </property>
   </action>
  </widget>

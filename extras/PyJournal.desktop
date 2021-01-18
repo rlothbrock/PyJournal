@@ -1,0 +1,18 @@
+	[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyJournal
+GenericName=Python Accountant Register
+Comment=Application for managing small stores using python
+Exec=PyJournal
+Terminal=true
+MimeType=text/plain;
+Icon=/home/robb/ing-info/PROGRAMACION/a_Proyectos/python/UI projects/PyJournal variants/PyJournal v2/files/UI/icon.png
+Categories=Numbers;Account;
+StartupNotify=true
+Actions=Window;
+
+[Desktop Action Window]
+Name=New Window
+Exec=/opt/sublime_text/sublime_text -n
+OnlyShowIn=Unity;
