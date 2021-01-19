@@ -5,7 +5,7 @@ import os
 import sys
 
 import PySide2
-from PySide2.QtCore import Signal
+from PySide2.QtCore import Signal, Slot
 from PySide2.QtWidgets import QMainWindow, QApplication
 
 from UI.Main import Ui_MainWindow
@@ -29,6 +29,7 @@ class MainWindow(QMainWindow):
         self.table_for_filter_dialogs: str = None
         self.filter_dialog_options: dict = {}
         self.table_on_target = 'diary'
+        self.use_secure_entry = True
 
         self.diary_list = []
         self.data_to_display_on_tab1 = []  # this prop is extremely important, it holds the data to be displayed,
@@ -51,10 +52,18 @@ class MainWindow(QMainWindow):
         self.ui.label_data_session.setText(self.date_session)
         self.ui.label_table_on_display.setText(self.table_on_target)
         self.ui.label_current_database.setText(self.status.get('connected_to'))
+        self.date_changed_signal.connect(self.change_date_session)
+
 
     def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
         super(MainWindow, self).keyPressEvent(event)
         self.key_pressed_signal.emit(event.key())
+
+    @Slot()
+    def change_date_session(self, new_value):
+        self.date_session = new_value
+        self.ui.label_data_session.setText(new_value)
+        print('current session settled to: {}'.format(new_value))
 
     connected_signal = Signal(str)
     active_tab_signal = Signal(int)
