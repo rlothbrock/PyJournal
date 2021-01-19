@@ -3,9 +3,11 @@ import re
 import sqlite3
 
 # TODO añadir checks para que haga chequeo de campos en la db
+from PySide2.QtWidgets import QApplication
+
 from dialogs.auxiliar_dialogs import MessageBox
 
-statusDB = 'appStatusDB.db'
+statusDB_name = 'appStatusDB.db'
 
 table_templates = [
     {
@@ -101,7 +103,7 @@ table_templates = [
 ]
 
 
-# ----sqlite user defined functions:
+# ----sqlite user defined functions: must review todo eliminates possible bugs
 def regexp(expression, context, engine=re.search):
     print('searching expression: < %s > in context: < %s >' % (expression, context))
     try:
@@ -154,10 +156,11 @@ def get_index_in_template(table: str, field_name: str):
     return fields.index(field_name)
 
 
+
+# sqlite3  related functions.....
+
 def initialize_cursor(self):
-    if self.cursor is None:
-        print('debug: initializing cursor')
-        self.cursor = self.current_connection.cursor()
+    self.cursor = self.connection.cursor()
     return
 
 
@@ -165,16 +168,16 @@ def close_cursor(self):
     try:
         self.cursor.close()
         self.cursor = None
-        print('cursor has been closed')
+        print('debug: cursor has been closed')
         return
     except:
-        print('info: close cursor was not executed')
+        print('info: close_cursor was not executed')
         return
 
 def _close_db(self):
     try:
-        self.current_connection.close()
-        self.current_connection = None
+        self.connection.close()
+        self.connection = None
         print('db has been closed')
         return
     except:
@@ -182,41 +185,35 @@ def _close_db(self):
         return
 
 
-def launch_connection(self, db_name):
-    print('attempting to connect to %s' % db_name)
+def create_connection(self, db_name):
+    print('debug: attempting to connect to %s' % db_name)
     try:
-        self.current_connection = sqlite3.connect(os.path.join(os.pardir,'databases', db_name))
-        if db_name != statusDB:
-            self.current_connection.create_function('REGEXP', 2, regexp)
-            self.current_connection.create_function('total_per_item', 2, total_per_item)
-            self.current_connection.create_function('find_profit', 4, find_profit)
+        self.connection = sqlite3.connect(os.path.join(os.curdir, 'databases', db_name))
+        if db_name != statusDB_name:
+            self.connection.create_function('REGEXP', 2, regexp)
+            self.connection.create_function('total_per_item', 2, total_per_item)
+            self.connection.create_function('find_profit', 4, find_profit)
+            self.status.update({"connected_to": db_name})
         initialize_cursor(self)
-        self.status.update({"connected_to": db_name})
         self.connected_signal.emit(db_name)
-        print('successfully connected to {}'.format(db_name))
+        print('debug: successfully connected to {}'.format(db_name))
     except sqlite3.Error as error:
         print('error while trying to connect to {}  details:\n {}'.format(db_name, error))
         # todo show no buttons message for showing error and
-        #  >> quit the app (done )
-        self.fatal_error.emit()
+        QApplication.quit()
 
 
-def connect_toDB(self, db_name, init_form=True, create_tables=True, silent=False): # todo refactorize
-    # todo extract form initialization from this logic,
-    if init_form:
-        # init.initializeForm(self)
-        pass
-    launch_connection(self, db_name)
+def connect_toDB(self, db_name, create_tables=True, silent=False):
+    create_connection(self, db_name)
     print('connected to: %s...' % db_name)
-    self.connected_signal.emit(db_name)
+    if create_tables:
+        create_tables_onDb(self)
     if not silent:
         connection_alert = MessageBox(
             lambda: print('ok'),
             'Now, you\'re connected to: %s' % db_name,
             'i', 'Connection Success')
         connection_alert.show()
-    if create_tables:
-        create_tables_onDb(self)
     return
 
 
@@ -226,66 +223,44 @@ def close_connection(self):
     print('connection to db has been shutted down')
     return
 
-# todo this whole section must be refactored
-#  for using the new methods crud driver or call directly the method on sqlite
-def cursor_execution(self, query_list, action, multi=False, message='cursor executed'):
+
+def cursor_execution(self, query_list, message='cursor executed'):
     # action -> CRUD operations
-    print('calling execution on current cursor')
-    if self.cursor is not None:
-        print('force cursor closing inside cursor_execution because cursor initial value was not None')
-        close_cursor(self)
-    initialize_cursor(self)
     try:
-        if not multi:
-            if not isinstance(query_list, type([])):
-                raise TypeError('when option multi is False (default), must pass list [str]')
-                # if multi =False query list will be a list of strings and  loop execution (less performant)
-            for query in query_list:
-                self.cursor.execute(query)
-                print(message)
-        elif multi:
-            if not isinstance(query_list, type(('a', []))):
-                raise TypeError('when option multi is set to True, must pass tuple: \'str\',\'list\'')
-            # cursor execution will be a tuple with (string,list of tuples), bulk execution
-            self.cursor.executemany(query_list[0], query_list[1])
+        for query in query_list:
+            self.cursor.execute(query)
+            print(message)
     except sqlite3.Error as error:
         print('warning on curson execution: %s' % error)
         return
     finally:
-        if action == 'insert':
-            self.current_connection.commit()
-            print('commited to db')
-            close_cursor(self)
-            return
-        if action == 'select':
-            record = self.cursor.fetchall()
-            return record
-        print('warning: operation was not defined')
+        self.connection.commit()
+        print('commited to db')
+        close_cursor(self)
         return
 
 
-def _create_table_templates():
+def create_table_templates():
     # TODO: debo implementar la funcion del Check de las tablas que esta albergado
     #  en propiedad aparte en los dictionaries
     cursor_commands = []
     for template in table_templates:
-        command = 'CREATE TABLE %s (' % template.get('name')
+        command = 'CREATE TABLE {} ('.format(template.get('name'))
         fields = template.get('fields')
         for field in fields:
             if fields.index(field) > 0:
                 command += ','
-            command += ' %s ' % field.get('name')
+            command += ' {} '.format(field.get('name'))
             props = field.get('props')
             for prop in props:
                 # if props.index(prop) > 0:
                 #    command += ' '
-                command += ' %s ' % prop
+                command += ' {} '.format(prop)
         command += ' )'
         cursor_commands.append(command)
     return cursor_commands
 
 
 def create_tables_onDb(self, template=[]):
-    if len(template) > 0:
-        return cursor_execution(self, template, 'insert', False, 'tables created successfully')
-    return cursor_execution(self, _create_table_templates(), 'insert', False, 'tables created successfully')
+    t_temp = template if len(template) > 0 else create_table_templates()
+    return cursor_execution(self, t_temp, 'tables created successfully')

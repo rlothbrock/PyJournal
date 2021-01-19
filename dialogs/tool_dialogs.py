@@ -65,7 +65,8 @@ class CapitalFormDialog(QDialog):
 
 class HelpOfflineDialog(QDialog):
     def __init__(self, parent):
-        super(HelpOfflineDialog,self).__init__(parent)
+        super(HelpOfflineDialog, self).__init__(parent)
         self.ui = Ui_help_dialog()
+        self.ui.setupUi(self)
 
 

@@ -49,8 +49,8 @@
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>1291</width>
-        <height>31</height>
+        <width>1408</width>
+        <height>32</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -245,7 +245,7 @@
         <x>10</x>
         <y>60</y>
         <width>681</width>
-        <height>388</height>
+        <height>448</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -991,8 +991,8 @@
        <rect>
         <x>710</x>
         <y>150</y>
-        <width>391</width>
-        <height>120</height>
+        <width>424</width>
+        <height>134</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -1165,7 +1165,7 @@
         <x>710</x>
         <y>60</y>
         <width>391</width>
-        <height>80</height>
+        <height>85</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1331,8 +1331,8 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>371</width>
-         <height>224</height>
+         <width>372</width>
+         <height>264</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_14">
@@ -2161,7 +2161,7 @@
          <x>10</x>
          <y>10</y>
          <width>681</width>
-         <height>80</height>
+         <height>85</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2294,7 +2294,7 @@
      <x>0</x>
      <y>0</y>
      <width>1318</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -2337,9 +2337,9 @@
      <property name="title">
       <string>Cambiar a: </string>
      </property>
-     <addaction name="actionCelulares_2"/>
-     <addaction name="actionZapatos_2"/>
-     <addaction name="actionBisuteria"/>
+     <addaction name="action_connect_Celulares"/>
+     <addaction name="action_connect_Zapatos"/>
+     <addaction name="action_connect_Bisuteria"/>
     </widget>
     <addaction name="menuCambiar_a"/>
     <addaction name="actionCrear_nueva"/>
@@ -2446,7 +2446,7 @@
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionCelulares_2">
+  <action name="action_connect_Celulares">
    <property name="text">
     <string>Celulares</string>
    </property>
@@ -2454,7 +2454,7 @@
     <string>Ctrl+Shift+C</string>
    </property>
   </action>
-  <action name="actionZapatos_2">
+  <action name="action_connect_Zapatos">
    <property name="text">
     <string>Zapatos</string>
    </property>
@@ -2462,7 +2462,7 @@
     <string>Ctrl+Shift+Z</string>
    </property>
   </action>
-  <action name="actionBisuteria">
+  <action name="action_connect_Bisuteria">
    <property name="text">
     <string>Bisuteria</string>
    </property>

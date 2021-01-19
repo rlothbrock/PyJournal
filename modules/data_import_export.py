@@ -15,7 +15,7 @@ def import_data(self, with_headers=True):
     filename = QFileDialog.getOpenFileName(self, 'Open CSV File: ', os.pardir, '*.csv')
     print('collecting data from {}'.format(filename))
     data_to_import = open(filename[0]).readlines()
-    contents = data_to_import[1:] if with_headers else data_to_import
+    contents = data_to_import[1:] if not with_headers else data_to_import
     # todo delete all this prints after debugging phase **
     print('contents: ', contents)  # todo **
     imported_data = list((tuple(content_.split('\n')[0].split(';')) for content_ in contents))
@@ -26,7 +26,7 @@ def import_data(self, with_headers=True):
 
 def export_data(self, source=None, with_headers=True):
     # this function returns the name of destination for the alert in further pipe
-    db_group = self.current_connection.split('.')[0]
+    db_group = self.status.get('connected_to').split('.')[0]
     exported_table_filename = 'exported {}-{}-{}.csv'.format(
         db_group,
         self.table_on_target,

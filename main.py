@@ -9,11 +9,12 @@ from PySide2.QtCore import Signal
 from PySide2.QtWidgets import QMainWindow, QApplication
 
 from UI.Main import Ui_MainWindow
-from dialogs.tool_dialogs import PurchasesFormDialog, tool_launcher, HelpOfflineDialog, CapitalFormDialog, \
-    SalesFormDialog
+from components.menus import set_menus
+from modules.app_clock import app_clock
 from modules.calculator import set_calculator
-from modules.data_import_export import  import_data_to_diary, export_data_from_diary
 from modules.money_calc import set_bill_calculator
+from routines.about_to_Quit import about_to_quit_routine
+from routines.status_loader import status_loader_routine
 
 
 class MainWindow(QMainWindow):
@@ -21,13 +22,13 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.status = {}
         # status props---------
-        self.current_connection = None
+        self.connection = None
         self.cursor = None
         self.date_session = datetime.datetime.now().__str__().split(' ')[0] # yyyy-mm-dd
         self.operation = ''  # used for calculator to work
         self.table_for_filter_dialogs: str = None
         self.filter_dialog_options: dict = {}
-        self.table_on_target = 'Empty So Far...'
+        self.table_on_target = 'diary'
 
         self.diary_list = []
         self.data_to_display_on_tab1 = []  # this prop is extremely important, it holds the data to be displayed,
@@ -37,23 +38,19 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui_init()
 
-        #        Actions on menus
-        self.ui.actionA_adir_Compras_2.triggered.connect(lambda: tool_launcher(self, PurchasesFormDialog))
-        self.ui.actionA_adir_Ventas_2.triggered.connect(lambda: tool_launcher(self, SalesFormDialog))
-        self.ui.actionModificar_la_inversion.triggered.connect(lambda: tool_launcher(self, CapitalFormDialog))
-        self.ui.actionAyuda_offline.triggered.connect(lambda: tool_launcher(self, HelpOfflineDialog))
-
-        # Action imports
-        # todo add the source to export or target to import
-        self.ui.actionImportar_datos_desde_CSV.triggered.connect(lambda: import_data_to_diary(self)) # missing target
-        # Action exports
-        self.ui.actionExportar_Diario_hacia_CSV.triggered.connect(lambda: export_data_from_diary(self)) # missing target
-        # todo move this block to file apart
-
-        # calculator tab
-        set_bill_calculator(self)
+    def ui_init(self):
+        self.status = status_loader_routine(self)
+        set_menus(self)
+        app_clock(self, self.ui.label_app_clock)
         set_calculator(self)
+        set_bill_calculator(self)
+
+        self.ui.tabWidget.setCurrentIndex(self.status.get('active_tab'))
+        self.ui.label_data_session.setText(self.date_session)
+        self.ui.label_table_on_display.setText(self.table_on_target)
+        self.ui.label_current_database.setText(self.status.get('connected_to'))
 
     def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
         super(MainWindow, self).keyPressEvent(event)
@@ -79,7 +76,8 @@ if __name__ == "__main__":
     window = MainWindow()
     # todo imlement this:
     #  app.aboutToQuit.connect(about_to_quit_protocol)
-    #  w, h = window.get_status().get('width'), window.get_status().get('height')
-    #  window.resize(w, h)
+    w, h = window.status.get('width'), window.status.get('height')
+    window.resize(w, h)
     window.show()
+    app.aboutToQuit.connect(about_to_quit_routine)
     sys.exit(app.exec_())
