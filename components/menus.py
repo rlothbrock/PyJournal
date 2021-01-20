@@ -1,5 +1,6 @@
 from PySide2.QtCore import Slot
 
+from dialogs.auxiliar_dialogs import selfCloseInterface
 from dialogs.tool_dialogs import tool_launcher, PurchasesFormDialog, SalesFormDialog, CapitalFormDialog, \
     HelpOfflineDialog
 from modules.data_import_export import import_data_to_diary, export_data_from_diary
@@ -19,11 +20,12 @@ def set_menus(self):
     self.ui.actionCerrar_la_aplicacion.triggered.connect(lambda: quit_app_routine(self))
 
     # menu Databases
-    self.ui.action_connect_Celulares.triggered.connect(lambda: connect_toDB(self, 'cellsDB.db'))  # todo
-    self.ui.action_connect_Zapatos.triggered.connect(lambda: connect_toDB(self, 'shoesDB.db'))  # todo
-    self.ui.action_connect_Bisuteria.triggered.connect(lambda: connect_toDB(self, 'bisutDB.db'))  # todo
+    self.ui.action_connect_Celulares.triggered.connect(lambda: connect_toDB(self, 'cellsDB.db'))
+    self.ui.action_connect_Zapatos.triggered.connect(lambda: connect_toDB(self, 'shoesDB.db'))
+    self.ui.action_connect_Bisuteria.triggered.connect(lambda: connect_toDB(self, 'bisutDB.db'))
     self.ui.actionCrear_nueva.triggered.connect(lambda: print('todo'))  # todo
-    self.ui.actionSalvar_el_estado_de_la_DB_actual.triggered.connect(lambda: database_saver_routine(self))  # todo
+    self.ui.actionSalvar_el_estado_de_la_DB_actual.triggered.connect(lambda: database_saver_routine(self))
+
     # menu Tools
     self.ui.actionA_adir_Compras_2.triggered.connect(lambda: tool_launcher(self, PurchasesFormDialog))
     self.ui.actionA_adir_Ventas_2.triggered.connect(lambda: tool_launcher(self, SalesFormDialog))
@@ -42,8 +44,11 @@ def set_menus(self):
 
 @Slot()
 def lock_entry(self):
-    # todo show autocloseable alert: Secure Entry Mode: Enabled
     self.use_secure_entry = self.ui.actionUsar_verificacion_de_datos.isChecked()
-    sem = 'Enabled' if self.use_secure_entry else 'Disabled'
+    sem = 'Activado' if self.use_secure_entry else 'Desactivado'
     print('Secure Entry Mode: {}'.format(sem))
+    selfCloseInterface('Secure Entry Mode: {}'.format(sem),8,1,'Secure Entry Mode',
+                       'Cuando el modo seguro está activo,'+
+                       ' se solicita una confirmacion antes de entrar los datos a la base de datos. De esta manera se'
+                       +' evitan errores en la entrada de datos.\n\nCuando está desactivado la entrada es directa')
     return

@@ -5,7 +5,7 @@ import sqlite3
 # TODO añadir checks para que haga chequeo de campos en la db
 from PySide2.QtWidgets import QApplication
 
-from dialogs.auxiliar_dialogs import MessageBox
+from dialogs.auxiliar_dialogs import selfCloseInterface
 
 statusDB_name = 'appStatusDB.db'
 
@@ -199,7 +199,7 @@ def create_connection(self, db_name):
         print('debug: successfully connected to {}'.format(db_name))
     except sqlite3.Error as error:
         print('error while trying to connect to {}  details:\n {}'.format(db_name, error))
-        # todo show no buttons message for showing error and
+        selfCloseInterface('Failed on Connecting To Database {}'.format(db_name),3,3,'Critical Error', 'Closing App...')
         QApplication.quit()
 
 
@@ -209,11 +209,15 @@ def connect_toDB(self, db_name, create_tables=True, silent=False):
     if create_tables:
         create_tables_onDb(self)
     if not silent:
-        connection_alert = MessageBox(
-            lambda: print('ok'),
-            'Now, you\'re connected to: %s' % db_name,
-            'i', 'Connection Success')
-        connection_alert.show()
+        selfCloseInterface(
+            'Estas conectado a la base de datos: {}'.format(db_name),
+            title='Conectado a la Base de Datos')
+        # changed by autocloseable alert
+        # connection_alert = MessageBox(
+        #     lambda: print('ok'),
+        #     'Now, you\'re connected to: %s' % db_name,
+        #     'i', 'Connection Success')
+        # connection_alert.show()
     return
 
 

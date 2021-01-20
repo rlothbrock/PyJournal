@@ -1,6 +1,6 @@
 import sqlite3
 
-from dialogs.auxiliar_dialogs import MessageBox
+from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
 from extras.error_utils import type_checker, condition_checker, ConditionFailedException
 from modules.db_templates_manager import close_cursor, initialize_cursor
 
@@ -476,8 +476,7 @@ def crud_driver(self, table, operation, options):
                 self.cursor.execute(options.get('raw_exec'))
     except sqlite3.Error as error:
         print('error inside crud driver: ', error)
-        alert_on_error = MessageBox(lambda: print('error on searching for status'), str(error), 'e', 'DB error')
-        alert_on_error.show()
+        selfCloseInterface('error on searching for status',alert_level=3,title='DB Error',info=str(error))
         # raise error
 
     except ConditionFailedException as error2:

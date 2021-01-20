@@ -95,7 +95,7 @@ class Ui_MainWindow(object):
         self.tableView_table_display.setGeometry(QRect(10, 50, 1291, 471))
         self.horizontalLayoutWidget = QWidget(self.tab_1)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(10, 10, 1408, 32))
+        self.horizontalLayoutWidget.setGeometry(QRect(10, 10, 1291, 32))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -1476,7 +1476,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1556,11 +1556,11 @@ class Ui_MainWindow(object):
         self.actionVer_Capital.setText(QCoreApplication.translate("MainWindow", u"Ver Capital", None))
         self.actionVer_Diario.setText(QCoreApplication.translate("MainWindow", u"Ver Diario", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Conectado a: ", None))
-        self.label_current_database.setText(QCoreApplication.translate("MainWindow", u"{placeholder for db}", None))
+        self.label_current_database.setText(QCoreApplication.translate("MainWindow", u"{           db}", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Sesion:", None))
-        self.label_data_session.setText(QCoreApplication.translate("MainWindow", u"{placeholder for session}", None))
+        self.label_data_session.setText(QCoreApplication.translate("MainWindow", u"{      session}", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Table:", None))
-        self.label_table_on_display.setText(QCoreApplication.translate("MainWindow", u"{placeholder for table}", None))
+        self.label_table_on_display.setText(QCoreApplication.translate("MainWindow", u"{     table}", None))
         self.toolButton_filter.setText(QCoreApplication.translate("MainWindow", u"Filtrar...", None))
         self.pushButton_export_table.setText(QCoreApplication.translate("MainWindow", u"Exportar tabla", None))
         self.pushButton_print_table.setText(QCoreApplication.translate("MainWindow", u"Imprimir", None))

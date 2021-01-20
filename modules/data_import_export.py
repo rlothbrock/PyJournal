@@ -3,7 +3,7 @@ import os
 
 from PySide2.QtWidgets import QFileDialog
 
-from dialogs.auxiliar_dialogs import MessageBox
+from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
 from modules.db_templates_manager import table_templates
 
 
@@ -87,9 +87,12 @@ def import_data_to_diary(self):
     #  in order to data get entry_count property
     # 5- sort the information, as a part of the bulk insertion
     try:
-        import_data(self,False)
+        import_data(self, False)
+        # todo... not finished, check the steps
+        selfCloseInterface('Data imported to Diary Table',3,1,'Import Success')
+        return
     except BaseException as error:
-        # todo show an alert autocloseable
+        selfCloseInterface('Failed on Importing Data to Diary Table',3,2,'Import Failed')
         print('failed raw import of data')
         raise error
     # todo create a bulk insertion process on table diary
@@ -103,11 +106,12 @@ def export_data_from_diary(self):
     try:
         filename_path = export_data(self, self.diary_list)
         print('data saved on {}'.format(filename_path))
-        # todo show an autocloseable alert with success message
+        selfCloseInterface('Diary Table Data Exported ', 3, 1, 'Export Success',
+                           'Data saved on: {}'.format(filename_path))
         return
     except BaseException as error:
         print('export failed : {}'.format(error))
-        # todo show autocloseable alert with failed message
+        selfCloseInterface('Failed on Exporting Data from Diary Table', 3, 2, 'Export Failed')
         raise Exception(error)
 
 

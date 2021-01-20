@@ -9,12 +9,9 @@ from PySide2.QtCore import Signal, Slot
 from PySide2.QtWidgets import QMainWindow, QApplication
 
 from UI.Main import Ui_MainWindow
-from components.menus import set_menus
-from modules.app_clock import app_clock
-from modules.calculator import set_calculator
-from modules.money_calc import set_bill_calculator
+from dialogs.auxiliar_dialogs import selfCloseInterface
 from routines.about_to_Quit import about_to_quit_routine
-from routines.status_loader import status_loader_routine
+from routines.ui_initialization import ui_init_routine
 
 
 class MainWindow(QMainWindow):
@@ -39,31 +36,30 @@ class MainWindow(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui_init()
-
-    def ui_init(self):
-        self.status = status_loader_routine(self)
-        set_menus(self)
-        app_clock(self, self.ui.label_app_clock)
-        set_calculator(self)
-        set_bill_calculator(self)
-
-        self.ui.tabWidget.setCurrentIndex(self.status.get('active_tab'))
-        self.ui.label_data_session.setText(self.date_session)
-        self.ui.label_table_on_display.setText(self.table_on_target)
-        self.ui.label_current_database.setText(self.status.get('connected_to'))
-        self.date_changed_signal.connect(self.change_date_session)
-
+        ui_init_routine(self)
 
     def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
         super(MainWindow, self).keyPressEvent(event)
         self.key_pressed_signal.emit(event.key())
 
-    @Slot()
+    def resizeEvent(self, event: PySide2.QtGui.QResizeEvent):
+        # debug: print('resized event launched')
+        self.resized_signal.emit()
+        return super(MainWindow, self).resizeEvent(event)
+
     def change_date_session(self, new_value):
         self.date_session = new_value
         self.ui.label_data_session.setText(new_value)
-        print('current session settled to: {}'.format(new_value))
+        nd = 'Nueva Fecha: {}'.format(new_value)
+        print(nd)
+        selfCloseInterface(
+            nd, 3, 1, 'Fecha de trabajo cambiada','\n\n *Las entradas tendran esa fecha')
+        return
+
+
+    @Slot()
+    def save_window_size(self):
+        self.status.update({'width': self.width(), 'height': self.height()})
 
     connected_signal = Signal(str)
     active_tab_signal = Signal(int)
@@ -83,8 +79,6 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     window = MainWindow()
-    # todo imlement this:
-    #  app.aboutToQuit.connect(about_to_quit_protocol)
     w, h = window.status.get('width'), window.status.get('height')
     window.resize(w, h)
     window.show()

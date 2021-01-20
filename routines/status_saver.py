@@ -44,7 +44,7 @@ status_query = ['''CREATE TABLE saved_status (
 
 
 # refactored with crud driver
-def status_saver_routine(self):
+def status_saver_routine(self,silent=False):
     current_database = self.status.get('connected_to')
     print('debug: conectando a la database statusDB')
     connect_toDB(self, statusDB_name, False, True)
@@ -64,5 +64,5 @@ def status_saver_routine(self):
     })
     print('status saved....')
     print('changing connection to: ', current_database)
-    connect_toDB(self, current_database, False, False)
+    connect_toDB(self, current_database, False, silent)
     return

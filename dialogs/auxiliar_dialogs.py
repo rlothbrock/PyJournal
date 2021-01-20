@@ -1,6 +1,42 @@
+import PySide2
+from PySide2.QtCore import QTimer, SLOT
+from PySide2.QtGui import QFont
 from PySide2.QtWidgets import QMessageBox, QDialog
 
 from UI.new_db_alert import Ui_Dialog as Ui_new_db_alert
+
+
+class SelfCloseMsgBox(QMessageBox):
+    def __init__(
+            self,
+            message: str,
+            alert_level: int = 1,  # [0,1,2,3]
+            title: str = 'Alert',
+            info: str = ''
+    ):
+        super(SelfCloseMsgBox, self).__init__()
+        self.levels = [
+            QMessageBox.Question,
+            QMessageBox.Information,
+            QMessageBox.Warning,
+            QMessageBox.Critical
+        ]
+        self.setText(message)
+        self.setIcon(self.levels[alert_level])
+        self.setWindowTitle(title)
+        self.setInformativeText(info)
+
+
+def selfCloseInterface(
+        message: str,
+        time_to_close: int = 2,
+        alert_level: int = 1,  # [0,1,2,3]
+        title: str = 'Alert',
+        info: str = ''
+):
+    alert = SelfCloseMsgBox(message, alert_level, title, info)
+    QTimer.singleShot(time_to_close*1000, alert, SLOT('accept()'))
+    return alert.exec_()
 
 
 class MessageBox(QMessageBox):
@@ -20,7 +56,7 @@ class MessageBox(QMessageBox):
             self.setInformativeText(info)
         self.setWindowTitle(title)
         self.setIcon(_icon)
-        self.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
+        self.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         self.buttonClicked.connect(lambda button: dialog_slot_driver(self, button, slot_yes, slot_no))
 
 
@@ -54,9 +90,3 @@ class NewDBAlert(QDialog):
         ]:
             raise ValueError('use only alphabetic characters for database name')
         return self.ui.lineEdit.text()
-
-
-def on_accept():
-    print('aa')
-
-

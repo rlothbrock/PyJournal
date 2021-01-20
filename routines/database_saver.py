@@ -2,10 +2,10 @@ import datetime
 import os
 import shutil
 
-from dialogs.auxiliar_dialogs import MessageBox
+from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
 
 
-def database_saver_routine(self):
+def database_saver_routine(self, silent=False):
     database_name, saving_date, suffix = self.status.get("connected_to").split('.')[0], \
                                          datetime.datetime.now().__str__() \
                                              .replace('-', '') \
@@ -31,23 +31,20 @@ def database_saver_routine(self):
             '{}-{}-{}'.format(suffix, database_name, saving_date)
         )
         shutil.copy(src, dst)
-
-        saved_db_alert = MessageBox(
-            lambda: print('successfully saved'),
-            'saving succedded!!',
-            'i',
-            'DB Saving Success',
-            'the current db has been saved as: %s' % dst
-        )
-        saved_db_alert.show()
+        if not silent:
+            selfCloseInterface(
+            'Database {} guardada en {}'.format(database_name,dst),
+            title='Base de Datos Guardada')
     except FileNotFoundError as fileError:
         print('error: %s' % fileError)
-        no_db_alert = MessageBox(
-            lambda: print('error: %s' % fileError),
-            'the saving process has failed!!',
-            'e',
-            'DB Saving Failed',
-            str(fileError)
-        )
-        no_db_alert.show()
+        selfCloseInterface('Fallo a la hora de guardar la base de datos',
+                           title='Salva Fallida', alert_level=2)
+        # no_db_alert = MessageBox(
+        #     lambda: print('error: %s' % fileError),
+        #     'the saving process has failed!!',
+        #     'e',
+        #     'DB Saving Failed',
+        #     str(fileError)
+        # )
+        # no_db_alert.show()
         return
