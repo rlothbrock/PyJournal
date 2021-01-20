@@ -14,7 +14,7 @@ from routines.status_saver import status_saver_routine
 def set_menus(self):
     print('loading menus actions...')
     # menu File
-    self.ui.actionGuardar_el_estado_de_la_aplicacion.triggered.connect(lambda: status_saver_routine(self))  # todo
+    self.ui.actionGuardar_el_estado_de_la_aplicacion.triggered.connect(lambda: status_saver_routine(self))
     self.ui.actionImportar_datos_desde_CSV.triggered.connect(lambda: import_data_to_diary(self))
     self.ui.actionExportar_Diario_hacia_CSV.triggered.connect(lambda: export_data_from_diary(self))
     self.ui.actionCerrar_la_aplicacion.triggered.connect(lambda: quit_app_routine(self))

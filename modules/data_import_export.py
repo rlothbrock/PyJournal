@@ -3,11 +3,12 @@ import os
 
 from PySide2.QtWidgets import QFileDialog
 
-from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
+from dialogs.auxiliar_dialogs import  selfCloseInterface
 from modules.db_templates_manager import table_templates
 
 
 # raw imports/exports returns data/or file but always silent
+
 
 def import_data(self, with_headers=True):
     # this functions reads the file and retrieves data as structured array to self.imported_data property
@@ -25,6 +26,7 @@ def import_data(self, with_headers=True):
 
 
 def export_data(self, source=None, with_headers=True):
+    global dst
     # this function returns the name of destination for the alert in further pipe
     db_group = self.status.get('connected_to').split('.')[0]
     exported_table_filename = 'exported {}-{}-{}.csv'.format(
@@ -32,27 +34,35 @@ def export_data(self, source=None, with_headers=True):
         self.table_on_target,
         datetime.datetime.now().__str__().replace('-', '').replace(' ', '-').replace('.', '').replace(':', '')
     )
-    # tries to crate folder
+    default_source = os.path.join(os.pardir, 'Exported Tables')
+
     try:
-        saving_dir = os.path.join(os.pardir, 'Exported Tables')
-        os.mkdir(saving_dir)
-    except FileExistsError as error:
-        print('info on saving dir: %s' % error)
-    try:
-        saving_dir = os.path.join(os.pardir, 'Exported Tables', db_group)
-        os.mkdir(saving_dir)
-    except FileExistsError as error:
-        print('info on saving dir child: %s' % error)
-    try:
-        prime_data = self.data_to_export if source is None else source
-        data = csv_data_maker(self, prime_data, with_headers)
-        dst = os.path.join(os.pardir, 'Exported Tables', db_group, exported_table_filename)
-        exported_file = open(dst,'w')
-        exported_file.write(data)
-        exported_file.close()
-        return dst
-    except FileNotFoundError as fileError:
-        raise Exception(fileError)
+        dst = QFileDialog.getExistingDirectory(
+            self, 'Open CSV File: ',  default_source
+        )
+        dst = os.path.join(dst, exported_table_filename)
+    except:
+        # tries to crate folder
+        try:
+            os.mkdir(default_source)
+        except FileExistsError as error:
+            print('info on saving dir: %s' % error)
+        try:
+            saving_dir = os.path.join(default_source, db_group)
+            os.mkdir(saving_dir)
+        except FileExistsError as error:
+            print('info on saving dir child: %s' % error)
+        dst = os.path.join(default_source, db_group, exported_table_filename)
+    finally:
+        try:
+            prime_data = self.data_to_export if source is None else source
+            data = csv_data_maker(self, prime_data, with_headers)
+            exported_file = open(dst,'w')
+            exported_file.write(data)
+            exported_file.close()
+            return dst
+        except FileNotFoundError as fileError:
+            raise Exception(fileError)
 
 
 def csv_data_maker(self, data, with_headers = True):
