@@ -123,8 +123,7 @@ def import_data_to_diary(self):
             'value_list': data_to_import,
             'multi': True
         })
-        # self.diary_list.extend(self.imported_data.copy())
-        # self.diary_list.sort(lambda tuple_data : tuple_data[get_index_in_template('diary', 'entry_counter')])
+        self.display_table_signal.emit()
         selfCloseInterface('Data imported to Diary Table', 3, 1, 'Import Success')
         return
     except BaseException as error:

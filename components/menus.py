@@ -1,5 +1,6 @@
 from PySide2.QtCore import Slot
 
+from components.data_display_tab import execute_display_table
 from dialogs.auxiliar_dialogs import selfCloseInterface
 from dialogs.tool_dialogs import tool_launcher, PurchasesFormDialog, SalesFormDialog, CapitalFormDialog, \
     HelpOfflineDialog
@@ -30,10 +31,10 @@ def set_menus(self):
     self.ui.actionA_adir_Compras_2.triggered.connect(lambda: tool_launcher(self, PurchasesFormDialog))
     self.ui.actionA_adir_Ventas_2.triggered.connect(lambda: tool_launcher(self, SalesFormDialog))
     self.ui.actionModificar_la_inversion.triggered.connect(lambda: tool_launcher(self, CapitalFormDialog))
-    self.ui.actionVer_Inventario.triggered.connect(lambda: print('todo'))  # todo
-    self.ui.actionVer_Ventas.triggered.connect(lambda: print('todo'))  # todo
-    self.ui.actionVer_Capital.triggered.connect(lambda: print('todo'))  # todo
-    self.ui.actionVer_Diario.triggered.connect(lambda: print('todo'))  # todo
+    self.ui.actionVer_Inventario.triggered.connect(lambda: execute_display_table(self, 'stock'))
+    self.ui.actionVer_Ventas.triggered.connect(lambda: execute_display_table(self, 'sales'))
+    self.ui.actionVer_Capital.triggered.connect(lambda: execute_display_table(self, 'capital'))
+    self.ui.actionVer_Diario.triggered.connect(lambda: execute_display_table(self, 'diary'))
     self.ui.actionCambiar_la_fecha_de_la_sesion.triggered.connect(lambda: manage_date_session(self))
     self.ui.actionUsar_verificacion_de_datos.triggered.connect(lambda: lock_entry(self))
 

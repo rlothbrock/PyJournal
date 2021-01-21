@@ -146,7 +146,7 @@ def get_table_template(index_or_name):
         raise TypeError('this function does not support args of type: < %s > ' % type(index_or_name))
 
 
-def get_template_fields(index_or_name, no_id=False):
+def get_template_fields(index_or_name, no_id=False): # returns ['field_name'...]
     table_template = get_table_template(index_or_name)
     return list((field.get('name') for field in table_template.get('fields')))[1:] if no_id \
         else list((field.get('name') for field in table_template.get('fields')))

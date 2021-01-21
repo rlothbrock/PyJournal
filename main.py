@@ -44,6 +44,10 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         ui_init_routine(self)
 
+        # todo move this block to ui_init_routine
+
+        # todo move whole upper block
+
     def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
         super(MainWindow, self).keyPressEvent(event)
         self.key_pressed_signal.emit(event.key())
@@ -69,13 +73,14 @@ class MainWindow(QMainWindow):
 
     connected_signal = Signal(str)
     active_tab_signal = Signal(int)
-    table_on_edition_signal = Signal(str)
+    display_table_signal = Signal()
     resized_signal = Signal()
     value_changed_signal = Signal()
     sell_price_changed_signal = Signal(float)
     key_pressed_signal = Signal(int)
     date_changed_signal = Signal(str)
     counter_updated_signal = Signal()
+    recalculate_tables_signal = Signal()
 
 if __name__ == "__main__":
     try:

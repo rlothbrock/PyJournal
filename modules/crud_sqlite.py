@@ -6,7 +6,7 @@ from modules.db_templates_manager import close_cursor, initialize_cursor
 
 sqlite_query_operators = [
     '=', '>', '<', '<=', '>=', '<>', '!=', 'ALL', 'AND', 'ANY',
-    'BETWEEN', 'EXISTS', 'IN', 'LIKE', 'NOT', 'OR'
+    'BETWEEN', 'EXISTS', 'IN', 'LIKE', 'NOT', 'OR', 'REGEXP'
 ]
 sqlite_logic_joiners = ['AND', 'OR']
 

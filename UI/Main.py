@@ -90,9 +90,9 @@ class Ui_MainWindow(object):
         self.tabWidget.setGeometry(QRect(0, 0, 1311, 581))
         self.tab_1 = QWidget()
         self.tab_1.setObjectName(u"tab_1")
-        self.tableView_table_display = QTableView(self.tab_1)
-        self.tableView_table_display.setObjectName(u"tableView_table_display")
-        self.tableView_table_display.setGeometry(QRect(10, 50, 1291, 471))
+        self.tableWidget_table_display = QTableWidget(self.tab_1)
+        self.tableWidget_table_display.setObjectName(u"tableWidget_table_display")
+        self.tableWidget_table_display.setGeometry(QRect(10, 50, 1291, 471))
         self.horizontalLayoutWidget = QWidget(self.tab_1)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
         self.horizontalLayoutWidget.setGeometry(QRect(10, 10, 1291, 32))
@@ -1078,10 +1078,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_12.addWidget(self.label_33)
 
-        self.label_34 = QLabel(self.verticalLayoutWidget)
-        self.label_34.setObjectName(u"label_34")
+        self.label_plac_total_ventas = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_ventas.setObjectName(u"label_plac_total_ventas")
 
-        self.horizontalLayout_12.addWidget(self.label_34)
+        self.horizontalLayout_12.addWidget(self.label_plac_total_ventas)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_12)
@@ -1094,10 +1094,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.label_37)
 
-        self.label_38 = QLabel(self.verticalLayoutWidget)
-        self.label_38.setObjectName(u"label_38")
+        self.label_plac_total_net_proffit = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_net_proffit.setObjectName(u"label_plac_total_net_proffit")
 
-        self.horizontalLayout_14.addWidget(self.label_38)
+        self.horizontalLayout_14.addWidget(self.label_plac_total_net_proffit)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_14)
@@ -1110,10 +1110,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_21.addWidget(self.label_41)
 
-        self.label_42 = QLabel(self.verticalLayoutWidget)
-        self.label_42.setObjectName(u"label_42")
+        self.label_plac_total_real_proffit = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_real_proffit.setObjectName(u"label_plac_total_real_proffit")
 
-        self.horizontalLayout_21.addWidget(self.label_42)
+        self.horizontalLayout_21.addWidget(self.label_plac_total_real_proffit)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_21)
@@ -1126,10 +1126,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.label_39)
 
-        self.label_40 = QLabel(self.verticalLayoutWidget)
-        self.label_40.setObjectName(u"label_40")
+        self.label_plac_total_capital_low = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_capital_low.setObjectName(u"label_plac_total_capital_low")
 
-        self.horizontalLayout_16.addWidget(self.label_40)
+        self.horizontalLayout_16.addWidget(self.label_plac_total_capital_low)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_16)
@@ -1142,10 +1142,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_22.addWidget(self.label_43)
 
-        self.label_44 = QLabel(self.verticalLayoutWidget)
-        self.label_44.setObjectName(u"label_44")
+        self.label_plac_total_rob_capital = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_rob_capital.setObjectName(u"label_plac_total_rob_capital")
 
-        self.horizontalLayout_22.addWidget(self.label_44)
+        self.horizontalLayout_22.addWidget(self.label_plac_total_rob_capital)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_22)
@@ -1158,10 +1158,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addWidget(self.label_35)
 
-        self.label_36 = QLabel(self.verticalLayoutWidget)
-        self.label_36.setObjectName(u"label_36")
+        self.label_plac_total_ary_capital = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_ary_capital.setObjectName(u"label_plac_total_ary_capital")
 
-        self.horizontalLayout_13.addWidget(self.label_36)
+        self.horizontalLayout_13.addWidget(self.label_plac_total_ary_capital)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_13)
@@ -1184,10 +1184,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_24.addWidget(self.label_48)
 
-        self.label_49 = QLabel(self.verticalLayoutWidget_2)
-        self.label_49.setObjectName(u"label_49")
+        self.label_plac_day_ventas = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_ventas.setObjectName(u"label_plac_day_ventas")
 
-        self.horizontalLayout_24.addWidget(self.label_49)
+        self.horizontalLayout_24.addWidget(self.label_plac_day_ventas)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_24)
@@ -1200,10 +1200,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_23.addWidget(self.label_46)
 
-        self.label_47 = QLabel(self.verticalLayoutWidget_2)
-        self.label_47.setObjectName(u"label_47")
+        self.label_plac_day_inversion = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_inversion.setObjectName(u"label_plac_day_inversion")
 
-        self.horizontalLayout_23.addWidget(self.label_47)
+        self.horizontalLayout_23.addWidget(self.label_plac_day_inversion)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_23)
@@ -1216,10 +1216,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_41.addWidget(self.label_52)
 
-        self.label_59 = QLabel(self.verticalLayoutWidget_2)
-        self.label_59.setObjectName(u"label_59")
+        self.label_plac_day_net_proffit = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_net_proffit.setObjectName(u"label_plac_day_net_proffit")
 
-        self.horizontalLayout_41.addWidget(self.label_59)
+        self.horizontalLayout_41.addWidget(self.label_plac_day_net_proffit)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_41)
@@ -1232,10 +1232,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_42.addWidget(self.label_60)
 
-        self.label_61 = QLabel(self.verticalLayoutWidget_2)
-        self.label_61.setObjectName(u"label_61")
+        self.label_plac_day_salary = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_salary.setObjectName(u"label_plac_day_salary")
 
-        self.horizontalLayout_42.addWidget(self.label_61)
+        self.horizontalLayout_42.addWidget(self.label_plac_day_salary)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_42)
@@ -1248,10 +1248,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.label_16)
 
-        self.label_17 = QLabel(self.verticalLayoutWidget_2)
-        self.label_17.setObjectName(u"label_17")
+        self.label_plac_day_rent = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_rent.setObjectName(u"label_plac_day_rent")
 
-        self.horizontalLayout_6.addWidget(self.label_17)
+        self.horizontalLayout_6.addWidget(self.label_plac_day_rent)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_6)
@@ -1264,10 +1264,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_43.addWidget(self.label_62)
 
-        self.label_63 = QLabel(self.verticalLayoutWidget_2)
-        self.label_63.setObjectName(u"label_63")
+        self.label_plac_day_real_proffit = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_real_proffit.setObjectName(u"label_plac_day_real_proffit")
 
-        self.horizontalLayout_43.addWidget(self.label_63)
+        self.horizontalLayout_43.addWidget(self.label_plac_day_real_proffit)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_43)
@@ -1280,10 +1280,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_44.addWidget(self.label_64)
 
-        self.label_65 = QLabel(self.verticalLayoutWidget_2)
-        self.label_65.setObjectName(u"label_65")
+        self.label_plac_day_part_proffit = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_part_proffit.setObjectName(u"label_plac_day_part_proffit")
 
-        self.horizontalLayout_44.addWidget(self.label_65)
+        self.horizontalLayout_44.addWidget(self.label_plac_day_part_proffit)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_44)
@@ -1296,27 +1296,27 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25.addWidget(self.label_50)
 
-        self.label_51 = QLabel(self.verticalLayoutWidget_2)
-        self.label_51.setObjectName(u"label_51")
+        self.label_plac_day_compras = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_compras.setObjectName(u"label_plac_day_compras")
 
-        self.horizontalLayout_25.addWidget(self.label_51)
+        self.horizontalLayout_25.addWidget(self.label_plac_day_compras)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_25)
 
-        self.pushButton = QPushButton(self.tab_3)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setGeometry(QRect(730, 80, 191, 25))
-        self.dateEdit = QDateEdit(self.tab_3)
-        self.dateEdit.setObjectName(u"dateEdit")
-        self.dateEdit.setGeometry(QRect(950, 380, 131, 26))
-        self.dateEdit.setCalendarPopup(True)
-        self.dateEdit.setDate(QDate(2020, 1, 1))
-        self.dateEdit_2 = QDateEdit(self.tab_3)
-        self.dateEdit_2.setObjectName(u"dateEdit_2")
-        self.dateEdit_2.setGeometry(QRect(1100, 380, 141, 26))
-        self.dateEdit_2.setCalendarPopup(True)
-        self.dateEdit_2.setDate(QDate(2020, 1, 1))
+        self.pushButton_update_stats_tab = QPushButton(self.tab_3)
+        self.pushButton_update_stats_tab.setObjectName(u"pushButton_update_stats_tab")
+        self.pushButton_update_stats_tab.setGeometry(QRect(730, 80, 191, 25))
+        self.dateEdit_intervalo_start = QDateEdit(self.tab_3)
+        self.dateEdit_intervalo_start.setObjectName(u"dateEdit_intervalo_start")
+        self.dateEdit_intervalo_start.setGeometry(QRect(950, 380, 131, 26))
+        self.dateEdit_intervalo_start.setCalendarPopup(True)
+        self.dateEdit_intervalo_start.setDate(QDate(2020, 1, 1))
+        self.dateEdit_intervalo_stop = QDateEdit(self.tab_3)
+        self.dateEdit_intervalo_stop.setObjectName(u"dateEdit_intervalo_stop")
+        self.dateEdit_intervalo_stop.setGeometry(QRect(1100, 380, 141, 26))
+        self.dateEdit_intervalo_stop.setCalendarPopup(True)
+        self.dateEdit_intervalo_stop.setDate(QDate(2020, 1, 1))
         self.line_4 = QFrame(self.tab_3)
         self.line_4.setObjectName(u"line_4")
         self.line_4.setGeometry(QRect(640, 170, 20, 261))
@@ -1336,27 +1336,27 @@ class Ui_MainWindow(object):
         self.line_6.setGeometry(QRect(670, 160, 341, 16))
         self.line_6.setFrameShape(QFrame.HLine)
         self.line_6.setFrameShadow(QFrame.Sunken)
-        self.checkBox = QCheckBox(self.tab_3)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setGeometry(QRect(670, 380, 281, 23))
-        self.pushButton_2 = QPushButton(self.tab_3)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setGeometry(QRect(660, 460, 301, 25))
-        self.pushButton_3 = QPushButton(self.tab_3)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setGeometry(QRect(10, 460, 301, 25))
+        self.checkBox_ver_solo_intervalo = QCheckBox(self.tab_3)
+        self.checkBox_ver_solo_intervalo.setObjectName(u"checkBox_ver_solo_intervalo")
+        self.checkBox_ver_solo_intervalo.setGeometry(QRect(670, 380, 281, 23))
+        self.pushButton_generar_tabla_totales = QPushButton(self.tab_3)
+        self.pushButton_generar_tabla_totales.setObjectName(u"pushButton_generar_tabla_totales")
+        self.pushButton_generar_tabla_totales.setGeometry(QRect(660, 460, 301, 25))
+        self.pushButton_generate_table_all_days = QPushButton(self.tab_3)
+        self.pushButton_generate_table_all_days.setObjectName(u"pushButton_generate_table_all_days")
+        self.pushButton_generate_table_all_days.setGeometry(QRect(10, 460, 301, 25))
         self.label_67 = QLabel(self.tab_3)
         self.label_67.setObjectName(u"label_67")
         self.label_67.setGeometry(QRect(670, 420, 251, 21))
         self.label_67.setFont(font)
-        self.comboBox = QComboBox(self.tab_3)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
-        self.comboBox.setGeometry(QRect(930, 420, 311, 25))
+        self.comboBox_ambito_de_tabla = QComboBox(self.tab_3)
+        self.comboBox_ambito_de_tabla.addItem("")
+        self.comboBox_ambito_de_tabla.addItem("")
+        self.comboBox_ambito_de_tabla.addItem("")
+        self.comboBox_ambito_de_tabla.addItem("")
+        self.comboBox_ambito_de_tabla.addItem("")
+        self.comboBox_ambito_de_tabla.setObjectName(u"comboBox_ambito_de_tabla")
+        self.comboBox_ambito_de_tabla.setGeometry(QRect(930, 420, 311, 25))
         self.frame = QFrame(self.tab_3)
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(9, 30, 701, 101))
@@ -1376,10 +1376,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_46.addWidget(self.label_70)
 
-        self.label_71 = QLabel(self.verticalLayoutWidget_3)
-        self.label_71.setObjectName(u"label_71")
+        self.label_plac_capital_total = QLabel(self.verticalLayoutWidget_3)
+        self.label_plac_capital_total.setObjectName(u"label_plac_capital_total")
 
-        self.horizontalLayout_46.addWidget(self.label_71)
+        self.horizontalLayout_46.addWidget(self.label_plac_capital_total)
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_46)
@@ -1392,10 +1392,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_45.addWidget(self.label_68)
 
-        self.label_69 = QLabel(self.verticalLayoutWidget_3)
-        self.label_69.setObjectName(u"label_69")
+        self.label_plac_capital_invertido = QLabel(self.verticalLayoutWidget_3)
+        self.label_plac_capital_invertido.setObjectName(u"label_plac_capital_invertido")
 
-        self.horizontalLayout_45.addWidget(self.label_69)
+        self.horizontalLayout_45.addWidget(self.label_plac_capital_invertido)
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_45)
@@ -1408,10 +1408,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_47.addWidget(self.label_72)
 
-        self.label_73 = QLabel(self.verticalLayoutWidget_3)
-        self.label_73.setObjectName(u"label_73")
+        self.label_plac_cash_en_caja = QLabel(self.verticalLayoutWidget_3)
+        self.label_plac_cash_en_caja.setObjectName(u"label_plac_cash_en_caja")
 
-        self.horizontalLayout_47.addWidget(self.label_73)
+        self.horizontalLayout_47.addWidget(self.label_plac_cash_en_caja)
 
 
         self.verticalLayout_5.addLayout(self.horizontalLayout_47)
@@ -1420,12 +1420,12 @@ class Ui_MainWindow(object):
         self.label_74.setObjectName(u"label_74")
         self.label_74.setGeometry(QRect(10, 0, 251, 21))
         self.label_74.setFont(font)
-        self.pushButton_4 = QPushButton(self.tab_3)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setGeometry(QRect(930, 80, 171, 25))
-        self.pushButton_5 = QPushButton(self.tab_3)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setGeometry(QRect(1110, 80, 171, 25))
+        self.pushButton_export_stats_tab = QPushButton(self.tab_3)
+        self.pushButton_export_stats_tab.setObjectName(u"pushButton_export_stats_tab")
+        self.pushButton_export_stats_tab.setGeometry(QRect(930, 80, 171, 25))
+        self.pushButton_print_stats_tab = QPushButton(self.tab_3)
+        self.pushButton_print_stats_tab.setObjectName(u"pushButton_print_stats_tab")
+        self.pushButton_print_stats_tab.setGeometry(QRect(1110, 80, 171, 25))
         self.tabWidget.addTab(self.tab_3, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
@@ -1662,57 +1662,57 @@ class Ui_MainWindow(object):
         self.pushButton_calc_equal.setText(QCoreApplication.translate("MainWindow", u"=", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"Calculadora de billetes", None))
         self.label_33.setText(QCoreApplication.translate("MainWindow", u"Ventas", None))
-        self.label_34.setText(QCoreApplication.translate("MainWindow", u"{placeholder for ventas}", None))
+        self.label_plac_total_ventas.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_37.setText(QCoreApplication.translate("MainWindow", u"Ganancias", None))
-        self.label_38.setText(QCoreApplication.translate("MainWindow", u"{Placeholder for ganancias}", None))
+        self.label_plac_total_net_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_41.setText(QCoreApplication.translate("MainWindow", u"Ganancias reales", None))
-        self.label_42.setText(QCoreApplication.translate("MainWindow", u"{placeholder for ganancias reales}", None))
+        self.label_plac_total_real_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"Capital Invertido Total", None))
-        self.label_40.setText(QCoreApplication.translate("MainWindow", u"{placeholder for capital total}", None))
+        self.label_plac_total_capital_low.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_43.setText(QCoreApplication.translate("MainWindow", u"Capital de Robert", None))
-        self.label_44.setText(QCoreApplication.translate("MainWindow", u"{placeholder for capital de robert}", None))
+        self.label_plac_total_rob_capital.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"Capital de Ariadna", None))
-        self.label_36.setText(QCoreApplication.translate("MainWindow", u"{placeholder for capital de ariadna}", None))
+        self.label_plac_total_ary_capital.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Resumen de las estadisticas del dia", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Ventas", None))
-        self.label_49.setText(QCoreApplication.translate("MainWindow", u"{placeholder ventas}", None))
+        self.label_plac_day_ventas.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_46.setText(QCoreApplication.translate("MainWindow", u"Retorno de la inversion", None))
-        self.label_47.setText(QCoreApplication.translate("MainWindow", u"{placeholder inversion}", None))
+        self.label_plac_day_inversion.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_52.setText(QCoreApplication.translate("MainWindow", u"Ganancias netas", None))
-        self.label_59.setText(QCoreApplication.translate("MainWindow", u"{placeholder gan netas}", None))
+        self.label_plac_day_net_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_60.setText(QCoreApplication.translate("MainWindow", u"Salario", None))
-        self.label_61.setText(QCoreApplication.translate("MainWindow", u"{placeholder salary}", None))
+        self.label_plac_day_salary.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Renta", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"{placeholder rent}", None))
+        self.label_plac_day_rent.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_62.setText(QCoreApplication.translate("MainWindow", u"Ganancias totales", None))
-        self.label_63.setText(QCoreApplication.translate("MainWindow", u"{placeholder gan total}", None))
+        self.label_plac_day_real_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"Ganancias de la parte", None))
-        self.label_65.setText(QCoreApplication.translate("MainWindow", u"{placeholder part gan}", None))
+        self.label_plac_day_part_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_50.setText(QCoreApplication.translate("MainWindow", u"Compras del dia", None))
-        self.label_51.setText(QCoreApplication.translate("MainWindow", u"{placeholder compras}", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Actualizar estadisticas", None))
-        self.dateEdit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
-        self.dateEdit_2.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
+        self.label_plac_day_compras.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
+        self.pushButton_update_stats_tab.setText(QCoreApplication.translate("MainWindow", u"Actualizar estadisticas", None))
+        self.dateEdit_intervalo_start.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
+        self.dateEdit_intervalo_stop.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
         self.label_66.setText(QCoreApplication.translate("MainWindow", u"Resumen de las estadisticas totales", None))
-        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"Ver solamente en el intervalo:", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Generar tabla con todos los totales", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Generar tabla con todos los diarios", None))
+        self.checkBox_ver_solo_intervalo.setText(QCoreApplication.translate("MainWindow", u"Ver solamente en el intervalo:", None))
+        self.pushButton_generar_tabla_totales.setText(QCoreApplication.translate("MainWindow", u"Generar tabla con todos los totales", None))
+        self.pushButton_generate_table_all_days.setText(QCoreApplication.translate("MainWindow", u"Generar tabla con todos los diarios", None))
         self.label_67.setText(QCoreApplication.translate("MainWindow", u"Ver los datos en el ambito: ", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Todos", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Diario", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Semanal", None))
-        self.comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"Mensual", None))
-        self.comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"Anual", None))
+        self.comboBox_ambito_de_tabla.setItemText(0, QCoreApplication.translate("MainWindow", u"Todos", None))
+        self.comboBox_ambito_de_tabla.setItemText(1, QCoreApplication.translate("MainWindow", u"Diario", None))
+        self.comboBox_ambito_de_tabla.setItemText(2, QCoreApplication.translate("MainWindow", u"Semanal", None))
+        self.comboBox_ambito_de_tabla.setItemText(3, QCoreApplication.translate("MainWindow", u"Mensual", None))
+        self.comboBox_ambito_de_tabla.setItemText(4, QCoreApplication.translate("MainWindow", u"Anual", None))
 
         self.label_70.setText(QCoreApplication.translate("MainWindow", u"Capital total en el negocio", None))
-        self.label_71.setText(QCoreApplication.translate("MainWindow", u"{placeholder Capital total}", None))
+        self.label_plac_capital_total.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_68.setText(QCoreApplication.translate("MainWindow", u"De ello esta invertido", None))
-        self.label_69.setText(QCoreApplication.translate("MainWindow", u"{placeholder Capital invertido}", None))
+        self.label_plac_capital_invertido.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_72.setText(QCoreApplication.translate("MainWindow", u"En efectivo queda", None))
-        self.label_73.setText(QCoreApplication.translate("MainWindow", u"{placeholder Cash en la caja}", None))
+        self.label_plac_cash_en_caja.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_74.setText(QCoreApplication.translate("MainWindow", u"Flujo del efectivo en la caja", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Exportar Pagina", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"Imprimir esta Vista", None))
+        self.pushButton_export_stats_tab.setText(QCoreApplication.translate("MainWindow", u"Exportar Pagina", None))
+        self.pushButton_print_stats_tab.setText(QCoreApplication.translate("MainWindow", u"Imprimir esta Vista", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Estadisticas", None))
         self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
         self.menuHerramientas.setTitle(QCoreApplication.translate("MainWindow", u"Herramientas", None))

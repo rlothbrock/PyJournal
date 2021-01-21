@@ -34,7 +34,7 @@
      <attribute name="title">
       <string>Datos</string>
      </attribute>
-     <widget class="QTableView" name="tableView_table_display">
+     <widget class="QTableWidget" name="tableWidget_table_display">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -1577,9 +1577,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_34">
+          <widget class="QLabel" name="label_plac_total_ventas">
            <property name="text">
-            <string>{placeholder for ventas}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1601,9 +1601,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_38">
+          <widget class="QLabel" name="label_plac_total_net_proffit">
            <property name="text">
-            <string>{Placeholder for ganancias}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1625,9 +1625,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_42">
+          <widget class="QLabel" name="label_plac_total_real_proffit">
            <property name="text">
-            <string>{placeholder for ganancias reales}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1649,9 +1649,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_40">
+          <widget class="QLabel" name="label_plac_total_capital_low">
            <property name="text">
-            <string>{placeholder for capital total}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1673,9 +1673,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_44">
+          <widget class="QLabel" name="label_plac_total_rob_capital">
            <property name="text">
-            <string>{placeholder for capital de robert}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1697,9 +1697,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_36">
+          <widget class="QLabel" name="label_plac_total_ary_capital">
            <property name="text">
-            <string>{placeholder for capital de ariadna}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1752,9 +1752,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_49">
+          <widget class="QLabel" name="label_plac_day_ventas">
            <property name="text">
-            <string>{placeholder ventas}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1776,9 +1776,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_47">
+          <widget class="QLabel" name="label_plac_day_inversion">
            <property name="text">
-            <string>{placeholder inversion}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1800,9 +1800,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_59">
+          <widget class="QLabel" name="label_plac_day_net_proffit">
            <property name="text">
-            <string>{placeholder gan netas}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1824,9 +1824,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_61">
+          <widget class="QLabel" name="label_plac_day_salary">
            <property name="text">
-            <string>{placeholder salary}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1848,9 +1848,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_17">
+          <widget class="QLabel" name="label_plac_day_rent">
            <property name="text">
-            <string>{placeholder rent}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1872,9 +1872,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_63">
+          <widget class="QLabel" name="label_plac_day_real_proffit">
            <property name="text">
-            <string>{placeholder gan total}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1896,9 +1896,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_65">
+          <widget class="QLabel" name="label_plac_day_part_proffit">
            <property name="text">
-            <string>{placeholder part gan}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1920,9 +1920,9 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_51">
+          <widget class="QLabel" name="label_plac_day_compras">
            <property name="text">
-            <string>{placeholder compras}</string>
+            <string>$0.00</string>
            </property>
           </widget>
          </item>
@@ -1930,7 +1930,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButton_update_stats_tab">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -1943,7 +1943,7 @@
        <string>Actualizar estadisticas</string>
       </property>
      </widget>
-     <widget class="QDateEdit" name="dateEdit">
+     <widget class="QDateEdit" name="dateEdit_intervalo_start">
       <property name="geometry">
        <rect>
         <x>950</x>
@@ -1966,7 +1966,7 @@
        </date>
       </property>
      </widget>
-     <widget class="QDateEdit" name="dateEdit_2">
+     <widget class="QDateEdit" name="dateEdit_intervalo_stop">
       <property name="geometry">
        <rect>
         <x>1100</x>
@@ -2047,7 +2047,7 @@
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
+     <widget class="QCheckBox" name="checkBox_ver_solo_intervalo">
       <property name="geometry">
        <rect>
         <x>670</x>
@@ -2060,7 +2060,7 @@
        <string>Ver solamente en el intervalo:</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButton_generar_tabla_totales">
       <property name="geometry">
        <rect>
         <x>660</x>
@@ -2073,7 +2073,7 @@
        <string>Generar tabla con todos los totales</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButton_generate_table_all_days">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -2105,7 +2105,7 @@
        <string>Ver los datos en el ambito: </string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="comboBox_ambito_de_tabla">
       <property name="geometry">
        <rect>
         <x>930</x>
@@ -2181,9 +2181,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_71">
+           <widget class="QLabel" name="label_plac_capital_total">
             <property name="text">
-             <string>{placeholder Capital total}</string>
+             <string>$0.00</string>
             </property>
            </widget>
           </item>
@@ -2205,9 +2205,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_69">
+           <widget class="QLabel" name="label_plac_capital_invertido">
             <property name="text">
-             <string>{placeholder Capital invertido}</string>
+             <string>$0.00</string>
             </property>
            </widget>
           </item>
@@ -2229,9 +2229,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_73">
+           <widget class="QLabel" name="label_plac_cash_en_caja">
             <property name="text">
-             <string>{placeholder Cash en la caja}</string>
+             <string>$0.00</string>
             </property>
            </widget>
           </item>
@@ -2259,7 +2259,7 @@
        <string>Flujo del efectivo en la caja</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="pushButton_export_stats_tab">
       <property name="geometry">
        <rect>
         <x>930</x>
@@ -2272,7 +2272,7 @@
        <string>Exportar Pagina</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="pushButton_print_stats_tab">
       <property name="geometry">
        <rect>
         <x>1110</x>
