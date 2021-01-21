@@ -3,11 +3,33 @@ import os
 
 from PySide2.QtWidgets import QFileDialog
 
-from dialogs.auxiliar_dialogs import  selfCloseInterface
-from modules.db_templates_manager import table_templates
+from components.app_counter import entry_counter_creator
+from dialogs.auxiliar_dialogs import selfCloseInterface
+from modules.crud_sqlite import crud_driver
+from modules.db_templates_manager import table_templates, get_index_in_template, get_template_fields
 
 
-# raw imports/exports returns data/or file but always silent
+# possible args:
+# data_target: 'diary',
+# field_to_change: 'entry_counter'
+# data_pipe: entry_counter_creator.
+def transform_imported_data(
+        self,
+        data_destination: str,
+        field_to_change: str,
+        data_pipe
+):
+    # this block adds a new entry counter ,even if it already has
+    data_to_transform, value_to_update, field_index_to_update = \
+        self.imported_data.copy(), \
+        data_pipe(self), \
+        get_index_in_template(data_destination, field_to_change)
+    for tuple_index, data_tuple in enumerate(data_to_transform):
+        t_row = list(data_tuple)
+        t_row[field_index_to_update] = value_to_update
+        data_to_transform[tuple_index] = tuple(t_row)
+    self.imported_data = data_to_transform.copy()
+    return
 
 
 def import_data(self, with_headers=True):
@@ -21,7 +43,7 @@ def import_data(self, with_headers=True):
     print('contents: ', contents)  # todo **
     imported_data = list((tuple(content_.split('\n')[0].split(';')) for content_ in contents))
     print('val_list: ', imported_data)  # todo **
-    self.imported_data = imported_data
+    self.imported_data = imported_data.copy()
     return
 
 
@@ -38,11 +60,12 @@ def export_data(self, source=None, with_headers=True):
 
     try:
         dst = QFileDialog.getExistingDirectory(
-            self, 'Open CSV File: ',  default_source
+            self, 'Select Export Folder:', default_source
         )
+        if len(dst) == 0: raise Exception('no dst')
         dst = os.path.join(dst, exported_table_filename)
     except:
-        # tries to crate folder
+        # tries to create folder
         try:
             os.mkdir(default_source)
         except FileExistsError as error:
@@ -57,7 +80,7 @@ def export_data(self, source=None, with_headers=True):
         try:
             prime_data = self.data_to_export if source is None else source
             data = csv_data_maker(self, prime_data, with_headers)
-            exported_file = open(dst,'w')
+            exported_file = open(dst, 'w')
             exported_file.write(data)
             exported_file.close()
             return dst
@@ -65,12 +88,12 @@ def export_data(self, source=None, with_headers=True):
             raise Exception(fileError)
 
 
-def csv_data_maker(self, data, with_headers = True):
+def csv_data_maker(self, data, with_headers=True):
     csv_string = csv_header_builder(self) if with_headers else ''
     for row in data:
         quoted_fields = ('"%s"' % field if isinstance(field, str) else '%s' % field for field in row)
-        csv_string = csv_string+str.join(';', list(quoted_fields))+'\n'
-    print('csv_string:{}'.format(csv_string)) # todo erase this line after debug
+        csv_string = csv_string + str.join(';', list(quoted_fields)) + '\n'
+    print('csv_string:{}'.format(csv_string))  # todo erase this line after debug
     return csv_string
 
 
@@ -87,23 +110,26 @@ def csv_header_builder(self):
     print('table: {}, header:{}'.format(table_name, header))
     return header
 
+
 # dedicated imports functions
 
 def import_data_to_diary(self):
-    # steps:
-    # 1- import the data itlself
-    # 2- append the data to the array
-    #  the data must be added as a bulk insertion to the table
-    #  in order to data get entry_count property
-    # 5- sort the information, as a part of the bulk insertion
     try:
-        import_data(self, False)
-        # todo... not finished, check the steps
-        selfCloseInterface('Data imported to Diary Table',3,1,'Import Success')
+        import_data(self, False)  # imports the data and writes the array self.imported_data
+        transform_imported_data(self,'diary','entry_counter',entry_counter_creator)
+        data_to_import = self.imported_data.copy()
+        crud_driver(self,'diary','create',{
+            'fields': get_template_fields('diary'),
+            'value_list': data_to_import,
+            'multi': True
+        })
+        # self.diary_list.extend(self.imported_data.copy())
+        # self.diary_list.sort(lambda tuple_data : tuple_data[get_index_in_template('diary', 'entry_counter')])
+        selfCloseInterface('Data imported to Diary Table', 3, 1, 'Import Success')
         return
     except BaseException as error:
-        selfCloseInterface('Failed on Importing Data to Diary Table',3,2,'Import Failed')
-        print('failed raw import of data')
+        selfCloseInterface('Failed on Importing Data to Diary Table', 3, 2, 'Import Failed',str(error))
+        print('failed import of data')
         raise error
     # todo create a bulk insertion process on table diary
     # todo emit an autocloseable alert showing success
@@ -114,7 +140,7 @@ def export_data_from_diary(self):
     # 1- read the diary table
     # 2- export the data using export function.
     try:
-        filename_path = export_data(self, self.diary_list)
+        filename_path = export_data(self, crud_driver(self, 'diary', 'read', {'pick_all': True}))
         print('data saved on {}'.format(filename_path))
         selfCloseInterface('Diary Table Data Exported ', 3, 1, 'Export Success',
                            'Data saved on: {}'.format(filename_path))
@@ -123,5 +149,3 @@ def export_data_from_diary(self):
         print('export failed : {}'.format(error))
         selfCloseInterface('Failed on Exporting Data from Diary Table', 3, 2, 'Export Failed')
         raise Exception(error)
-
-

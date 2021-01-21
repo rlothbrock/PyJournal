@@ -476,13 +476,13 @@ def crud_driver(self, table, operation, options):
                 self.cursor.execute(options.get('raw_exec'))
     except sqlite3.Error as error:
         print('error inside crud driver: ', error)
-        selfCloseInterface('error on searching for status',alert_level=3,title='DB Error',info=str(error))
+        selfCloseInterface('error on Database Process',alert_level=3,title='DB Error',info=str(error))
         # raise error
 
     except ConditionFailedException as error2:
         print(str(error2))
-        alert_on_error = MessageBox(lambda: print(str(error)), str(error2), 'e', 'DB error')
-        alert_on_error.show()
+        # alert_on_error = MessageBox(lambda: print(str(error)), str(error2), 'e', 'DB error')
+        # alert_on_error.show()
         raise error2
     finally:
         if operation in ['raw_exec', 'read']:

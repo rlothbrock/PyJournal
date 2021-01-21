@@ -81,8 +81,8 @@ table_templates = [
     }, {
         'name': 'diary',
         'fields': [
-            {'name': 'id', 'props': ['INTEGER', 'PRIMARY KEY']},
-            {'name': 'entry_count', 'props':['TEXT']},
+            {'name': 'id', 'props': ['REAL']},
+            {'name': 'entry_counter', 'props': ['TEXT']},
             {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
             {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL']},
             {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL']},
@@ -98,6 +98,7 @@ table_templates = [
             {'name': 'owner', 'props': ['TEXT', 'NOT NULL']},
             {'name': 'robert_', 'props': ['REAL']},
             {'name': 'ariadna_', 'props': ['REAL']},
+            {'name': 'unique_id', 'props': ['REAL', 'UNIQUE']}
         ]
     }
 ]

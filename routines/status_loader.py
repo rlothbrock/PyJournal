@@ -1,3 +1,4 @@
+from components.status import status_props, default_status
 from modules.crud_sqlite import crud_driver
 from modules.db_templates_manager import connect_toDB, statusDB_name
 
@@ -13,10 +14,8 @@ def status_loader_routine(self):
         return dict(list(zip(status_props,status[-1])))
     except BaseException as err:
         print('not found....\nreturning default values')
-        return dict(list(zip(status_props, initial_values)))
+        return default_status
 
 
-status_props = ['connected_to', 'active_tab', 'width', 'height']
-initial_values = ['cellsDB.db', 0, 1000, 650]
 
 # ~~~~~~~~~~~~~~~~~~~~4
