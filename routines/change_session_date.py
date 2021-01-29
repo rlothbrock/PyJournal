@@ -24,6 +24,7 @@ class DateManager(QDialog):
     @Slot()
     def accept_(self, target):
         target.date_changed_signal.emit('%04d-%02d-%02d' % self.ui.dateEditSession.date().getDate())
+        target.recalculate_tables_signal.emit()
         self.accept()
 
 def manage_date_session(session):

@@ -44,10 +44,6 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         ui_init_routine(self)
 
-        # todo move this block to ui_init_routine
-
-        # todo move whole upper block
-
     def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
         super(MainWindow, self).keyPressEvent(event)
         self.key_pressed_signal.emit(event.key())

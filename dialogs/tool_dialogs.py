@@ -9,8 +9,6 @@ from UI.sales_form import Ui_Dialog_sales_form
 # this functions launches the dialog as a modal window
 def tool_launcher(self, tool):
     dialog = tool(self)
-    # debug print('launching tool as: {}'.format(tool))
-    # relocating dialoq on parent bottom right border
     self.ui.tabWidget.setCurrentIndex(0)
     ph = self.geometry().height()
     pw = self.geometry().width()
@@ -18,14 +16,18 @@ def tool_launcher(self, tool):
     py = self.geometry().y()
     dw = dialog.width()
     dh = dialog.height()
-    # debug print('x: {},y: {}, width: {}, height: {}'.format(pw-dw, ph-dh, dw,dh))
     dialog.setGeometry(pw-dw+px, ph-dh+py, dw, dh)
     dialog.show()
 
 
+class CapitalFormDialog(QDialog):
+    def __init__(self, parent):
+        super(CapitalFormDialog, self).__init__(parent)
+        self.ui = Ui_DialogCapital()
+        self.ui.setupUi(self)
 
 
-
+# todo not touched  must enhance---
 class SalesFormDialog(QDialog):
     def __init__(self,parent):
         super(SalesFormDialog, self).__init__(parent)
@@ -56,11 +58,6 @@ class PurchasesFormDialog(QDialog):
     def reject_rutine(self):
         self.reject()
 
-class CapitalFormDialog(QDialog):
-    def __init__(self, parent):
-        super(CapitalFormDialog, self).__init__(parent)
-        self.ui = Ui_DialogCapital()
-        self.ui.setupUi(self)
 
 
 class HelpOfflineDialog(QDialog):

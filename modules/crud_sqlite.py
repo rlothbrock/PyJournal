@@ -58,7 +58,7 @@ def _insert_on_db(self, table, options):
     command = 'INSERT INTO ' + table + ' (' + fields_str + ') VALUES (' + q_mark + ')'
 
     # execution phase
-    print(command)
+    # print(command)
     if multi:
         self.cursor.executemany(command, value_list)
         self.connection.commit()
@@ -70,8 +70,8 @@ def _insert_on_db(self, table, options):
 
 
 def _select_on_db(self, table, options):
-    print('crud_driver: selecting table %s' % table)
-    print('with options %s' % str(options))
+    # print('crud_driver: selecting table %s' % table)
+    # print('with options %s' % str(options))
     # options: dict {
     # |     pick_all: bool
     # |     multi: bool (if True uses many conditions when querying results)
@@ -111,13 +111,13 @@ def _select_on_db(self, table, options):
         default_options.get('order_')[i]
     ) for i in range(len(default_options.get('order_by'))))))
 
-    print('sort this table : ', order)
+    # print('sort this table : ', order)
 
     type_checker(self, pick_all, bool),
     if pick_all:
         command = 'SELECT ' + cols + ' FROM ' + table + order
 
-        print('command to be executed on current operation: ', command)
+        # print('command to be executed on current operation: ', command)
         self.cursor.execute(command)
         return
     if all([
@@ -130,7 +130,7 @@ def _select_on_db(self, table, options):
     command = 'SELECT ' + cols + ' FROM ' + table
     if default_options.get('field') is None and default_options.get('field_list') is None:
         command += order
-        print('command to be executed on current operation: ', command)
+        # print('command to be executed on current operation: ', command)
         self.cursor.execute(command)
         return
 
@@ -160,7 +160,7 @@ def _select_on_db(self, table, options):
             ('%s %s ?' % (field_list[index], operator_list[index]) for index in range(len(field_list)))
         )
         command = command + ' WHERE ' + compound_filter + order +';'
-        print('debug: inside branch multi command to be executed on current operation: ', command)
+        # print('debug: inside branch multi command to be executed on current operation: ', command)
     if not multi:  # single query conditions
         field = options.get('field')
         operator = options.get('operator')
@@ -169,9 +169,9 @@ def _select_on_db(self, table, options):
         condition_checker(self, operator in sqlite_query_operators, True,
                                       'operator < %s > not supported' % operator)
         command = command + ' WHERE ' + field + ' ' + operator + ' ?' + order +' ;'
-        print('debug: inside branch multi command to be executed on current operation: ', command)
+        # print('debug: inside branch multi command to be executed on current operation: ', command)
 
-    print('command to be executed on current operation: ', command)
+    # print('command to be executed on current operation: ', command)
     type_checker(self, value, tuple)
     condition_checker(self, len(value) == str.count(command, '?'))
     self.cursor.execute(command, value)
@@ -310,7 +310,7 @@ def _update_on_db(self, table, options):
             (len(value_tuple) != occurrences for value_tuple in value_list)
         ), False)
 
-        print(command)
+        # print(command)
         self.cursor.executemany(command, value_list)
         self.connection.commit()
         return
@@ -321,7 +321,7 @@ def _update_on_db(self, table, options):
         type_checker(self, value, tuple)
         condition_checker(self, len(value) == occurrences)
 
-        print(command)
+        # print(command)
         self.cursor.execute(command, value)
         self.connection.commit()
         return
@@ -331,7 +331,7 @@ def _update_on_db(self, table, options):
 def _delete_on_db(self, table, options):
     if options is None:
         command = 'DELETE FROM ' + table
-        print(command)
+        # print(command)
         self.cursor.execute(command)
         self.connection.commit()
         return
@@ -429,7 +429,7 @@ def _delete_on_db(self, table, options):
             ))
         ]))
 
-        print(command)
+        # print(command)
         self.cursor.executemany(command, value_list)
         self.connection.commit()
         return
@@ -440,7 +440,7 @@ def _delete_on_db(self, table, options):
         type_checker(self, value, tuple)
         condition_checker(self, len(value) == str.count(command, '?'))
 
-        print(command)
+        # print(command)
         self.cursor.execute(command, value)
         self.connection.commit()
         return
@@ -464,9 +464,9 @@ def crud_driver(self, table, operation, options):
         if operation == 'delete':
             _delete_on_db(self, table, options)
         if operation == 'raw_exec':
-            print('debug: ejecutando raw execution with:')
-            print('debug: query: ',options.get('raw_exec'))
-            print('debug: values: ',options.get('value'))
+            # print('debug: ejecutando raw execution with:')
+            # print('debug: query: ',options.get('raw_exec'))
+            # print('debug: values: ',options.get('value'))
             if any([
                 isinstance(options.get('value'), list),
                 isinstance(options.get('value'), tuple)
@@ -475,20 +475,20 @@ def crud_driver(self, table, operation, options):
             else:
                 self.cursor.execute(options.get('raw_exec'))
     except sqlite3.Error as error:
-        print('error inside crud driver: ', error)
+        # print('error inside crud driver: ', error)
         selfCloseInterface('error on Database Process',alert_level=3,title='DB Error',info=str(error))
         # raise error
 
     except ConditionFailedException as error2:
-        print(str(error2))
-        # alert_on_error = MessageBox(lambda: print(str(error)), str(error2), 'e', 'DB error')
+        # print(str(error2))
+        # alert_on_error = MessageBox(lambda: # print(str(error)), str(error2), 'e', 'DB error')
         # alert_on_error.show()
         raise error2
     finally:
         if operation in ['raw_exec', 'read']:
             data = self.cursor.fetchall()
             close_cursor(self)
-            print('data from %s operation: ' % operation, data)
+            # print('data from %s operation: ' % operation, data)
             return data
 
         if self.cursor is not None:
@@ -518,5 +518,5 @@ def find_total(self, table, slave, master, values, multi_filter=False, regexp=Fa
             'value': values
         })
             # todo elaborar mapero de ulti filter
-    print(total)
+    # print(total)
     return total[0][0] if total[0][0] is not None else 0

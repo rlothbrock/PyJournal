@@ -98,6 +98,9 @@ table_templates = [
             {'name': 'owner', 'props': ['TEXT', 'NOT NULL']},
             {'name': 'robert_', 'props': ['REAL']},
             {'name': 'ariadna_', 'props': ['REAL']},
+            {'name': 'invested_', 'props': ['REAL', 'NOT NULL']},
+            {'name': 'cash_', 'props': ['REAL']},
+            {'name': 'total_', 'props': ['REAL', 'NOT NULL']},
             {'name': 'unique_id', 'props': ['REAL', 'UNIQUE']}
         ]
     }
@@ -106,7 +109,7 @@ table_templates = [
 
 # ----sqlite user defined functions: must review todo eliminates possible bugs
 def regexp(expression, context, engine=re.search):
-    print('searching expression: < %s > in context: < %s >' % (expression, context))
+    # print('searching expression: < %s > in context: < %s >' % (expression, context))
     try:
         return 1 if engine(str(expression), str(context)) else 0
     except BaseException as error:
@@ -157,6 +160,19 @@ def get_index_in_template(table: str, field_name: str):
     return fields.index(field_name)
 
 
+def on_diary_table_find_index_and_fields_of(self, table: str):
+    # returns a tuple [x_field_index_on_diary...],[field_name...]
+    diary_fields = get_template_fields('diary')
+    x_fields = get_template_fields(table)
+    x_field_index_on_diary = list(filter(lambda item: item is not None, map(
+        lambda item: get_index_in_template('diary', item) if item in diary_fields else None,
+        x_fields)))
+    x_field_on_diary = list(filter(lambda item: item is not None, map(
+        lambda item: item if item in diary_fields else None,
+        x_fields)))
+    return x_field_index_on_diary, x_field_on_diary
+
+
 
 # sqlite3  related functions.....
 
@@ -169,7 +185,7 @@ def close_cursor(self):
     try:
         self.cursor.close()
         self.cursor = None
-        print('debug: cursor has been closed')
+        # print('debug: cursor has been closed')
         return
     except:
         print('info: close_cursor was not executed')
@@ -187,7 +203,6 @@ def _close_db(self):
 
 
 def create_connection(self, db_name):
-    print('debug: attempting to connect to %s' % db_name)
     try:
         self.connection = sqlite3.connect(os.path.join(os.curdir, 'databases', db_name))
         if db_name != statusDB_name:
@@ -197,7 +212,7 @@ def create_connection(self, db_name):
             self.status.update({"connected_to": db_name})
         initialize_cursor(self)
         self.connected_signal.emit(db_name)
-        print('debug: successfully connected to {}'.format(db_name))
+        # print('debug: successfully connected to {}'.format(db_name))
     except sqlite3.Error as error:
         print('error while trying to connect to {}  details:\n {}'.format(db_name, error))
         selfCloseInterface('Failed on Connecting To Database {}'.format(db_name),3,3,'Critical Error', 'Closing App...')
@@ -219,6 +234,8 @@ def connect_toDB(self, db_name, create_tables=True, silent=False):
         #     'Now, you\'re connected to: %s' % db_name,
         #     'i', 'Connection Success')
         # connection_alert.show()
+    if db_name != statusDB_name:
+        self.recalculate_tables_signal.emit()
     return
 
 
@@ -269,3 +286,5 @@ def create_table_templates():
 def create_tables_onDb(self, template=[]):
     t_temp = template if len(template) > 0 else create_table_templates()
     return cursor_execution(self, t_temp, 'tables created successfully')
+
+

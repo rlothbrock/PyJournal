@@ -1,3 +1,21 @@
+from modules.accountant import calculate_statistics
+
 def display_statistics_on_tab(self):
-    # todo: fill this function after implementation of aux tables calculation
-    pass
+    data = calculate_statistics(self)
+    self.ui.label_plac_capital_total.setText('$ {:,.2f}'.format(data[0]))
+    self.ui.label_plac_capital_invertido.setText('$ {:,.2f}'.format(data[1]))
+    self.ui.label_plac_cash_en_caja.setText('$ {:,.2f}'.format(data[2]))
+    self.ui.label_plac_day_ventas.setText('$ {:,.2f}'.format(data[3]))
+    self.ui.label_plac_day_inversion.setText('$ {:,.2f}'.format(data[4]))
+    self.ui.label_plac_day_net_proffit.setText('$ {:,.2f}'.format(data[5]))
+    self.ui.label_plac_day_salary.setText('$ {:,.2f}'.format(data[6]))
+    self.ui.label_plac_day_rent.setText('$ {:,.2f}'.format(data[7]))
+    self.ui.label_plac_day_real_proffit.setText('$ {:,.2f}'.format(data[8]))
+    self.ui.label_plac_day_part_proffit.setText('$ {:,.2f}'.format(data[9]))
+    self.ui.label_plac_day_compras.setText('$ {:,.2f}'.format(data[10]))
+    self.ui.label_plac_total_ventas.setText('$ {:,.2f}'.format(data[11]))
+    self.ui.label_plac_total_net_proffit.setText('$ {:,.2f}'.format(data[12]))
+    self.ui.label_plac_total_real_proffit.setText('$ {:,.2f}'.format(data[13]))
+    self.ui.label_plac_total_capital_low.setText('$ {:,.2f}'.format(data[14]))
+    self.ui.label_plac_total_rob_capital.setText('$ {:,.2f}'.format(data[15]))
+    self.ui.label_plac_total_ary_capital.setText('$ {:,.2f}'.format(data[16]))

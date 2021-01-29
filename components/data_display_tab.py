@@ -10,7 +10,7 @@ def execute_display_table(self, table_name):
     self.table_on_target = table_name
     if table_name != 'diary':
         self.recalculate_tables_signal.emit()
-        pass
+        # what else??
     self.data_to_display_on_tab1 = crud_driver(self, table_name, 'read', {'pick_all': True})
     self.display_table_signal.emit()
     self.ui.tabWidget.setCurrentIndex(0)
@@ -22,7 +22,7 @@ def display_active_table_on_data_display(self):
     # class props needed
     data_to_display = self.data_to_display_on_tab1.copy()
     table_name = self.table_on_target
-    print('debug: \ndata_to_display on {}:\n{}'.format(table_name,data_to_display))
+    # print('debug: \ndata_to_display on {}:\n{}'.format(table_name,data_to_display))
     self.ui.label_table_on_display.setText(table_name)
     # headers
     fields = get_template_fields(table_name)
@@ -51,6 +51,6 @@ def display_active_table_on_data_display(self):
                 pass
             finally:
                 self.ui.tableWidget_table_display.setItem(i_row, i_col, item__)
-    print('debug: table {} displayed...'.format(table_name))
+    # print('debug: table {} displayed...'.format(table_name))
     return
 

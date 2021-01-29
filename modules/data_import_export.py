@@ -34,15 +34,15 @@ def transform_imported_data(
 
 def import_data(self, with_headers=True):
     # this functions reads the file and retrieves data as structured array to self.imported_data property
-    print('preparing for importing...')
+    # print('preparing for importing...')
     filename = QFileDialog.getOpenFileName(self, 'Open CSV File: ', os.pardir, '*.csv')
-    print('collecting data from {}'.format(filename))
+    # print('collecting data from {}'.format(filename))
     data_to_import = open(filename[0]).readlines()
     contents = data_to_import[1:] if not with_headers else data_to_import
     # todo delete all this prints after debugging phase **
-    print('contents: ', contents)  # todo **
+    # print('contents: ', contents)  # todo **
     imported_data = list((tuple(content_.split('\n')[0].split(';')) for content_ in contents))
-    print('val_list: ', imported_data)  # todo **
+    # print('val_list: ', imported_data)  # todo **
     self.imported_data = imported_data.copy()
     return
 
@@ -93,7 +93,7 @@ def csv_data_maker(self, data, with_headers=True):
     for row in data:
         quoted_fields = ('"%s"' % field if isinstance(field, str) else '%s' % field for field in row)
         csv_string = csv_string + str.join(';', list(quoted_fields)) + '\n'
-    print('csv_string:{}'.format(csv_string))  # todo erase this line after debug
+    # print('csv_string:{}'.format(csv_string))  # todo erase this line after debug
     return csv_string
 
 
@@ -107,7 +107,7 @@ def csv_header_builder(self):
     header = ';'.join('"%s"' % field.get('name') for field in table_dict.get('fields')) \
         if table_dict is not None else ''
     header += '\n'
-    print('table: {}, header:{}'.format(table_name, header))
+    # print('table: {}, header:{}'.format(table_name, header))
     return header
 
 
@@ -141,10 +141,24 @@ def export_data_from_diary(self):
     try:
         filename_path = export_data(self, crud_driver(self, 'diary', 'read', {'pick_all': True}))
         print('data saved on {}'.format(filename_path))
-        selfCloseInterface('Diary Table Data Exported ', 3, 1, 'Export Success',
+        selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
                            'Data saved on: {}'.format(filename_path))
         return
     except BaseException as error:
         print('export failed : {}'.format(error))
-        selfCloseInterface('Failed on Exporting Data from Diary Table', 3, 2, 'Export Failed')
+        selfCloseInterface('Failed on Exporting Data from Diary Table', 4, 2, 'Export Failed')
         raise Exception(error)
+
+
+def export_data_displayed_on_tab1(self):
+    try:
+        filename_path = export_data(self, self.data_to_display_on_tab1.copy() )
+        print('data saved on {}'.format(filename_path))
+        selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
+                           'Data saved on: {}'.format(filename_path))
+        return
+    except BaseException as error:
+        print('export failed : {}'.format(error))
+        selfCloseInterface('Failed on Exporting Data from Diary Table', 4, 2, 'Export Failed')
+        raise Exception(error)
+

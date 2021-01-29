@@ -3,16 +3,20 @@ from components.data_display_tab import display_active_table_on_data_display
 from components.menus import set_menus
 from components.statistics_display_tab import display_statistics_on_tab
 from components.status import current_date
+from dialogs.auxiliar_dialogs import selfCloseInterface
 from modules.accountant import calculate_auxiliar_tabs
 from modules.app_clock import app_clock
 from modules.calculator import set_calculator
 from modules.crud_sqlite import crud_driver
+from modules.data_import_export import export_data_displayed_on_tab1
 from modules.money_calc import set_bill_calculator
 from routines.status_loader import status_loader_routine
+from routines.status_saver import status_saver_routine
 
 
 def ui_init_routine(self):
     self.status = status_loader_routine(self)
+    status_saver_routine(self,True)
     if self.status.get('last_date') == current_date:
         self.counter = self.status.get('counter')
     self.status.update({'last_date': current_date})
@@ -56,10 +60,16 @@ def ui_init_routine(self):
     if self.ui.tabWidget.currentIndex() == 2:
         self.recalculate_tables_signal.emit()
     self.ui.tabWidget.currentChanged.connect(lambda i: tab_index_reaction(self, i))
-    print('debug: finish ui_init')
+    # print('debug: finish ui_init')
+
+    # tab1 buttons
+    self.ui.pushButton_export_table.clicked.connect(lambda: export_data_displayed_on_tab1(self))
+
+    # statistics tab buttons
+    self.ui.pushButton_update_stats_tab.clicked.connect(lambda: display_statistics_on_tab(self))
+    self.ui.pushButton_update_stats_tab.clicked.connect(lambda: selfCloseInterface('Estadisticas Actualizadas',alert_level=1,title='Completado!'))
 
 
 def tab_index_reaction(self, index: int):
     if index == 2:
-        print('debug: detectado index 2')
         self.recalculate_tables_signal.emit()
