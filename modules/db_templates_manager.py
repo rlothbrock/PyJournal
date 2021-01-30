@@ -13,7 +13,7 @@ table_templates = [
     {
         'name': 'sales',
         'fields': [
-            {'name': 'id', 'props': ['INTEGER', 'PRIMARY KEY']},
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY']},
             {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
             {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL']},
             {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL']},
@@ -31,7 +31,7 @@ table_templates = [
     }, {
         'name': 'stock',
         'fields': [
-            {'name': 'id', 'props': ['INTEGER', 'PRIMARY KEY']},
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY']},
             {'name': 'date', 'props': ['TEXT']},
             {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL']},
             {'name': 'item_code', 'props': ['TEXT', 'NOT NULL', 'UNIQUE']},
@@ -48,7 +48,7 @@ table_templates = [
     }, {
         'name': 'capital',
         'fields': [
-            {'name': 'id', 'props': ['INTEGER', 'PRIMARY KEY', 'NOT NULL']},
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY', 'NOT NULL']},
             {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
             {'name': 'amount', 'props': ['REAL', 'NOT NULL']},
             {'name': 'owner', 'props': ['TEXT', 'NOT NULL']},
@@ -64,7 +64,7 @@ table_templates = [
     }, {
         'name': 'statistics',
         'fields': [
-            {'name': 'id', 'props': ['INTEGER', 'PRIMARY KEY']},
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY']},
             {'name': 'date', 'props': ['TEXT']},
             {'name': 'total_sales', 'props': ['INTEGER']},
             {'name': 'total_inv', 'props': ['INTEGER']},
@@ -81,7 +81,7 @@ table_templates = [
     }, {
         'name': 'diary',
         'fields': [
-            {'name': 'id', 'props': ['REAL']},
+            {'name': 'id', 'props': ['TEXT']},
             {'name': 'entry_counter', 'props': ['TEXT']},
             {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
             {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL']},

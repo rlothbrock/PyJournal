@@ -11,6 +11,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication
 from UI.Main import Ui_MainWindow
 from components.status import current_date
 from dialogs.auxiliar_dialogs import selfCloseInterface
+from modules.diary_driver import append_data_to_diary_routine
 from routines.about_to_Quit import about_to_quit_routine
 from routines.ui_initialization import ui_init_routine
 
@@ -62,6 +63,8 @@ class MainWindow(QMainWindow):
             nd, 3, 1, 'Fecha de trabajo cambiada','\n\n *Las entradas tendran esa fecha')
         return
 
+    def append_data_to_diary(self,data):
+        append_data_to_diary_routine(self, data)
 
     @Slot()
     def save_window_size(self):

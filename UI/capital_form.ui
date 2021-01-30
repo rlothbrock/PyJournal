@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>538</width>
-    <height>295</height>
+    <width>543</width>
+    <height>313</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>250</y>
+     <y>270</y>
      <width>511</width>
      <height>32</height>
     </rect>
@@ -45,7 +45,7 @@
      <x>8</x>
      <y>12</y>
      <width>511</width>
-     <height>151</height>
+     <height>168</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout_2">
@@ -78,7 +78,11 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QDoubleSpinBox" name="cantidadDeDineroDoubleSpinBox"/>
+     <widget class="QDoubleSpinBox" name="cantidadDeDineroDoubleSpinBox">
+      <property name="maximum">
+       <double>1000000.000000000000000</double>
+      </property>
+     </widget>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="extraccionDelMontoLabel">
@@ -129,10 +133,10 @@
   <widget class="QLabel" name="notasDeCapital">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>180</y>
-     <width>491</width>
-     <height>51</height>
+     <x>10</x>
+     <y>190</y>
+     <width>511</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
