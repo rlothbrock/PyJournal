@@ -1,6 +1,6 @@
 # Capital entries Form -------------------------------
 from PySide2.QtWidgets import QDialog, QDialogButtonBox
-from dialogs.auxiliar_dialogs import MessageBox
+from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
 from dialogs.tool_dialogs import build_data_template
 from modules.crud_sqlite import crud_driver
 from modules.db_templates_manager import get_template_fields, get_index_in_template
@@ -25,6 +25,7 @@ class CapitalFormDialog(QDialog):
         self.ui.nombreDelQueInsertaElDineroComboBox.currentTextChanged.connect(self.fill_label)
         self.ui.extraccionDelMontoCheckBox.stateChanged.connect(self.fill_label)
         self.ui.cantidadDeDineroDoubleSpinBox.valueChanged.connect(self.fill_label)
+
         self.cancel_button.clicked.connect(self.reject_form)
         self.reset_button.clicked.connect(self.clean_form)
         self.apply_button.clicked.connect(lambda: self.apply_form(parent))
@@ -62,6 +63,20 @@ class CapitalFormDialog(QDialog):
         data[parts__[1]] = last_row_data[parts__[1]]
         data[parts__[self.ui.nombreDelQueInsertaElDineroComboBox.currentIndex()]] = \
             last_row_data[parts__[self.ui.nombreDelQueInsertaElDineroComboBox.currentIndex()]] + data[amount__]
+
+        # this block is for defunding protection:
+        amount___ = float(data[parts__[self.ui.nombreDelQueInsertaElDineroComboBox.currentIndex()]])
+        if amount___ < 0 :
+            print('capital extraction denied. No enough funds ')
+            selfCloseInterface(
+                'No puede extraer $ {:,.2f} del saldo de {}.\nFondos Insuficientes'.format(
+                    self.ui.cantidadDeDineroDoubleSpinBox.value(),
+                    self.ui.nombreDelQueInsertaElDineroComboBox.currentText()
+                ),
+                5,3,'Extraccion Denegada',
+                'No esta permitido extraer mas dinero que el total de la parte de un socio ')
+            return self.clean_form()
+
         data[invested__] = last_row_data[invested__]
         data[total__] = data[parts__[0]] + data[parts__[1]]
         data[cash__] = data[total__] - data[invested__]
@@ -85,7 +100,10 @@ class CapitalFormDialog(QDialog):
 
 
 # todo:
-#   debo añadir una verificacion al capital de manera tal que no me permita sacar
+#   - debo añadir una verificacion al capital de manera tal que no me permita sacar
 #   mas dinero del que tengo invertido, es decir que el maximo extraible de la inver
 #   sion sea el maximo que tiene cada socio en la inversion. esto debe hacerse a
-#   nivel de chequeo de formulario, antes de procesar la orden.
+#   nivel de chequeo de formulario, antes de procesar la orden
+#   - tambien debo añadir en el form la opcion de verificar contra la contraseña,
+#   de manera tal que si no se provee la contraseña correcta se rechace la entrada.
+#
