@@ -108,9 +108,14 @@ def calculate_statistics(self):
             'raw_exec': 'SELECT TOTAL(sell_price), TOTAL(total_per_item(price,quantity)), TOTAL(salary) FROM diary WHERE is_sale = ? AND date = ? ',
             'value': (True, self.date_session)})[0]
 
+        session_consignations = crud_driver(self, 'diary', 'raw_exec', {
+            'raw_exec': 'SELECT TOTAL(total_per_item(price,quantity)) FROM diary WHERE is_consignation = ? AND date = ? ',
+            'value': (True, self.date_session)
+        })[0][0]
+
         ventas_del_dia = session_resume[0] if session_resume[0] is not None else 0
-        retorno_inversion = session_resume[1] if session_resume[1] is not None else 0
-        ganancias_netas = float(ventas_del_dia) - float(retorno_inversion)
+        retorno_inversion = (float(session_resume[1]) - float(session_consignations)) if session_resume[1] is not None else 0
+        ganancias_netas = float(ventas_del_dia) - float(retorno_inversion) - float(session_consignations)
         salario_total = session_resume[2] if session_resume[2] is not None else 0
         renta = 125  # ajustar este valor luego desde el dialog
         ganancias_reales_comun = ganancias_netas - renta - float(salario_total)
@@ -142,9 +147,9 @@ def calculate_statistics(self):
         return (capital_total, capital_invertido, cash_en_caja, ventas_del_dia, retorno_inversion, ganancias_netas,
                 salario_total, renta, ganancias_reales_comun, ganancias_reales_parte, compras_del_dia,
                 ventas_totales, ganancias_totales, ganancias_reales_totales, invertido_total, capital_de_robert,
-                capital_de_ariadna)
+                capital_de_ariadna,session_consignations)
     except:
-        return tuple( ( 0/i for i in range(1,18) ) )
+        return tuple( ( 0/i for i in range(1,19) ) )
 
 def translate_diary_data_to_table(self, table: str, diary_data):  # only for sales and capital tables
     if table in ['stock', 'statistics', 'diary']:

@@ -1172,7 +1172,7 @@ class Ui_MainWindow(object):
         self.label_45.setFont(font)
         self.verticalLayoutWidget_2 = QWidget(self.tab_3)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(10, 170, 631, 261))
+        self.verticalLayoutWidget_2.setGeometry(QRect(10, 170, 631, 265))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -1288,6 +1288,22 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_44)
 
+        self.horizontalLayout_26 = QHBoxLayout()
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
+        self.label_51 = QLabel(self.verticalLayoutWidget_2)
+        self.label_51.setObjectName(u"label_51")
+        self.label_51.setFont(font)
+
+        self.horizontalLayout_26.addWidget(self.label_51)
+
+        self.label_plac_day_compras = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_compras.setObjectName(u"label_plac_day_compras")
+
+        self.horizontalLayout_26.addWidget(self.label_plac_day_compras)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_26)
+
         self.horizontalLayout_25 = QHBoxLayout()
         self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
         self.label_50 = QLabel(self.verticalLayoutWidget_2)
@@ -1296,10 +1312,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_25.addWidget(self.label_50)
 
-        self.label_plac_day_compras = QLabel(self.verticalLayoutWidget_2)
-        self.label_plac_day_compras.setObjectName(u"label_plac_day_compras")
+        self.label_plac_day_consignation = QLabel(self.verticalLayoutWidget_2)
+        self.label_plac_day_consignation.setObjectName(u"label_plac_day_consignation")
 
-        self.horizontalLayout_25.addWidget(self.label_plac_day_compras)
+        self.horizontalLayout_25.addWidget(self.label_plac_day_consignation)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_25)
@@ -1341,10 +1357,10 @@ class Ui_MainWindow(object):
         self.checkBox_ver_solo_intervalo.setGeometry(QRect(670, 380, 281, 23))
         self.pushButton_generar_tabla_totales = QPushButton(self.tab_3)
         self.pushButton_generar_tabla_totales.setObjectName(u"pushButton_generar_tabla_totales")
-        self.pushButton_generar_tabla_totales.setGeometry(QRect(660, 460, 301, 25))
+        self.pushButton_generar_tabla_totales.setGeometry(QRect(660, 470, 301, 25))
         self.pushButton_generate_table_all_days = QPushButton(self.tab_3)
         self.pushButton_generate_table_all_days.setObjectName(u"pushButton_generate_table_all_days")
-        self.pushButton_generate_table_all_days.setGeometry(QRect(10, 460, 301, 25))
+        self.pushButton_generate_table_all_days.setGeometry(QRect(10, 470, 301, 25))
         self.label_67 = QLabel(self.tab_3)
         self.label_67.setObjectName(u"label_67")
         self.label_67.setGeometry(QRect(670, 420, 251, 21))
@@ -1483,7 +1499,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"PyJournal", None))
         self.actionA_adir_Ventas.setText(QCoreApplication.translate("MainWindow", u"A\u00f1adir Ventas", None))
         self.actionA_adir_Compras.setText(QCoreApplication.translate("MainWindow", u"A\u00f1adir Compras", None))
         self.actionA_adir_Compras_2.setText(QCoreApplication.translate("MainWindow", u"A\u00f1adir Compras", None))
@@ -1688,8 +1704,10 @@ class Ui_MainWindow(object):
         self.label_plac_day_real_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"Ganancias de la parte", None))
         self.label_plac_day_part_proffit.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
-        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Compras del dia", None))
+        self.label_51.setText(QCoreApplication.translate("MainWindow", u"Compras del dia", None))
         self.label_plac_day_compras.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"Pagos a Consignacion del dia", None))
+        self.label_plac_day_consignation.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.pushButton_update_stats_tab.setText(QCoreApplication.translate("MainWindow", u"Actualizar estadisticas", None))
         self.dateEdit_intervalo_start.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))
         self.dateEdit_intervalo_stop.setDisplayFormat(QCoreApplication.translate("MainWindow", u"dd/MM/yyyy", None))

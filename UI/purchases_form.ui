@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>584</width>
-    <height>448</height>
+    <width>590</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>410</y>
-     <width>551</width>
+     <y>470</y>
+     <width>561</width>
      <height>32</height>
     </rect>
    </property>
@@ -48,7 +48,7 @@
      <x>10</x>
      <y>10</y>
      <width>561</width>
-     <height>391</height>
+     <height>421</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -67,7 +67,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Datos del producto</string>
+       <string>Datos del producto (Lea cuidadosamente)</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -79,7 +79,7 @@
       <item row="3" column="0">
        <widget class="QLabel" name="nombreDelItemIncrementadoLabel">
         <property name="text">
-         <string>Nombre del Item Incrementado</string>
+         <string>Nombre del Producto</string>
         </property>
        </widget>
       </item>
@@ -89,7 +89,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="codigoDelItemIncrementadoLabel">
         <property name="text">
-         <string>Codigo del Item Incrementado</string>
+         <string>Codigo del Producto</string>
         </property>
        </widget>
       </item>
@@ -99,7 +99,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="nuevoItemMarcarCuandoEsUnNuevoProductoLabel">
         <property name="text">
-         <string>Nuevo Item (Marcar SOLO si es un nuevo producto)</string>
+         <string>Producto Nuevo</string>
         </property>
        </widget>
       </item>
@@ -108,18 +108,25 @@
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="nombreDelItemCompradoLabel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Nombre del Item Comprado</string>
+         <string>Nombre del Nuevo Producto</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLineEdit" name="nombreDelItemCompradoLineEdit"/>
+       <widget class="QLineEdit" name="nombreDelItemCompradoLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="itemAConsignacionLabel">
         <property name="text">
-         <string>Item a Consignacion (Marcar solo si NO se pagó)</string>
+         <string>Producto a Consignacion</string>
         </property>
        </widget>
       </item>
@@ -188,38 +195,44 @@
       </item>
      </layout>
     </item>
-    <item>
-     <widget class="QLabel" name="label_5">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>11</pointsize>
-        <weight>75</weight>
-        <italic>true</italic>
-        <bold>true</bold>
-        <stylestrategy>PreferDefault</stylestrategy>
-       </font>
-      </property>
-      <property name="text">
-       <string>Utilice este formulario para insertar SOLAMENTE las COMPRAS</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>430</y>
+     <width>559</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+     <stylestrategy>PreferDefault</stylestrategy>
+    </font>
+   </property>
+   <property name="text">
+    <string>Utilice este formulario para insertar SOLAMENTE las COMPRAS</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
  <resources/>

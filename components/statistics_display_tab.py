@@ -19,3 +19,4 @@ def display_statistics_on_tab(self):
     self.ui.label_plac_total_capital_low.setText('$ {:,.2f}'.format(data[14]))
     self.ui.label_plac_total_rob_capital.setText('$ {:,.2f}'.format(data[15]))
     self.ui.label_plac_total_ary_capital.setText('$ {:,.2f}'.format(data[16]))
+    self.ui.label_plac_day_consignation.setText('$ {:,.2f}'.format(data[17]))

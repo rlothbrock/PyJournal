@@ -18,7 +18,7 @@ class Ui_Dialog_purchases_form(object):
         if not Dialog_purchases_form.objectName():
             Dialog_purchases_form.setObjectName(u"Dialog_purchases_form")
         Dialog_purchases_form.setWindowModality(Qt.ApplicationModal)
-        Dialog_purchases_form.resize(584, 448)
+        Dialog_purchases_form.resize(590, 508)
         icon = QIcon()
         icon.addFile(u"icon.png", QSize(), QIcon.Normal, QIcon.Off)
         Dialog_purchases_form.setWindowIcon(icon)
@@ -26,12 +26,12 @@ class Ui_Dialog_purchases_form(object):
         Dialog_purchases_form.setModal(False)
         self.buttonBox = QDialogButtonBox(Dialog_purchases_form)
         self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setGeometry(QRect(10, 410, 551, 32))
+        self.buttonBox.setGeometry(QRect(10, 470, 561, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Apply|QDialogButtonBox.Close|QDialogButtonBox.Reset)
         self.verticalLayoutWidget_5 = QWidget(Dialog_purchases_form)
         self.verticalLayoutWidget_5.setObjectName(u"verticalLayoutWidget_5")
-        self.verticalLayoutWidget_5.setGeometry(QRect(10, 10, 561, 391))
+        self.verticalLayoutWidget_5.setGeometry(QRect(10, 10, 561, 421))
         self.verticalLayout_5 = QVBoxLayout(self.verticalLayoutWidget_5)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
@@ -84,11 +84,13 @@ class Ui_Dialog_purchases_form(object):
 
         self.nombreDelItemCompradoLabel = QLabel(self.verticalLayoutWidget_5)
         self.nombreDelItemCompradoLabel.setObjectName(u"nombreDelItemCompradoLabel")
+        self.nombreDelItemCompradoLabel.setEnabled(False)
 
         self.formLayout.setWidget(2, QFormLayout.LabelRole, self.nombreDelItemCompradoLabel)
 
         self.nombreDelItemCompradoLineEdit = QLineEdit(self.verticalLayoutWidget_5)
         self.nombreDelItemCompradoLineEdit.setObjectName(u"nombreDelItemCompradoLineEdit")
+        self.nombreDelItemCompradoLineEdit.setEnabled(False)
 
         self.formLayout.setWidget(2, QFormLayout.FieldRole, self.nombreDelItemCompradoLineEdit)
 
@@ -149,9 +151,10 @@ class Ui_Dialog_purchases_form(object):
 
         self.verticalLayout_5.addLayout(self.formLayout_purchases)
 
-        self.label_5 = QLabel(self.verticalLayoutWidget_5)
+        self.label_5 = QLabel(Dialog_purchases_form)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setEnabled(True)
+        self.label_5.setGeometry(QRect(10, 430, 559, 42))
         sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
         font1 = QFont()
@@ -164,9 +167,6 @@ class Ui_Dialog_purchases_form(object):
         self.label_5.setAlignment(Qt.AlignCenter)
         self.label_5.setWordWrap(True)
 
-        self.verticalLayout_5.addWidget(self.label_5)
-
-
         self.retranslateUi(Dialog_purchases_form)
         self.buttonBox.accepted.connect(Dialog_purchases_form.accept)
         self.buttonBox.rejected.connect(Dialog_purchases_form.reject)
@@ -176,12 +176,12 @@ class Ui_Dialog_purchases_form(object):
 
     def retranslateUi(self, Dialog_purchases_form):
         Dialog_purchases_form.setWindowTitle(QCoreApplication.translate("Dialog_purchases_form", u"Formulario de Compras", None))
-        self.label.setText(QCoreApplication.translate("Dialog_purchases_form", u"Datos del producto", None))
-        self.nombreDelItemIncrementadoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Item Incrementado", None))
-        self.codigoDelItemIncrementadoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Codigo del Item Incrementado", None))
-        self.nuevoItemMarcarCuandoEsUnNuevoProductoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nuevo Item (Marcar SOLO si es un nuevo producto)", None))
-        self.nombreDelItemCompradoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Item Comprado", None))
-        self.itemAConsignacionLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Item a Consignacion (Marcar solo si NO se pag\u00f3)", None))
+        self.label.setText(QCoreApplication.translate("Dialog_purchases_form", u"Datos del producto (Lea cuidadosamente)", None))
+        self.nombreDelItemIncrementadoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Producto", None))
+        self.codigoDelItemIncrementadoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Codigo del Producto", None))
+        self.nuevoItemMarcarCuandoEsUnNuevoProductoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Producto Nuevo", None))
+        self.nombreDelItemCompradoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Nuevo Producto", None))
+        self.itemAConsignacionLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Producto a Consignacion", None))
         self.label_2.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nota: En el caso de la consignacion debe insertar el precio a pagar al que consigna, el sistema se encarga de ajustar el modelo. Las entradas sin precio se RECHAZAN", None))
         self.totalDeItemsCompradosLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Total de Items Comprados", None))
         self.precioTotalPagadoPorLaCompraLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Precio Total pagado por la Compra", None))
