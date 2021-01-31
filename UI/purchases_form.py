@@ -59,6 +59,7 @@ class Ui_Dialog_purchases_form(object):
 
         self.nombreDelItemIncrementadoComboBox = QComboBox(self.verticalLayoutWidget_5)
         self.nombreDelItemIncrementadoComboBox.setObjectName(u"nombreDelItemIncrementadoComboBox")
+        self.nombreDelItemIncrementadoComboBox.setDuplicatesEnabled(True)
 
         self.formLayout.setWidget(3, QFormLayout.FieldRole, self.nombreDelItemIncrementadoComboBox)
 
@@ -69,6 +70,7 @@ class Ui_Dialog_purchases_form(object):
 
         self.codigoDelItemIncrementadoComboBox = QComboBox(self.verticalLayoutWidget_5)
         self.codigoDelItemIncrementadoComboBox.setObjectName(u"codigoDelItemIncrementadoComboBox")
+        self.codigoDelItemIncrementadoComboBox.setDuplicatesEnabled(True)
 
         self.formLayout.setWidget(4, QFormLayout.FieldRole, self.codigoDelItemIncrementadoComboBox)
 
@@ -125,16 +127,23 @@ class Ui_Dialog_purchases_form(object):
 
         self.totalDeItemsCompradosSpinBox = QSpinBox(self.verticalLayoutWidget_5)
         self.totalDeItemsCompradosSpinBox.setObjectName(u"totalDeItemsCompradosSpinBox")
+        self.totalDeItemsCompradosSpinBox.setProperty("showGroupSeparator", True)
+        self.totalDeItemsCompradosSpinBox.setMinimum(1)
+        self.totalDeItemsCompradosSpinBox.setMaximum(10000)
 
         self.formLayout_purchases.setWidget(0, QFormLayout.FieldRole, self.totalDeItemsCompradosSpinBox)
 
         self.precioTotalPagadoPorLaCompraLabel = QLabel(self.verticalLayoutWidget_5)
         self.precioTotalPagadoPorLaCompraLabel.setObjectName(u"precioTotalPagadoPorLaCompraLabel")
+        self.precioTotalPagadoPorLaCompraLabel.setEnabled(False)
 
         self.formLayout_purchases.setWidget(1, QFormLayout.LabelRole, self.precioTotalPagadoPorLaCompraLabel)
 
         self.precioTotalPagadoPorLaCompraDoubleSpinBox = QDoubleSpinBox(self.verticalLayoutWidget_5)
         self.precioTotalPagadoPorLaCompraDoubleSpinBox.setObjectName(u"precioTotalPagadoPorLaCompraDoubleSpinBox")
+        self.precioTotalPagadoPorLaCompraDoubleSpinBox.setEnabled(False)
+        self.precioTotalPagadoPorLaCompraDoubleSpinBox.setProperty("showGroupSeparator", True)
+        self.precioTotalPagadoPorLaCompraDoubleSpinBox.setMaximum(1000000.000000000000000)
 
         self.formLayout_purchases.setWidget(1, QFormLayout.FieldRole, self.precioTotalPagadoPorLaCompraDoubleSpinBox)
 
@@ -182,9 +191,10 @@ class Ui_Dialog_purchases_form(object):
         self.nuevoItemMarcarCuandoEsUnNuevoProductoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Producto Nuevo", None))
         self.nombreDelItemCompradoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Nuevo Producto", None))
         self.itemAConsignacionLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Producto a Consignacion", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nota: En el caso de la consignacion debe insertar el precio a pagar al que consigna, el sistema se encarga de ajustar el modelo. Las entradas sin precio se RECHAZAN", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nota: Un producto se debe marcar como NUEVO si NO EXISTE en el inventario o existe con un PRECIO DIFERENTE al de la compra que se trabaja.", None))
         self.totalDeItemsCompradosLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Total de Items Comprados", None))
         self.precioTotalPagadoPorLaCompraLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Precio Total pagado por la Compra", None))
+        self.precioTotalPagadoPorLaCompraDoubleSpinBox.setPrefix(QCoreApplication.translate("Dialog_purchases_form", u"$ ", None))
         self.comentariosDeEntradaLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Comentarios de Entrada", None))
         self.comentariosDeEntradaLineEdit.setPlaceholderText(QCoreApplication.translate("Dialog_purchases_form", u"Insertar comentarios ...", None))
         self.label_5.setText(QCoreApplication.translate("Dialog_purchases_form", u"Utilice este formulario para insertar SOLAMENTE las COMPRAS", None))

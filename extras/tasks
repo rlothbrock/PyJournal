@@ -5,6 +5,10 @@ tareas
 
     actual
     compras
+        me quedo en:
+            elaborar la funcion buddy de los comboboxes
+            implementar en el nombre del precio que se vaya autollenando con el combobox
+            e incluso que se le añada el precio, tod esto editable por el usuario
 
     dialogo proximo
     ventas

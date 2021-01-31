@@ -43,6 +43,7 @@ class CapitalFormDialog(QDialog):
     def apply_form(self, parent):
         # props alias...
         data_len__ = get_template_fields('diary')
+        date__ = get_index_in_template('diary','date')
         comments__ = get_index_in_template('diary', 'comments')
         amount__ = get_index_in_template('diary', 'amount')
         owner__ = get_index_in_template('diary', 'owner')
@@ -57,6 +58,7 @@ class CapitalFormDialog(QDialog):
         data = build_data_template()
 
         data[comments__] = self.ui.comentariosDeCapitalLineEdit.text()
+        data[date__] = parent.date_session
         data[amount__] = self.ui.cantidadDeDineroDoubleSpinBox.value() * sign__
         data[owner__] = self.ui.nombreDelQueInsertaElDineroComboBox.currentText()
         data[parts__[0]] = last_row_data[parts__[0]]
@@ -81,11 +83,16 @@ class CapitalFormDialog(QDialog):
         data[total__] = data[parts__[0]] + data[parts__[1]]
         data[cash__] = data[total__] - data[invested__]
 
-        confirm = MessageBox(
-            lambda: parent.append_data_to_diary(data),
-            'Desea confirmar la Entrada?', 'q', 'Confirmar Entrada', self.ui.notasDeCapital.text())
-        confirm.show()
-        return
+        if parent.use_secure_entry:
+            confirm = MessageBox(
+                lambda: parent.append_data_to_diary(data),
+                'Desea confirmar la Entrada?', 'q', 'Confirmar Entrada', self.ui.notasDeCapital.text())
+            confirm.show()
+            return
+        else:
+            parent.append_data_to_diary(data)
+            selfCloseInterface(self.ui.notasDeCapital.text(),4,1,'Operacion Realizada','Cambios Insertados en la Base de Datos')
+            return
 
     def clean_form(self):
         self.ui.nombreDelQueInsertaElDineroComboBox.setCurrentIndex(0)
@@ -100,10 +107,6 @@ class CapitalFormDialog(QDialog):
 
 
 # todo:
-#   - debo añadir una verificacion al capital de manera tal que no me permita sacar
-#   mas dinero del que tengo invertido, es decir que el maximo extraible de la inver
-#   sion sea el maximo que tiene cada socio en la inversion. esto debe hacerse a
-#   nivel de chequeo de formulario, antes de procesar la orden
 #   - tambien debo añadir en el form la opcion de verificar contra la contraseña,
 #   de manera tal que si no se provee la contraseña correcta se rechace la entrada.
 #

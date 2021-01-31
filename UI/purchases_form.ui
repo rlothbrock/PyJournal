@@ -84,7 +84,11 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QComboBox" name="nombreDelItemIncrementadoComboBox"/>
+       <widget class="QComboBox" name="nombreDelItemIncrementadoComboBox">
+        <property name="duplicatesEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="codigoDelItemIncrementadoLabel">
@@ -94,7 +98,11 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QComboBox" name="codigoDelItemIncrementadoComboBox"/>
+       <widget class="QComboBox" name="codigoDelItemIncrementadoComboBox">
+        <property name="duplicatesEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="nuevoItemMarcarCuandoEsUnNuevoProductoLabel">
@@ -150,7 +158,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Nota: En el caso de la consignacion debe insertar el precio a pagar al que consigna, el sistema se encarga de ajustar el modelo. Las entradas sin precio se RECHAZAN</string>
+       <string>Nota: Un producto se debe marcar como NUEVO si NO EXISTE en el inventario o existe con un PRECIO DIFERENTE al de la compra que se trabaja.</string>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -167,17 +175,43 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QSpinBox" name="totalDeItemsCompradosSpinBox"/>
+       <widget class="QSpinBox" name="totalDeItemsCompradosSpinBox">
+        <property name="showGroupSeparator" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="precioTotalPagadoPorLaCompraLabel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Precio Total pagado por la Compra</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QDoubleSpinBox" name="precioTotalPagadoPorLaCompraDoubleSpinBox"/>
+       <widget class="QDoubleSpinBox" name="precioTotalPagadoPorLaCompraDoubleSpinBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="showGroupSeparator" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="prefix">
+         <string>$ </string>
+        </property>
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="comentariosDeEntradaLabel">

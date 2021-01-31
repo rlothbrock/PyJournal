@@ -53,6 +53,7 @@ class Ui_DialogCapital(object):
 
         self.cantidadDeDineroDoubleSpinBox = QDoubleSpinBox(self.formLayoutWidget_2)
         self.cantidadDeDineroDoubleSpinBox.setObjectName(u"cantidadDeDineroDoubleSpinBox")
+        self.cantidadDeDineroDoubleSpinBox.setProperty("showGroupSeparator", True)
         self.cantidadDeDineroDoubleSpinBox.setMaximum(1000000.000000000000000)
 
         self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.cantidadDeDineroDoubleSpinBox)
@@ -114,6 +115,7 @@ class Ui_DialogCapital(object):
         self.nombreDelQueInsertaElDineroComboBox.setItemText(1, QCoreApplication.translate("DialogCapital", u"Ariadna", None))
 
         self.cantidadDeDineroLabel.setText(QCoreApplication.translate("DialogCapital", u"Cantidad de Dinero ", None))
+        self.cantidadDeDineroDoubleSpinBox.setPrefix(QCoreApplication.translate("DialogCapital", u"$ ", None))
         self.extraccionDelMontoLabel.setText(QCoreApplication.translate("DialogCapital", u"Extraer dinero (Rebaja la inversion)", None))
         self.comentariosDeCapitalLabel.setText(QCoreApplication.translate("DialogCapital", u"Comentarios de Capital", None))
         self.comentariosDeCapitalLineEdit.setPlaceholderText(QCoreApplication.translate("DialogCapital", u"Insertar  comentarios si es necesario ...", None))
