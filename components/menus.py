@@ -3,7 +3,8 @@ from PySide2.QtCore import Slot
 from components.data_display_tab import execute_display_table
 from dialogs.auxiliar_dialogs import selfCloseInterface
 from dialogs.capital_tool_dialog import CapitalFormDialog
-from dialogs.tool_dialogs import tool_launcher, PurchasesFormDialog, SalesFormDialog, HelpOfflineDialog
+from dialogs.purchases_tool_dialog import PurchasesFormDialog
+from dialogs.tool_dialogs import tool_launcher, SalesFormDialog, HelpOfflineDialog
 from modules.data_import_export import import_data_to_diary, export_data_from_diary
 from modules.db_templates_manager import connect_toDB
 from routines.change_session_date import manage_date_session

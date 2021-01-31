@@ -2,11 +2,9 @@ tareas
     empezar a trabajar en los dialogos de las herramientas:
     dialogo
     añadir capital
+    compras
 
     actual
-    compras
-        me quedo en:
-            bug detectado en la logica del inventario: reparado --> sort de diary
-                cuando se compran productos que ya estan en el inventario... no los añade
-    dialogo proximo
     ventas
+
+    dialogo proximo
