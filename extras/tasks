@@ -6,9 +6,7 @@ tareas
     actual
     compras
         me quedo en:
-            elaborar la funcion buddy de los comboboxes
-            implementar en el nombre del precio que se vaya autollenando con el combobox
-            e incluso que se le añada el precio, tod esto editable por el usuario
-
+            bug detectado en la logica del inventario: reparado --> sort de diary
+                cuando se compran productos que ya estan en el inventario... no los añade
     dialogo proximo
     ventas

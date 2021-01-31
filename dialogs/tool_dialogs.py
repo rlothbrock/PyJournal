@@ -100,7 +100,6 @@ class PurchasesFormDialog(QDialog):
             self.reject()
             parent.ui.actionModificar_la_inversion.trigger()
             return
-        print('should not touch this block...')
 
         data[date__] = parent.date_session
         data[is_new__] = self.ui.nuevoItemPurchaseCheckBox.isChecked()
@@ -154,7 +153,6 @@ class PurchasesFormDialog(QDialog):
             selfCloseInterface(msg_str, 4, 1, 'Operacion Realizada',
                                'Cambios Insertados en la Base de Datos')
 
-        print('-------------------------------------------------------------------')
         self.init_ui(parent)
         return
 

@@ -41,11 +41,6 @@ def calculate_sales(self):
 
 
 def calculate_stock(self):
-    # steps:
-    # read the diary
-    # build the tuples with the real state of products.
-    # deletion of old stock
-    # bulk insertions on stock (fresh data)
     try:
         diary_data_for_stock = crud_driver(self, 'diary', 'read', {
             'pick_all': False,
@@ -53,8 +48,8 @@ def calculate_stock(self):
             'pick_cols': ['*'],
             'field': 'item_code',
             'operator': '<>',
-            'order_by': ['id', 'date'],
-            'order_': ['ASC', 'ASC'],
+            'order_by': ['is_new', 'date'],
+            'order_': ['DESC', 'ASC'],       # is_new is mandatory to be sorted desc
             'sort': True,
             'value': ('',)
         })
@@ -114,7 +109,8 @@ def calculate_statistics(self):
         })[0][0]
 
         ventas_del_dia = session_resume[0] if session_resume[0] is not None else 0
-        retorno_inversion = (float(session_resume[1]) - float(session_consignations)) if session_resume[1] is not None else 0
+        retorno_inversion = (float(session_resume[1]) - float(session_consignations)) if session_resume[
+                                                                                             1] is not None else 0
         ganancias_netas = float(ventas_del_dia) - float(retorno_inversion) - float(session_consignations)
         salario_total = session_resume[2] if session_resume[2] is not None else 0
         renta = 125  # ajustar este valor luego desde el dialog
@@ -147,9 +143,10 @@ def calculate_statistics(self):
         return (capital_total, capital_invertido, cash_en_caja, ventas_del_dia, retorno_inversion, ganancias_netas,
                 salario_total, renta, ganancias_reales_comun, ganancias_reales_parte, compras_del_dia,
                 ventas_totales, ganancias_totales, ganancias_reales_totales, invertido_total, capital_de_robert,
-                capital_de_ariadna,session_consignations)
+                capital_de_ariadna, session_consignations)
     except:
-        return tuple( ( 0/i for i in range(1,19) ) )
+        return tuple((0 / i for i in range(1, 19)))
+
 
 def translate_diary_data_to_table(self, table: str, diary_data):  # only for sales and capital tables
     if table in ['stock', 'statistics', 'diary']:
@@ -196,18 +193,17 @@ def data_tuple_for_stock_builder(self, data):
                 current_data_row[g_i('stock', 'total')] = int(row[quantity__])
                 current_data_row[g_i('stock', 'sold')] = 0
                 current_data_row[g_i('stock', 'on_stock')] = int(row[quantity__])
+            elif row[is_sale__]:
+                current_data_row[g_i('stock', 'sold')] = \
+                    current_data_row[g_i('stock', 'sold')] + int(row[quantity__])
+                current_data_row[g_i('stock', 'on_stock')] = \
+                    current_data_row[g_i('stock', 'on_stock')] - int(row[quantity__])
             else:
-                if row[is_sale__]:
-                    current_data_row[g_i('stock', 'sold')] = \
-                        current_data_row[g_i('stock', 'sold')] + int(row[quantity__])
-                    current_data_row[g_i('stock', 'on_stock')] = \
-                        current_data_row[g_i('stock', 'on_stock')] - int(row[quantity__])
-                else:
-                    current_data_row[g_i('stock', 'total')] = \
-                        current_data_row[g_i('stock', 'total')] + int(row[quantity__])
-                    current_data_row[g_i('stock', 'on_stock')] = \
-                        current_data_row[g_i('stock', 'on_stock')] + int(row[quantity__])
+                new_total =  current_data_row[g_i('stock', 'total')] + int(row[quantity__])
+                new_on_stock =  current_data_row[g_i('stock', 'on_stock')] + int(row[quantity__])
+                current_data_row[g_i('stock', 'total')] = new_total
+                current_data_row[g_i('stock', 'on_stock')] = new_on_stock
+
             # updating the dict values
             data_of_items.update({row[item_code__]: current_data_row})
     return list((tuple(row) for row in data_of_items.values()))
-
