@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>531</width>
-    <height>306</height>
+    <height>316</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>270</y>
+     <y>280</y>
      <width>511</width>
      <height>32</height>
     </rect>
@@ -45,7 +45,7 @@
      <x>10</x>
      <y>10</y>
      <width>511</width>
-     <height>251</height>
+     <height>261</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -59,7 +59,11 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="nombreDelProductoComboBox"/>
+       <widget class="QComboBox" name="nombreDelProductoComboBox">
+        <property name="duplicatesEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="codigoDelProductoLabel">
@@ -69,7 +73,11 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QComboBox" name="codigoDelProductoComboBox"/>
+       <widget class="QComboBox" name="codigoDelProductoComboBox">
+        <property name="duplicatesEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="cantidadVendidaLabel">
@@ -77,9 +85,6 @@
          <string>Cantidad Vendida</string>
         </property>
        </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QSpinBox" name="cantidadVendidaSpinBox"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="precioDeVentaLabel">
@@ -89,7 +94,26 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="precioDeVentaDoubleSpinBox"/>
+       <widget class="QDoubleSpinBox" name="precioDeVentaDoubleSpinBox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Escriba aqui el &lt;span style=&quot; font-weight:600;&quot;&gt;precio de venta total&lt;/span&gt; recibido por la cantidad de articulos de la entrada&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>3</number>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+        </property>
+        <property name="showGroupSeparator" stdset="0">
+         <bool>true</bool>
+        </property>
+        <property name="prefix">
+         <string>$</string>
+        </property>
+        <property name="maximum">
+         <double>1000000.000000000000000</double>
+        </property>
+       </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="comentariosLabel">
@@ -107,6 +131,9 @@
          <bool>false</bool>
         </property>
        </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="cantidadVendidaComboBox"/>
       </item>
      </layout>
     </item>

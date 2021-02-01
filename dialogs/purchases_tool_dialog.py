@@ -19,26 +19,25 @@ class PurchasesFormDialog(QDialog):
         self.resetButton = self.ui.buttonBox.button(QDialogButtonBox.Reset)
 
         # behavior of buttons
-        self.applyButton.clicked.connect(lambda: self.accept_rutine(parent))
-        self.closeButton.clicked.connect(self.reject_rutine)
+        self.applyButton.clicked.connect(lambda: self.accept_routine(parent))
+        self.closeButton.clicked.connect(self.reject_routine)
 
         #
         self.init_ui(parent)
 
-
-    def accept_rutine(self, parent):
+    def accept_routine(self, parent):
         # props alias...
         data_len__ = get_template_fields('diary')
-        date__ = get_index_in_template('diary','date')
-        is_new__ = get_index_in_template('diary','is_new')
-        is_sale__ = get_index_in_template('diary','is_sale')
-        is_consignation__ = get_index_in_template('diary','is_consignation')
-        quantity__ = get_index_in_template('diary','quantity')
-        item_name__ = get_index_in_template('diary','item_name')
-        price__ = get_index_in_template('diary','price')
-        sell_price__ = get_index_in_template('diary','sell_price')
+        date__ = get_index_in_template('diary', 'date')
+        is_new__ = get_index_in_template('diary', 'is_new')
+        is_sale__ = get_index_in_template('diary', 'is_sale')
+        is_consignation__ = get_index_in_template('diary', 'is_consignation')
+        quantity__ = get_index_in_template('diary', 'quantity')
+        item_name__ = get_index_in_template('diary', 'item_name')
+        price__ = get_index_in_template('diary', 'price')
+        sell_price__ = get_index_in_template('diary', 'sell_price')
         comments__ = get_index_in_template('diary', 'comments')
-        item_code__ = get_index_in_template('diary','item_code')
+        item_code__ = get_index_in_template('diary', 'item_code')
 
         # --
         invested__ = get_index_in_template('diary', 'invested_')
@@ -55,7 +54,7 @@ class PurchasesFormDialog(QDialog):
         if last_row_data[cash__] <= 0:
             selfCloseInterface(
                 'No esta permitido comprar cuando el saldo de caja es cero, agregue saldo a su caja antes de hacer esta operacion',
-                8,3,'Compras Denegadas: SIN EFECTIVO',
+                8, 3, 'Compras Denegadas: SIN EFECTIVO',
                 'Vaya a:\nMenu Herramientas > Modificar la Inversion\nO presione: CTRL+ALT+M \ny agregue efectivo antes de comprar')
             self.reject()
             parent.ui.actionModificar_la_inversion.trigger()
@@ -68,27 +67,29 @@ class PurchasesFormDialog(QDialog):
         data[quantity__] = self.ui.totalDeItemsCompradosSpinBox.value()
         data[item_name__] = self.ui.nombreDelItemIncrementadoComboBox.currentText() \
             if not data[is_new__] else self.ui.nombreDelItemCompradoLineEdit.text()
-        data[price__] = self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.value()/data[quantity__] \
+        data[price__] = self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.value() / data[quantity__] \
             if data[is_new__] else self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.value()
 
-        if any([len(data[item_name__]) < 3, data[price__] == 0 ]):
+        if any([len(data[item_name__]) < 3, data[price__] == 0]):
             selfCloseInterface(
                 'Los datos son incorrectos. Revise la informacion antes de realizar una entrada',
-                4,2,'Entrada Fallida: DATOS INCORRECTOS',
+                8, 2, 'Entrada Fallida: DATOS INCORRECTOS',
                 'REVISE:\n1- Que el precio no sea cero\n2- Que el articulo tenga un nombre apropiado (mas de 3 letras)'
             )
             return
         data[sell_price__] = 0
         data[comments__] = self.ui.comentariosDeEntradaLineEdit.text()
         data[item_code__] = self.ui.codigoDelItemIncrementadoComboBox.currentText() \
-            if not data[is_new__] else build_item_code(data[price__])
+            if not data[is_new__] else build_item_code(data[price__],self.ui.itemAConsignacionCheckBox.isChecked())
 
         # capital cells # touches invested
         data[parts__[0]] = last_row_data[parts__[0]]
         data[parts__[1]] = last_row_data[parts__[1]]
         data[total__] = float(last_row_data[total__])
 
-        data[invested__] = float(last_row_data[invested__]) + data[quantity__]*data[price__]
+        data[invested__] = float(last_row_data[invested__]) if data[is_consignation__] else\
+            float(last_row_data[invested__]) + data[quantity__] * data[price__]
+
         data[cash__] = data[total__] - data[invested__]
 
         # this block prevents for goes negative funds after purchasing something
@@ -101,11 +102,11 @@ class PurchasesFormDialog(QDialog):
             return
 
         # this is the secure entry block
-        msg_str = 'comprar {} {} por ${:,.2f} cada uno'.format(data[quantity__],data[item_name__],data[price__])
+        msg_str = 'comprar {} {} por ${:,.2f} cada uno'.format(data[quantity__], data[item_name__], data[price__])
         if parent.use_secure_entry:
             confirm = MessageBox(
                 lambda: parent.append_data_to_diary(data),
-                'Desea confirmar la Entrada?', 'q', 'Confirmar Entrada',msg_str
+                'Desea confirmar la Entrada?', 'q', 'Confirmar Entrada', msg_str
             )
             confirm.show()
         else:
@@ -116,7 +117,7 @@ class PurchasesFormDialog(QDialog):
         self.init_ui(parent)
         return
 
-    def reject_rutine(self):
+    def reject_routine(self):
         self.clean_form()
         self.reject()
 
@@ -133,13 +134,13 @@ class PurchasesFormDialog(QDialog):
         self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.setValue(0)
         self.ui.comentariosDeEntradaLineEdit.clear()
 
-    def init_ui(self,parent):
+    def init_ui(self, parent):
         self.data_loader(parent)
         self.ui.nuevoItemPurchaseCheckBox.stateChanged.connect(self.field_disabler_on_new_items)
         self.ui.nombreDelItemIncrementadoComboBox.currentIndexChanged.connect(
             lambda: buddy_sync(
                 self.ui.nombreDelItemIncrementadoComboBox,
-                self.ui. codigoDelItemIncrementadoComboBox,
+                self.ui.codigoDelItemIncrementadoComboBox,
                 self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox,
                 self.combo_data[self.ui.nombreDelItemIncrementadoComboBox.currentIndex()][2])
         )
@@ -164,7 +165,7 @@ class PurchasesFormDialog(QDialog):
     def data_loader(self, parent):
         self.combo_data.clear()
         self.combo_data.extend(
-            crud_driver(parent,'stock','read',{
+            crud_driver(parent, 'stock', 'read', {
                 'pick_all': False,
                 'pick_cols': ['item_code', 'item_name', 'price'],
             }))
@@ -190,4 +191,3 @@ class PurchasesFormDialog(QDialog):
         # reset on checks
         self.ui.nombreDelItemIncrementadoComboBox.setCurrentIndex(0)
         return
-

@@ -112,7 +112,14 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QCheckBox" name="nuevoItemPurchaseCheckBox"/>
+       <widget class="QCheckBox" name="nuevoItemPurchaseCheckBox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Marcar solamente si el producto &lt;span style=&quot; font-weight:600;&quot;&gt;no existe&lt;/span&gt; en el inventario o existe con un &lt;span style=&quot; font-weight:600;&quot;&gt;precio de compra diferente&lt;/span&gt;&lt;span style=&quot; font-weight:600; font-style:italic;&quot;/&gt;al de la entrada actual&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>3</number>
+        </property>
+       </widget>
       </item>
       <item row="2" column="0">
        <widget class="QLabel" name="nombreDelItemCompradoLabel">
@@ -139,7 +146,14 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QCheckBox" name="itemAConsignacionCheckBox"/>
+       <widget class="QCheckBox" name="itemAConsignacionCheckBox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Marcar solamente si el producto que se va a entrar &lt;span style=&quot; font-weight:600;&quot;&gt;NO &lt;/span&gt;se pago con el dinero del negocio&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>3</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -201,6 +215,12 @@
        <widget class="QDoubleSpinBox" name="precioTotalPagadoPorLaCompraDoubleSpinBox">
         <property name="enabled">
          <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Escriba aqui el valor total que se paga por la compra de la cantidad indicada en la entrada actual &lt;span style=&quot; font-weight:600;&quot;&gt;NO ponga el valor de un item solo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>3</number>
         </property>
         <property name="showGroupSeparator" stdset="0">
          <bool>true</bool>

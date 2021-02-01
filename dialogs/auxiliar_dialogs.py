@@ -69,7 +69,7 @@ def dialog_slot_driver(self, button, slot_yes, slot_no):
             return
         return slot_no()
 
-
+# unused class (so far)
 class NewDBAlert(QDialog):
     def __init__(self, slot):
         super(NewDBAlert, self).__init__()

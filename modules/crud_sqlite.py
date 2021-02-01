@@ -517,6 +517,6 @@ def find_total(self, table, slave, master, values, multi_filter=False, regexp=Fa
             'raw_exec': 'SELECT total(' + slave + ') FROM ' + table + ' WHERE ' + suffix + ' ;',
             'value': values
         })
-            # todo elaborar mapero de ulti filter
+            # todo elaborar mapeo de ulti filter
     # print(total)
     return total[0][0] if total[0][0] is not None else 0

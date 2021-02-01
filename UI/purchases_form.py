@@ -81,6 +81,7 @@ class Ui_Dialog_purchases_form(object):
 
         self.nuevoItemPurchaseCheckBox = QCheckBox(self.verticalLayoutWidget_5)
         self.nuevoItemPurchaseCheckBox.setObjectName(u"nuevoItemPurchaseCheckBox")
+        self.nuevoItemPurchaseCheckBox.setToolTipDuration(3)
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.nuevoItemPurchaseCheckBox)
 
@@ -103,6 +104,7 @@ class Ui_Dialog_purchases_form(object):
 
         self.itemAConsignacionCheckBox = QCheckBox(self.verticalLayoutWidget_5)
         self.itemAConsignacionCheckBox.setObjectName(u"itemAConsignacionCheckBox")
+        self.itemAConsignacionCheckBox.setToolTipDuration(3)
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.itemAConsignacionCheckBox)
 
@@ -142,6 +144,7 @@ class Ui_Dialog_purchases_form(object):
         self.precioTotalPagadoPorLaCompraDoubleSpinBox = QDoubleSpinBox(self.verticalLayoutWidget_5)
         self.precioTotalPagadoPorLaCompraDoubleSpinBox.setObjectName(u"precioTotalPagadoPorLaCompraDoubleSpinBox")
         self.precioTotalPagadoPorLaCompraDoubleSpinBox.setEnabled(False)
+        self.precioTotalPagadoPorLaCompraDoubleSpinBox.setToolTipDuration(3)
         self.precioTotalPagadoPorLaCompraDoubleSpinBox.setProperty("showGroupSeparator", True)
         self.precioTotalPagadoPorLaCompraDoubleSpinBox.setMaximum(1000000.000000000000000)
 
@@ -189,11 +192,20 @@ class Ui_Dialog_purchases_form(object):
         self.nombreDelItemIncrementadoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Producto", None))
         self.codigoDelItemIncrementadoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Codigo del Producto", None))
         self.nuevoItemMarcarCuandoEsUnNuevoProductoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Producto Nuevo", None))
+#if QT_CONFIG(tooltip)
+        self.nuevoItemPurchaseCheckBox.setToolTip(QCoreApplication.translate("Dialog_purchases_form", u"<html><head/><body><p>Marcar solamente si el producto <span style=\" font-weight:600;\">no existe</span> en el inventario o existe con un <span style=\" font-weight:600;\">precio de compra diferente</span><span style=\" font-weight:600; font-style:italic;\"/>al de la entrada actual</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.nombreDelItemCompradoLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nombre del Nuevo Producto", None))
         self.itemAConsignacionLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Producto a Consignacion", None))
+#if QT_CONFIG(tooltip)
+        self.itemAConsignacionCheckBox.setToolTip(QCoreApplication.translate("Dialog_purchases_form", u"<html><head/><body><p>Marcar solamente si el producto que se va a entrar <span style=\" font-weight:600;\">NO </span>se pago con el dinero del negocio</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.label_2.setText(QCoreApplication.translate("Dialog_purchases_form", u"Nota: Un producto se debe marcar como NUEVO si NO EXISTE en el inventario o existe con un PRECIO DIFERENTE al de la compra que se trabaja.", None))
         self.totalDeItemsCompradosLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Total de Items Comprados", None))
         self.precioTotalPagadoPorLaCompraLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Precio Total pagado por la Compra", None))
+#if QT_CONFIG(tooltip)
+        self.precioTotalPagadoPorLaCompraDoubleSpinBox.setToolTip(QCoreApplication.translate("Dialog_purchases_form", u"<html><head/><body><p>Escriba aqui el valor total que se paga por la compra de la cantidad indicada en la entrada actual <span style=\" font-weight:600;\">NO ponga el valor de un item solo</span></p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.precioTotalPagadoPorLaCompraDoubleSpinBox.setPrefix(QCoreApplication.translate("Dialog_purchases_form", u"$ ", None))
         self.comentariosDeEntradaLabel.setText(QCoreApplication.translate("Dialog_purchases_form", u"Comentarios de Entrada", None))
         self.comentariosDeEntradaLineEdit.setPlaceholderText(QCoreApplication.translate("Dialog_purchases_form", u"Insertar comentarios ...", None))

@@ -100,12 +100,12 @@ def calculate_statistics(self):
         cash_en_caja = last_row_on_diary[get_index_in_template('diary', 'cash_')]
 
         session_resume = crud_driver(self, 'diary', 'raw_exec', {
-            'raw_exec': 'SELECT TOTAL(sell_price), TOTAL(total_per_item(price,quantity)), TOTAL(salary) FROM diary WHERE is_sale = ? AND date = ? ',
+            'raw_exec': 'SELECT TOTAL(sell_price), TOTAL(price), TOTAL(salary) FROM diary WHERE is_sale = ? AND date = ? ',
             'value': (True, self.date_session)})[0]
 
         session_consignations = crud_driver(self, 'diary', 'raw_exec', {
-            'raw_exec': 'SELECT TOTAL(total_per_item(price,quantity)) FROM diary WHERE is_consignation = ? AND date = ? ',
-            'value': (True, self.date_session)
+            'raw_exec': 'SELECT TOTAL(price) FROM diary WHERE is_consignation = ? AND is_sale = ? AND date = ? ',
+            'value': (True, True, self.date_session)
         })[0][0]
 
         ventas_del_dia = session_resume[0] if session_resume[0] is not None else 0
@@ -117,14 +117,14 @@ def calculate_statistics(self):
         ganancias_reales_comun = ganancias_netas - renta - float(salario_total)
         ganancias_reales_parte = ganancias_reales_comun / 2
         compras_del_dia = crud_driver(self, 'diary', 'raw_exec', {
-            'raw_exec': 'SELECT  TOTAL(total_per_item(price,quantity)) FROM diary WHERE is_sale = ? AND date = ? AND item_code <> ? ',
-            'value': (False, self.date_session, '')})[0][0]
+            'raw_exec': 'SELECT  TOTAL(total_per_item(price,quantity)) FROM diary WHERE is_sale = ? AND is_consignation = ? AND date = ? AND item_code <> ? ',
+            'value': (False, False, self.date_session, '')})[0][0]
         compras_del_dia = compras_del_dia if compras_del_dia is not None else 0
 
         # todo a la hora de implementar los filtros de tiempo en los datos de las estadisticas
         #   es aqui donde se deben manipular los datos para lograr que dichos filtros funcionen.
         totals_resume = crud_driver(self, 'diary', 'raw_exec', {
-            'raw_exec': 'SELECT TOTAL(sell_price), TOTAL(total_per_item(price,quantity)), TOTAL(salary) FROM diary WHERE is_sale = ?',
+            'raw_exec': 'SELECT TOTAL(sell_price), TOTAL(price), TOTAL(salary) FROM diary WHERE is_sale = ?',
             'value': (True,)})[0]
 
         __rent_tot = crud_driver(self, 'diary', 'raw_exec', {

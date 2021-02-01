@@ -41,7 +41,6 @@ def set_menus(self):
 
     # menu Help
     self.ui.actionAyuda_offline.triggered.connect(lambda: tool_launcher(self, HelpOfflineDialog))
-    # todo add the source to export or target to import
 
 
 @Slot()

@@ -32,10 +32,10 @@ class MainWindow(QMainWindow):
         # this props will be initialized on init_ui. are used for keep track of counter
         self.counter = 0
         self.last_date = ''
-        self.data_to_display_on_tab1 = [] # todo: this props holds the data to show on table
+        self.data_to_display_on_tab1 = [] #  this props holds the data to show on table
                                           #  and need a signal for detect changes and react properly
                                           #  is readen any time we display data and must be proper updated
-        self.data_to_export = [] # todo : used most on buttons export appwide
+        self.data_to_export = [] #  used most on buttons export appwide
                                  #  this prop is used for holding data just
                                  #  in case that prop <source> on export() is empty
                                  #  can remain [] if source is provided

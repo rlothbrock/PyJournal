@@ -2,7 +2,6 @@ def update_counter(self):
     old_counter = self.status.get('counter')
     new_counter = old_counter + 1
     self.status.update({'counter': new_counter})
-    print('debug: counter updated from {} to {}'.format(old_counter,new_counter))
     return
 
 '''

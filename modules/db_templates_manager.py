@@ -1,11 +1,10 @@
 import os
 import re
 import sqlite3
-
-# TODO añadir checks para que haga chequeo de campos en la db
 from PySide2.QtWidgets import QApplication
-
 from dialogs.auxiliar_dialogs import selfCloseInterface
+
+
 
 statusDB_name = 'appStatusDB.db'
 
@@ -107,7 +106,7 @@ table_templates = [
 ]
 
 
-# ----sqlite user defined functions: must review todo eliminates possible bugs
+# ----sqlite user defined functions: must review
 def regexp(expression, context, engine=re.search):
     # print('searching expression: < %s > in context: < %s >' % (expression, context))
     try:
