@@ -1,7 +1,7 @@
 from PySide2.QtWidgets import QDialog, QDialogButtonBox
 from UI.purchases_form import Ui_Dialog_purchases_form
 from dialogs.auxiliar_dialogs import selfCloseInterface, MessageBox
-from dialogs.tool_dialogs import build_data_template, build_item_code, buddy_sync
+from dialogs.common_tool_dialogs import build_data_template, build_item_code, buddy_sync
 from modules.crud_sqlite import crud_driver
 from modules.db_templates_manager import get_template_fields, get_index_in_template
 
@@ -67,7 +67,7 @@ class PurchasesFormDialog(QDialog):
         data[quantity__] = self.ui.totalDeItemsCompradosSpinBox.value()
         data[item_name__] = self.ui.nombreDelItemIncrementadoComboBox.currentText() \
             if not data[is_new__] else self.ui.nombreDelItemCompradoLineEdit.text()
-        data[price__] = self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.value() / data[quantity__] \
+        data[price__] = (self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.value() / data[quantity__]) \
             if data[is_new__] else self.ui.precioTotalPagadoPorLaCompraDoubleSpinBox.value()
 
         if any([len(data[item_name__]) < 3, data[price__] == 0]):

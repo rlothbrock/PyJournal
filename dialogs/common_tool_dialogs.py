@@ -4,10 +4,6 @@ from PySide2.QtWidgets import QDialog, QDialogButtonBox
 
 from UI.help_offline import Ui_Dialog as Ui_help_dialog
 
-from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import get_template_fields, get_index_in_template
-
 
 # common resources-------------------
 
@@ -25,11 +21,11 @@ def tool_launcher(self, tool):
 
 
 # todo
-#  so far the rent is fixed (125). in future versions must be posssible to dinamically
+#  so far the rent is fixed (125). in future versions must be possible to dynamically
 #  adjust the rent through a dialog on the app level.
 
-def build_salary(parent,sale,price):
-    sale,proffit = float(sale), float(sale)-float(price)
+def build_salary(parent, sale, price):
+    sale, proffit = float(sale), float(sale) - float(price)
 
     bases = {
         'cellsDB.db': proffit,

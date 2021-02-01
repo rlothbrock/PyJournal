@@ -2,7 +2,7 @@ from PySide2.QtWidgets import QDialog, QDialogButtonBox
 
 from UI.sales_form import Ui_Dialog_sales_form
 from dialogs.auxiliar_dialogs import selfCloseInterface, MessageBox
-from dialogs.tool_dialogs import build_data_template, build_salary, buddy_sync
+from dialogs.common_tool_dialogs import build_data_template, build_salary, buddy_sync
 from modules.crud_sqlite import crud_driver
 from modules.db_templates_manager import get_template_fields, get_index_in_template
 

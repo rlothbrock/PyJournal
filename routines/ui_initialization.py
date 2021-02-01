@@ -1,3 +1,4 @@
+from components.active_table_filter import filter_active_table
 from components.app_counter import update_counter
 from components.data_display_tab import display_active_table_on_data_display
 from components.menus import set_menus
@@ -60,10 +61,10 @@ def ui_init_routine(self):
     if self.ui.tabWidget.currentIndex() == 2:
         self.recalculate_tables_signal.emit()
     self.ui.tabWidget.currentChanged.connect(lambda i: tab_index_reaction(self, i))
-    # print('debug: finish ui_init')
 
     # tab1 buttons
     self.ui.pushButton_export_table.clicked.connect(lambda: export_data_displayed_on_tab1(self))
+    self.ui.toolButton_filter.clicked.connect(lambda: filter_active_table(self))
 
     # statistics tab buttons
     self.ui.pushButton_update_stats_tab.clicked.connect(lambda: display_statistics_on_tab(self))
