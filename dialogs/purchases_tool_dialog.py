@@ -202,12 +202,6 @@ class PurchasesFormDialog(QDialog):
         return
 
     def on_import_button_clicked(self, parent):
-        # done: abrir dialog para elegir el archivo csv
-        # todo steps:
-        #   del archivo tomar el total de compras y compararlo con el cash que queda
-        #   si es mas compra que cash rechaza la operacion y retorna
-        #   si se puede comprar muestra un dialogo de confirmacion
-        #   y por cada producto de la lista hace un apply_purchase.
         user_is_aware_of_format = {'value': False}
         aware_of_format_dialog = MessageBox(
             lambda: user_is_aware_of_format.update({'value': True}),

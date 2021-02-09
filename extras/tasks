@@ -1,12 +1,8 @@
 tareas
-    empezar a trabajar sobre los filtros de la aplicacion y las botoneras de
-    exportacion...
+    empezar a trabajar sobre los filtros de la aplicacion : done
+    y las botoneras de exportacion...
 
-
-estoy en la elaboracion de la logica del filtro
-
-    revisar la logica de filtrado. self.apply_filter
-
+tarea actual... implmentar el funcionamiento del boton de cargar filtros y de guardarlos
 
 todo
 elaborar una herramienta que elimine una entrada por su id, insertar el id de la entrada y eliminar

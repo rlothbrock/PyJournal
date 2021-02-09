@@ -307,8 +307,6 @@ def cursor_execution(self, query_list, message='cursor executed'):
 
 
 def create_table_templates():
-    # TODO: debo implementar la funcion del Check de las tablas que esta albergado
-    #  en propiedad aparte en los dictionaries
     cursor_commands = []
     for template in table_templates:
         command = 'CREATE TABLE {} ('.format(template.get('name'))

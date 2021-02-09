@@ -19,11 +19,6 @@ def filter_active_table(self):
         )
     filter_dialog = FilterDialog(self,fields,data)
     filter_dialog.exec_()
-
-    # todo remove this line after complete filter
-    #   simulate filter modifications
-
     self.display_table_signal.emit()
-    # self.ui.tabWidget.setCurrentIndex(0)
     return
 
