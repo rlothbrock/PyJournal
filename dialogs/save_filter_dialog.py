@@ -1,0 +1,1 @@
+# store here the class for saving filter dialog

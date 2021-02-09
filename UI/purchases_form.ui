@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>590</width>
-    <height>508</height>
+    <height>502</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>470</y>
+     <y>460</y>
      <width>561</width>
      <height>32</height>
     </rect>
@@ -48,34 +48,122 @@
      <x>10</x>
      <y>10</y>
      <width>561</width>
-     <height>421</height>
+     <height>401</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
     <item>
-     <widget class="QLabel" name="label">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Datos del producto (Lea cuidadosamente)</string>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_importar_ventas">
+        <property name="text">
+         <string>Importar...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
       </property>
-      <property name="font">
-       <font>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
       </property>
-      <property name="text">
-       <string>Datos del producto (Lea cuidadosamente)</string>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
+     </spacer>
     </item>
     <item>
      <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="itemAConsignacionLabel">
+        <property name="text">
+         <string>Producto a Consignacion</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="itemAConsignacionCheckBox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Marcar solamente si el producto que se va a entrar &lt;span style=&quot; font-weight:600;&quot;&gt;NO &lt;/span&gt;se pago con el dinero del negocio&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>-1</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="nuevoItemMarcarCuandoEsUnNuevoProductoLabel">
+        <property name="text">
+         <string>Producto Nuevo</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="nuevoItemPurchaseCheckBox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Marcar solamente si el producto &lt;span style=&quot; font-weight:600;&quot;&gt;no existe&lt;/span&gt; en el inventario o existe con un &lt;span style=&quot; font-weight:600;&quot;&gt;precio de compra diferente&lt;/span&gt;&lt;span style=&quot; font-weight:600; font-style:italic;&quot;/&gt;al de la entrada actual&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>-1</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="nombreDelItemCompradoLabel">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Nombre del Nuevo Producto</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="nombreDelItemCompradoLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
       <item row="3" column="0">
        <widget class="QLabel" name="nombreDelItemIncrementadoLabel">
         <property name="text">
@@ -101,57 +189,6 @@
        <widget class="QComboBox" name="codigoDelItemIncrementadoComboBox">
         <property name="duplicatesEnabled">
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="nuevoItemMarcarCuandoEsUnNuevoProductoLabel">
-        <property name="text">
-         <string>Producto Nuevo</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="nuevoItemPurchaseCheckBox">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Marcar solamente si el producto &lt;span style=&quot; font-weight:600;&quot;&gt;no existe&lt;/span&gt; en el inventario o existe con un &lt;span style=&quot; font-weight:600;&quot;&gt;precio de compra diferente&lt;/span&gt;&lt;span style=&quot; font-weight:600; font-style:italic;&quot;/&gt;al de la entrada actual&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="toolTipDuration">
-         <number>3</number>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="nombreDelItemCompradoLabel">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="text">
-         <string>Nombre del Nuevo Producto</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="nombreDelItemCompradoLineEdit">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="itemAConsignacionLabel">
-        <property name="text">
-         <string>Producto a Consignacion</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="itemAConsignacionCheckBox">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Marcar solamente si el producto que se va a entrar &lt;span style=&quot; font-weight:600;&quot;&gt;NO &lt;/span&gt;se pago con el dinero del negocio&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="toolTipDuration">
-         <number>3</number>
         </property>
        </widget>
       </item>
@@ -220,7 +257,7 @@
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Escriba aqui el valor total que se paga por la compra de la cantidad indicada en la entrada actual &lt;span style=&quot; font-weight:600;&quot;&gt;NO ponga el valor de un item solo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="toolTipDuration">
-         <number>3</number>
+         <number>-1</number>
         </property>
         <property name="showGroupSeparator" stdset="0">
          <bool>true</bool>
@@ -258,7 +295,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>430</y>
+     <y>420</y>
      <width>559</width>
      <height>42</height>
     </rect>

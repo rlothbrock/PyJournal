@@ -27,7 +27,7 @@ class Ui_DialogCapital(object):
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setGeometry(QRect(10, 270, 511, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Apply|QDialogButtonBox.Cancel|QDialogButtonBox.Reset)
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Apply|QDialogButtonBox.Close|QDialogButtonBox.Reset)
         self.formLayoutWidget_2 = QWidget(DialogCapital)
         self.formLayoutWidget_2.setObjectName(u"formLayoutWidget_2")
         self.formLayoutWidget_2.setGeometry(QRect(8, 12, 511, 168))

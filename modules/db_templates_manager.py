@@ -4,42 +4,62 @@ import sqlite3
 from PySide2.QtWidgets import QApplication
 from dialogs.auxiliar_dialogs import selfCloseInterface
 
-
-
 statusDB_name = 'appStatusDB.db'
+
+cells_formats = {
+    'currency': lambda v__, __: '$ {:,.2f}'.format(return_float_or_zero(v__)),
+    'bool': lambda v__, key_word: '{}'.format(key_word if return_int_or_zero(v__) == 1 else ''),
+    'text': lambda v__, __: '{}'.format(v__),
+    'integer': lambda v__, __: '{}'.format(return_int_or_zero(v__))
+}
+
+
+def return_int_or_zero(value):
+    try:
+        return int(value)
+    except:
+        return 0
+
+
+def return_float_or_zero(value):
+    try:
+        return float(value)
+    except:
+        return 0
+
 
 table_templates = [
     {
         'name': 'sales',
         'fields': [
-            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY']},
-            {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'quantity', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'item_name', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'price', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'sell_price', 'props': ['REAL', 'NOT NULL', ]},
-            {'name': 'comments', 'props': ['TEXT']},
-            {'name': 'item_code', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'salary', 'props': ['REAL']}
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY'], 'format_like': 'text'},
+            {'name': 'date', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Nuevo'},
+            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Venta'},
+            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Consignacion'},
+            {'name': 'quantity', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
+            {'name': 'item_name', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'sell_price', 'props': ['REAL', 'NOT NULL', ], 'format_like': 'currency'},
+            {'name': 'comments', 'props': ['TEXT'], 'format_like': 'text'},
+            {'name': 'item_code', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'salary', 'props': ['REAL'], 'format_like': 'currency'}
         ],
         'checks': {'name': 'CHECK', 'props': ['(sell_price > price AND price > 0) ']}
 
     }, {
         'name': 'stock',
         'fields': [
-            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY']},
-            {'name': 'date', 'props': ['TEXT']},
-            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'item_code', 'props': ['TEXT', 'NOT NULL', 'UNIQUE']},
-            {'name': 'item_name', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'price', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'total', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'sold', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'on_stock', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'sell_price', 'props': ['REAL', 'NOT NULL']}
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY'], 'format_like': 'text'},
+            {'name': 'date', 'props': ['TEXT'], 'format_like': 'text'},
+            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Consignacion'},
+            {'name': 'item_code', 'props': ['TEXT', 'NOT NULL', 'UNIQUE'], 'format_like': 'text'},
+            {'name': 'item_name', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'total', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
+            {'name': 'sold', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
+            {'name': 'on_stock', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
+            {'name': 'sell_price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'}
         ],
         'checks': {'name': 'CHECK', 'props': [
             '(total >= 0 AND sold >=0 AND on_stock >=0 AND sell_price > price AND price > 0 ) ']}
@@ -47,60 +67,60 @@ table_templates = [
     }, {
         'name': 'capital',
         'fields': [
-            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY', 'NOT NULL']},
-            {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'amount', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'owner', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'robert_', 'props': ['REAL']},
-            {'name': 'ariadna_', 'props': ['REAL']},
-            {'name': 'invested_', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'cash_', 'props': ['REAL']},
-            {'name': 'total_', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'comments', 'props': ['TEXT']},
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'date', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'amount', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'owner', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'robert_', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'ariadna_', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'invested_', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'cash_', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'total_', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'comments', 'props': ['TEXT'], 'format_like': 'text'},
         ],
         'checks': {'name': 'CHECK', 'props': [
             '(total_ >= 0 AND robert_ >= 0 AND ariadna_ >= 0 AND amount > 0 ) ']}
     }, {
         'name': 'statistics',
         'fields': [
-            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY']},
-            {'name': 'date', 'props': ['TEXT']},
-            {'name': 'total_sales', 'props': ['INTEGER']},
-            {'name': 'total_inv', 'props': ['INTEGER']},
-            {'name': 'consignation_payments', 'props': ['INTEGER']},
-            {'name': 'net_utilities', 'props': ['INTEGER']},
-            {'name': 'salary', 'props': ['INTEGER']},
-            {'name': 'real_utilities', 'props': ['INTEGER']},
-            {'name': 'stock_entries', 'props': ['INTEGER']},
-            {'name': 'capital_entries', 'props': ['INTEGER']},
-            {'name': 'total_', 'props': ['INTEGER']},
-            {'name': 'cash', 'props': ['INTEGER']},
+            {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY'], 'format_like': 'text'},
+            {'name': 'date', 'props': ['TEXT'], 'format_like': 'text'},
+            {'name': 'total_sales', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'total_inv', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'consignation_payments', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'net_utilities', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'salary', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'real_utilities', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'stock_entries', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'capital_entries', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'total_', 'props': ['INTEGER'], 'format_like': 'currency'},
+            {'name': 'cash', 'props': ['INTEGER'], 'format_like': 'currency'},
 
         ]
     }, {
         'name': 'diary',
         'fields': [
-            {'name': 'id', 'props': ['TEXT']},
-            {'name': 'entry_counter', 'props': ['TEXT']},
-            {'name': 'date', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'quantity', 'props': ['INTEGER', 'NOT NULL']},
-            {'name': 'item_name', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'price', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'sell_price', 'props': ['REAL', 'NOT NULL', ]},
-            {'name': 'comments', 'props': ['TEXT']},
-            {'name': 'item_code', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'salary', 'props': ['REAL']},
-            {'name': 'amount', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'owner', 'props': ['TEXT', 'NOT NULL']},
-            {'name': 'robert_', 'props': ['REAL']},
-            {'name': 'ariadna_', 'props': ['REAL']},
-            {'name': 'invested_', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'cash_', 'props': ['REAL']},
-            {'name': 'total_', 'props': ['REAL', 'NOT NULL']},
-            {'name': 'unique_id', 'props': ['REAL', 'UNIQUE']}
+            {'name': 'id', 'props': ['TEXT'], 'format_like': 'text'},
+            {'name': 'entry_counter', 'props': ['TEXT'], 'format_like': 'text'},
+            {'name': 'date', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Nuevo'},
+            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Venta'},
+            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Consignacion'},
+            {'name': 'quantity', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
+            {'name': 'item_name', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'sell_price', 'props': ['REAL', 'NOT NULL', ], 'format_like': 'currency'},
+            {'name': 'comments', 'props': ['TEXT'], 'format_like': 'text'},
+            {'name': 'item_code', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'salary', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'amount', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'owner', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
+            {'name': 'robert_', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'ariadna_', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'invested_', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'cash_', 'props': ['REAL'], 'format_like': 'currency'},
+            {'name': 'total_', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
+            {'name': 'unique_id', 'props': ['REAL', 'UNIQUE'], 'format_like': 'text'}
         ]
     }
 ]
@@ -130,7 +150,6 @@ def find_profit(is_sale, amount, sell_price, price):
         print('error finding real profit: ', error)
 
 
-
 # ---------sqlite user defined aggregations
 
 
@@ -148,7 +167,7 @@ def get_table_template(index_or_name):
         raise TypeError('this function does not support args of type: < %s > ' % type(index_or_name))
 
 
-def get_template_fields(index_or_name, no_id=False): # returns ['field_name'...]
+def get_template_fields(index_or_name, no_id=False):  # returns ['field_name'...]
     table_template = get_table_template(index_or_name)
     return list((field.get('name') for field in table_template.get('fields')))[1:] if no_id \
         else list((field.get('name') for field in table_template.get('fields')))
@@ -157,6 +176,31 @@ def get_template_fields(index_or_name, no_id=False): # returns ['field_name'...]
 def get_index_in_template(table: str, field_name: str):
     fields = get_template_fields(table)
     return fields.index(field_name)
+
+
+def get_format_of_field(table: str, field_or_index_in_table): # returns a function
+    if isinstance(field_or_index_in_table, (str, int)):
+        table_template__ = get_table_template(table)
+        fields__ = table_template__.get('fields')
+        if isinstance(field_or_index_in_table, str):
+            field = next(filter(
+                lambda i: i is not None,
+                (item if item.get('name') == field_or_index_in_table else None for item in fields__)
+            ))
+        else:
+            field = fields__[field_or_index_in_table]
+
+        format_like__ = field.get('format_like')
+        key_word__ = field.get('key_word')
+        return lambda value__: cells_formats.get(format_like__)(value__, key_word__)
+
+    else:
+        raise Exception(
+            'get_format_of_field called with wrong <field_or_index> argument type <{}>'.format(
+                type(field_or_index_in_table)
+            )
+        )
+
 
 
 def on_diary_table_find_index_and_fields_of(self, table: str):
@@ -170,7 +214,6 @@ def on_diary_table_find_index_and_fields_of(self, table: str):
         lambda item: item if item in diary_fields else None,
         x_fields)))
     return x_field_index_on_diary, x_field_on_diary
-
 
 
 # sqlite3  related functions.....
@@ -189,6 +232,7 @@ def close_cursor(self):
     except:
         print('info: close_cursor was not executed')
         return
+
 
 def _close_db(self):
     try:
@@ -214,7 +258,8 @@ def create_connection(self, db_name):
         # print('debug: successfully connected to {}'.format(db_name))
     except sqlite3.Error as error:
         print('error while trying to connect to {}  details:\n {}'.format(db_name, error))
-        selfCloseInterface('Failed on Connecting To Database {}'.format(db_name),3,3,'Critical Error', 'Closing App...')
+        selfCloseInterface('Failed on Connecting To Database {}'.format(db_name), 3, 3, 'Critical Error',
+                           'Closing App...')
         QApplication.quit()
 
 
@@ -285,5 +330,3 @@ def create_table_templates():
 def create_tables_onDb(self, template=[]):
     t_temp = template if len(template) > 0 else create_table_templates()
     return cursor_execution(self, t_temp, 'tables created successfully')
-
-

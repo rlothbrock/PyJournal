@@ -15,7 +15,7 @@ class CapitalFormDialog(QDialog):
 
         self.data_for_diary = []
         self.apply_button = self.ui.buttonBox.button(QDialogButtonBox.Apply)
-        self.cancel_button = self.ui.buttonBox.button(QDialogButtonBox.Cancel)
+        self.close_button = self.ui.buttonBox.button(QDialogButtonBox.Close)
         self.reset_button = self.ui.buttonBox.button(QDialogButtonBox.Reset)
 
         self.init_ui(parent)
@@ -26,7 +26,7 @@ class CapitalFormDialog(QDialog):
         self.ui.extraccionDelMontoCheckBox.stateChanged.connect(self.fill_label)
         self.ui.cantidadDeDineroDoubleSpinBox.valueChanged.connect(self.fill_label)
 
-        self.cancel_button.clicked.connect(self.reject_form)
+        self.close_button.clicked.connect(self.reject_form)
         self.reset_button.clicked.connect(self.clean_form)
         self.apply_button.clicked.connect(lambda: self.apply_form(parent))
 

@@ -11,6 +11,7 @@ from PySide2.QtWidgets import QMainWindow, QApplication
 from UI.Main import Ui_MainWindow
 from components.status import current_date
 from dialogs.auxiliar_dialogs import selfCloseInterface
+from modules.db_templates_manager import get_template_fields
 from modules.diary_driver import append_data_to_diary_routine
 from routines.about_to_Quit import about_to_quit_routine
 from routines.ui_initialization import ui_init_routine
@@ -25,13 +26,15 @@ class MainWindow(QMainWindow):
         self.cursor = None
         self.date_session = current_date # yyyy-mm-dd
         self.operation = ''  # used for calculator to work
-        self.table_for_filter_dialogs: str = None
-        self.filter_dialog_options: dict = {}
-        self.table_on_target = 'diary'
         self.use_secure_entry = True
+
         # this props will be initialized on init_ui. are used for keep track of counter
         self.counter = 0
         self.last_date = ''
+
+        self.table_on_target = 'diary'
+        self.filter_dialog_options: dict = {}
+        self.headers_for_tab1: [str] = get_template_fields(self.table_on_target)
         self.data_to_display_on_tab1 = [] #  this props holds the data to show on table
                                           #  and need a signal for detect changes and react properly
                                           #  is readen any time we display data and must be proper updated

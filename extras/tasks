@@ -3,5 +3,16 @@ tareas
     exportacion...
 
 
+estoy en la elaboracion de la logica del filtro
 
+    revisar la logica de filtrado. self.apply_filter
+
+
+todo
+elaborar una herramienta que elimine una entrada por su id, insertar el id de la entrada y eliminar
+elaborar dentro de la misma herramienta la posibilidad de eliminar por id, para revertir un cambio en especial
+    pasos:
+    on_delete_by_id_clicked(id):
+        confirmar deleting -> return if False else:
+        crud_driver(self, diary, delete, {field: id, opertor: = value: (id,)})
 
