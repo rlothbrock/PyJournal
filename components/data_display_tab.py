@@ -2,6 +2,7 @@
 from PySide2.QtGui import QColor, QFont
 from PySide2.QtWidgets import QTableWidgetItem
 
+from dialogs.auxiliar_dialogs import selfCloseInterface
 from modules.crud_sqlite import crud_driver
 from modules.db_templates_manager import get_template_fields, get_format_of_field
 
@@ -15,6 +16,10 @@ def execute_display_table(self, table_name):
     self.data_to_display_on_tab1 = crud_driver(self, table_name, 'read', {'pick_all': True})
     self.display_table_signal.emit()
     self.ui.tabWidget.setCurrentIndex(0)
+    selfCloseInterface(
+        'tabla: {} ha sido cargada con exito'.format(table_name), 1, 1,
+        'Ver {}'.format(table_name)
+    )
     return
 
 
