@@ -1,6 +1,5 @@
-import math
-from PySide2.QtCore import Signal
 import locale
+import math
 
 locale.setlocale(locale.LC_MONETARY)
 

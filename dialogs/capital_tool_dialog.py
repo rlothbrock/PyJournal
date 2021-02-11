@@ -1,10 +1,10 @@
 # Capital entries Form -------------------------------
 from PySide2.QtWidgets import QDialog, QDialogButtonBox
+from UI.capital_form import Ui_DialogCapital
 from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
 from dialogs.common_tool_dialogs import build_data_template
 from modules.crud_sqlite import crud_driver
 from modules.db_templates_manager import get_template_fields, get_index_in_template
-from UI.capital_form import Ui_DialogCapital
 
 
 class CapitalFormDialog(QDialog):

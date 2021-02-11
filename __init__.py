@@ -1,14 +1,12 @@
 #!/usr/bin/python3.8
 
-import datetime
 import os
 import sys
 
 import PySide2
+from UI.Main import Ui_MainWindow
 from PySide2.QtCore import Signal, Slot
 from PySide2.QtWidgets import QMainWindow, QApplication
-
-from UI.Main import Ui_MainWindow
 from components.status import current_date
 from dialogs.auxiliar_dialogs import selfCloseInterface
 from modules.db_templates_manager import get_template_fields
@@ -24,7 +22,7 @@ class MainWindow(QMainWindow):
         # status props---------
         self.connection = None
         self.cursor = None
-        self.date_session = current_date # yyyy-mm-dd
+        self.date_session = current_date  # yyyy-mm-dd
         self.operation = ''  # used for calculator to work
         self.use_secure_entry = True
 
@@ -35,13 +33,13 @@ class MainWindow(QMainWindow):
         self.table_on_target = 'diary'
         self.filter_dialog_options: dict = {}
         self.headers_for_tab1: [str] = get_template_fields(self.table_on_target)
-        self.data_to_display_on_tab1 = [] #  this props holds the data to show on table
-                                          #  and need a signal for detect changes and react properly
-                                          #  is readen any time we display data and must be proper updated
-        self.data_to_export = [] #  used most on buttons export appwide
-                                 #  this prop is used for holding data just
-                                 #  in case that prop <source> on export() is empty
-                                 #  can remain [] if source is provided
+        self.data_to_display_on_tab1 = []  # this props holds the data to show on table
+        #  and need a signal for detect changes and react properly
+        #  is readen any time we display data and must be proper updated
+        self.data_to_export = []  # used most on buttons export appwide
+        #  this prop is used for holding data just
+        #  in case that prop <source> on export() is empty
+        #  can remain [] if source is provided
         self.imported_data = []
 
         self.ui = Ui_MainWindow()
@@ -63,10 +61,10 @@ class MainWindow(QMainWindow):
         nd = 'Nueva Fecha: {}'.format(new_value)
         print(nd)
         selfCloseInterface(
-            nd, 3, 1, 'Fecha de trabajo cambiada','\n\n *Las entradas tendran esa fecha')
+            nd, 3, 1, 'Fecha de trabajo cambiada', '\n\n *Las entradas tendran esa fecha')
         return
 
-    def append_data_to_diary(self,data):
+    def append_data_to_diary(self, data):
         append_data_to_diary_routine(self, data)
 
     @Slot()
@@ -83,6 +81,7 @@ class MainWindow(QMainWindow):
     date_changed_signal = Signal(str)
     counter_updated_signal = Signal()
     recalculate_tables_signal = Signal()
+
 
 if __name__ == "__main__":
     try:

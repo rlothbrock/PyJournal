@@ -1,9 +1,5 @@
-import re
-
-import PySide2
-from PySide2 import QtCore
 from PySide2.QtCore import Slot
-from PySide2.QtGui import QIcon, Qt
+from PySide2.QtGui import Qt
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QListWidgetItem
 
 from UI.filters_form import Ui_Dialog as Ui_Filter_Dialog

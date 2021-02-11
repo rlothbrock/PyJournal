@@ -2,7 +2,6 @@ import datetime
 import os
 
 from PySide2.QtWidgets import QFileDialog
-
 from components.app_counter import entry_counter_creator
 from dialogs.auxiliar_dialogs import selfCloseInterface
 from modules.crud_sqlite import crud_driver

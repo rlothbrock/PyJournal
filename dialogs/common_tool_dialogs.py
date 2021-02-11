@@ -1,9 +1,7 @@
 from random import random
 
-from PySide2.QtWidgets import QDialog, QDialogButtonBox
-
+from PySide2.QtWidgets import QDialog
 from UI.help_offline import Ui_Dialog as Ui_help_dialog
-
 # common resources-------------------
 from dialogs.auxiliar_dialogs import selfCloseInterface
 

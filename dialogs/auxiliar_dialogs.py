@@ -1,9 +1,5 @@
-import PySide2
 from PySide2.QtCore import QTimer, SLOT
-from PySide2.QtGui import QFont
-from PySide2.QtWidgets import QMessageBox, QDialog
-
-from UI.new_db_alert import Ui_Dialog as Ui_new_db_alert
+from PySide2.QtWidgets import QMessageBox
 
 
 class SelfCloseMsgBox(QMessageBox):

@@ -2,7 +2,6 @@ from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QApplication
 
 from dialogs.auxiliar_dialogs import MessageBox
-from routines.database_saver import database_saver_routine
 from routines.status_saver import status_saver_routine
 
 

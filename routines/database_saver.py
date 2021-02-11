@@ -2,7 +2,7 @@ import datetime
 import os
 import shutil
 
-from dialogs.auxiliar_dialogs import MessageBox, selfCloseInterface
+from dialogs.auxiliar_dialogs import selfCloseInterface
 
 
 def database_saver_routine(self, silent=False):

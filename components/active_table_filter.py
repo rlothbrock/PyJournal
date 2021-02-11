@@ -1,7 +1,5 @@
 from dialogs.auxiliar_dialogs import selfCloseInterface
 from dialogs.filter_dialog import FilterDialog
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import get_template_fields
 
 
 def filter_active_table(self):
