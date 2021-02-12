@@ -1,8 +1,8 @@
 import sqlite3
 
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from extras.error_utils import type_checker, condition_checker, ConditionFailedException
-from modules.db_templates_manager import close_cursor, initialize_cursor
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.extras.error_utils import type_checker, condition_checker, ConditionFailedException
+from packages.modules.db_templates_manager import close_cursor, initialize_cursor
 
 sqlite_query_operators = [
     '=', '>', '<', '<=', '>=', '<>', '!=', 'ALL', 'AND', 'ANY',

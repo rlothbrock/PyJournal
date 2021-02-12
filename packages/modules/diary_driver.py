@@ -1,8 +1,8 @@
-from components.app_counter import entry_counter_creator
-from components.data_display_tab import execute_display_table
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import get_index_in_template, get_template_fields
-from routines.create_unique_id import unique_id_creator
+from packages.components.app_counter import entry_counter_creator
+from packages.components.data_display_tab import execute_display_table
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import get_index_in_template, get_template_fields
+from packages.routines.create_unique_id import unique_id_creator
 
 
 def append_data_to_diary_routine(self,data):

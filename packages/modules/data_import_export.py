@@ -2,10 +2,10 @@ import datetime
 import os
 
 from PySide2.QtWidgets import QFileDialog
-from components.app_counter import entry_counter_creator
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import table_templates, get_index_in_template, get_template_fields
+from packages.components.app_counter import entry_counter_creator
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import table_templates, get_index_in_template, get_template_fields
 
 
 # possible args:

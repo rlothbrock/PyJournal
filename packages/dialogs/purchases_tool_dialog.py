@@ -1,11 +1,11 @@
 import os
 
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QFileDialog
-from UI.purchases_form import Ui_Dialog_purchases_form
-from dialogs.auxiliar_dialogs import selfCloseInterface, MessageBox
-from dialogs.common_tool_dialogs import build_data_template, build_item_code, buddy_sync
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import get_template_fields, get_index_in_template
+from packages.UI.purchases_form import Ui_Dialog_purchases_form
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface, MessageBox
+from packages.dialogs.common_tool_dialogs import build_data_template, build_item_code, buddy_sync
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import get_template_fields, get_index_in_template
 
 
 class PurchasesFormDialog(QDialog):

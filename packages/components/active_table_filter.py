@@ -1,5 +1,5 @@
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from dialogs.filter_dialog import FilterDialog
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.dialogs.filter_dialog import FilterDialog
 
 
 def filter_active_table(self):

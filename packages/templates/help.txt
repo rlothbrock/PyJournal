@@ -1,0 +1,29 @@
+Introduccion
+Esta aplicacion se utiliza para llevar registros simplificados de la actividad de un local de ventas.
+Soporta hasta 3 areas de ventas distintas (puede ser aumentadas de ser necesario)
+En la version actual (1.0.0) no existe una variante online, por lo que la actividad de registro se realiza de manera retroactiva
+
+Funcionamiento:
+La aplicacion cuenta con varias herramientas
+Añadir Compras
+	Se utiliza para insertar todas las compras del area en el dia que se esta trabajando
+Añadir Ventas
+	Se utiliza para añadir las ventas del area, se recomienda utilizar luego de añadir las compras para evitar un saldo negativo falso
+Modificar la inversion
+	Se utiliza para mantener un registro de la cantidad de dinero que tiene cada parte en el negocio en cuestion, en la version actual 1.0.0 solamente soporta 2 partes predefinidas
+Cambiar la fecha de la sesion
+	Se usa para el caso en el que se quiera trabajar con dias anteriores a la fecha en la que  abre la aplicacion.
+	La aplicacion por defecto va a insertar los datos con la fecha del dia actual del que se trate, es por ello que se debe tener en cuenta a la hora de insertar datos de manera retroactiva
+
+Otras caracteristicas
+Menu Base de Datos:
+	En este menu podemos salvar el estado de la base de datos en la que estamos trabajando para de esta manera mantener una copia de los cambios realizados hasta el momento de la salva
+	Tambien podemos añadir una nueva base de datos (no soportado en la version actual 1.0.0)
+	
+	La funcion mas importante de este menu es la que nos permite cambiar la base de datos en la que vamos a trabajar, es de tener en cuenta que a la hora de rebajar en areas diferentes debe cambiarse la base de datos, a fin de usar la respectiva de cada area
+Menu Archivo
+	En este menu podemos exportar e importar los datos hacia un archivo CSV (formato compatible con excel)
+	Tambien podemos guardar el estado de la aplicacion (en la version actual solamente incluye el tamaño del viewport y la base de datos a la que se estaba conectado al momento de cerrar)
+	Tambien aqui tenemos la opcion de cierre seguro, dado que el cierre desde este menu evita perdidas de datos no deseadas
+
+Version actual 1.0.0 inicio: 16-01-2021

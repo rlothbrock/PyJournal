@@ -2,7 +2,7 @@ import datetime
 
 from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QDialog, QDialogButtonBox
-from UI.old_session_dialog import Ui_Dialog
+from packages.UI.old_session_dialog import Ui_Dialog
 
 
 class DateManager(QDialog):

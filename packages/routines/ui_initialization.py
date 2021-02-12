@@ -1,18 +1,18 @@
-from components.active_table_filter import filter_active_table
-from components.app_counter import update_counter
-from components.data_display_tab import display_active_table_on_data_display
-from components.menus import set_menus
-from components.statistics_display_tab import display_statistics_on_tab
-from components.status import current_date
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from modules.accountant import calculate_auxiliar_tabs
-from modules.app_clock import app_clock
-from modules.calculator import set_calculator
-from modules.crud_sqlite import crud_driver
-from modules.data_import_export import export_data_displayed_on_tab1
-from modules.money_calc import set_bill_calculator
-from routines.status_loader import status_loader_routine
-from routines.status_saver import status_saver_routine
+from packages.components.active_table_filter import filter_active_table
+from packages.components.app_counter import update_counter
+from packages.components.data_display_tab import display_active_table_on_data_display
+from packages.components.menus import set_menus
+from packages.components.statistics_display_tab import display_statistics_on_tab
+from packages.components.status import current_date
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.modules.accountant import calculate_auxiliar_tabs
+from packages.modules.app_clock import app_clock
+from packages.modules.calculator import set_calculator
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.data_import_export import export_data_displayed_on_tab1
+from packages.modules.money_calc import set_bill_calculator
+from packages.routines.status_loader import status_loader_routine
+from packages.routines.status_saver import status_saver_routine
 
 
 def ui_init_routine(self):

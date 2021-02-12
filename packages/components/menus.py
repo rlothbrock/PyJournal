@@ -1,16 +1,16 @@
 from PySide2.QtCore import Slot
-from components.data_display_tab import execute_display_table
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from dialogs.capital_tool_dialog import CapitalFormDialog
-from dialogs.common_tool_dialogs import tool_launcher, HelpOfflineDialog, main_help_text_template
-from dialogs.purchases_tool_dialog import PurchasesFormDialog
-from dialogs.sales_tool_dialog import SalesFormDialog
-from modules.data_import_export import import_data_to_diary, export_data_from_diary
-from modules.db_templates_manager import connect_toDB
-from routines.change_session_date import manage_date_session
-from routines.database_saver import database_saver_routine
-from routines.quit_app import quit_app_routine
-from routines.status_saver import status_saver_routine
+from packages.components.data_display_tab import execute_display_table
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.dialogs.capital_tool_dialog import CapitalFormDialog
+from packages.dialogs.common_tool_dialogs import tool_launcher, HelpOfflineDialog, main_help_text_template
+from packages.dialogs.purchases_tool_dialog import PurchasesFormDialog
+from packages.dialogs.sales_tool_dialog import SalesFormDialog
+from packages.modules.data_import_export import import_data_to_diary, export_data_from_diary
+from packages.modules.db_templates_manager import connect_toDB
+from packages.routines.change_session_date import manage_date_session
+from packages.routines.database_saver import database_saver_routine
+from packages.routines.quit_app import quit_app_routine
+from packages.routines.status_saver import status_saver_routine
 
 
 def set_menus(self):

@@ -1,6 +1,6 @@
-from components.status import status_props, default_status
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import connect_toDB, statusDB_name
+from packages.components.status import status_props, default_status
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import connect_toDB, statusDB_name
 
 
 def status_loader_routine(self):

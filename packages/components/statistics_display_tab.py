@@ -1,4 +1,4 @@
-from modules.accountant import calculate_statistics
+from packages.modules.accountant import calculate_statistics
 
 def display_statistics_on_tab(self):
     data = calculate_statistics(self)

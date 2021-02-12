@@ -3,7 +3,7 @@ import re
 import sqlite3
 
 from PySide2.QtWidgets import QApplication
-from dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
 
 statusDB_name = 'appStatusDB.db'
 

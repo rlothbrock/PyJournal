@@ -1,8 +1,8 @@
 import sqlite3
 
-from components.status import status_table_template
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import statusDB_name, connect_toDB, create_tables_onDb
+from packages.components.status import status_table_template
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import statusDB_name, connect_toDB, create_tables_onDb
 
 
 # refactored with crud driver

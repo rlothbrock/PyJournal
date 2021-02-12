@@ -1,6 +1,6 @@
 # this module handles the auxiliar tables (sales, stock, statistics, )
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import \
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import \
     get_index_in_template as g_i, get_template_fields, get_index_in_template, \
     on_diary_table_find_index_and_fields_of
 

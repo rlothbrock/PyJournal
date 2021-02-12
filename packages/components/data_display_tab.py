@@ -2,9 +2,9 @@
 from PySide2.QtGui import QColor, QFont
 from PySide2.QtWidgets import QTableWidgetItem
 
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from modules.crud_sqlite import crud_driver
-from modules.db_templates_manager import get_template_fields, get_format_of_field
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.modules.crud_sqlite import crud_driver
+from packages.modules.db_templates_manager import get_template_fields, get_format_of_field
 
 
 def execute_display_table(self, table_name):

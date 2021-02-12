@@ -2,11 +2,11 @@ from PySide2.QtCore import Slot
 from PySide2.QtGui import Qt
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QListWidgetItem
 
-from UI.filters_form import Ui_Dialog as Ui_Filter_Dialog
+from packages.UI.filters_form import Ui_Dialog as Ui_Filter_Dialog
 
-from dialogs.auxiliar_dialogs import MessageBox
-from dialogs.common_tool_dialogs import tool_launcher, HelpOfflineDialog
-from modules.db_templates_manager import regexp
+from packages.dialogs.auxiliar_dialogs import MessageBox
+from packages.dialogs.common_tool_dialogs import tool_launcher, HelpOfflineDialog
+from packages.modules.db_templates_manager import regexp
 
 modify_field_label_template = 'Modificar el resultado de: {}'
 descriptor_text_label_template = 'El campo "{}" solo va a mostrar las filas "{} {}"'

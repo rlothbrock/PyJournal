@@ -1,9 +1,9 @@
 from random import random
 
 from PySide2.QtWidgets import QDialog
-from UI.help_offline import Ui_Dialog as Ui_help_dialog
+from packages.UI.help_offline import Ui_Dialog as Ui_help_dialog
 # common resources-------------------
-from dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
 
 main_help_text_template = '''
 Introduccion

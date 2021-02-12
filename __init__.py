@@ -5,15 +5,15 @@ import os
 import sys
 
 import PySide2
-from UI.Main import Ui_MainWindow
+from packages.UI.Main import Ui_MainWindow
 from PySide2.QtCore import Signal, Slot
 from PySide2.QtWidgets import QMainWindow, QApplication
-from components.status import current_date
-from dialogs.auxiliar_dialogs import selfCloseInterface
-from modules.db_templates_manager import get_template_fields
-from modules.diary_driver import append_data_to_diary_routine
-from routines.about_to_Quit import about_to_quit_routine
-from routines.ui_initialization import ui_init_routine
+from packages.components.status import current_date
+from packages.dialogs.auxiliar_dialogs import selfCloseInterface
+from packages.modules.db_templates_manager import get_template_fields
+from packages.modules.diary_driver import append_data_to_diary_routine
+from packages.routines.about_to_Quit import about_to_quit_routine
+from packages.routines.ui_initialization import ui_init_routine
 
 
 class MainWindow(QMainWindow):
