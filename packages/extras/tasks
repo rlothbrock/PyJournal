@@ -1,3 +1,11 @@
+importante:
+    usar en el folder donde esta localizado setup.py el siguiente comand:
+    python3 -m build
+
+    leer la pagina guardada de la doc para ver project structure
+
+
+
 tareas
     empezar a trabajar sobre los filtros de la aplicacion : done
     y las botoneras de exportacion...
