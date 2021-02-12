@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+PyJournal_rlothbrock.egg-info/PKG-INFO
+PyJournal_rlothbrock.egg-info/SOURCES.txt
+PyJournal_rlothbrock.egg-info/dependency_links.txt
+PyJournal_rlothbrock.egg-info/top_level.txt
+packages/__init__.py
