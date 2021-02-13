@@ -23,7 +23,7 @@ def database_saver_routine(self, silent=False):
     except FileExistsError as error:
         print('warning on saving dir child: %s' % error)
     try:
-        src = os.path.join(os.curdir, 'databases',  '{}.db'.format(database_name))
+        src = os.path.join(os.curdir, '.databases',  '{}.db'.format(database_name))
         dst = os.path.join(
             os.pardir,
             'saved databases',

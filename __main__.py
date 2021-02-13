@@ -85,7 +85,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     try:
-        db_dir = os.path.join(os.getcwd(), 'databases')
+        db_dir = os.path.join(os.getcwd(), '.databases')
         os.mkdir(db_dir)
     except FileExistsError as error:
         print('info on main: {}'.format(error))

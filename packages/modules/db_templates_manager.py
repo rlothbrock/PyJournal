@@ -248,7 +248,7 @@ def _close_db(self):
 
 def create_connection(self, db_name):
     try:
-        self.connection = sqlite3.connect(os.path.join(os.curdir, 'databases', db_name))
+        self.connection = sqlite3.connect(os.path.join(os.curdir, '.databases', db_name))
         if db_name != statusDB_name:
             self.connection.create_function('REGEXP', 2, regexp)
             self.connection.create_function('total_per_item', 2, total_per_item)
@@ -273,12 +273,6 @@ def connect_toDB(self, db_name, create_tables=True, silent=False):
         selfCloseInterface(
             'Estas conectado a la base de datos: {}'.format(db_name),
             title='Conectado a la Base de Datos')
-        # changed by autocloseable alert
-        # connection_alert = MessageBox(
-        #     lambda: print('ok'),
-        #     'Now, you\'re connected to: %s' % db_name,
-        #     'i', 'Connection Success')
-        # connection_alert.show()
     if db_name != statusDB_name:
         self.recalculate_tables_signal.emit()
     return
