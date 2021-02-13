@@ -1,3 +1,5 @@
+#!/usr/bin/python3.8
+
 import os
 import sys
 
@@ -81,7 +83,7 @@ class MainWindow(QMainWindow):
     recalculate_tables_signal = Signal()
 
 
-def main():
+if __name__ == "__main__":
     try:
         db_dir = os.path.join(os.getcwd(), 'databases')
         os.mkdir(db_dir)
@@ -96,5 +98,3 @@ def main():
     app.aboutToQuit.connect(about_to_quit_routine)
     sys.exit(app.exec_())
 
-if __name__ == "__main__":
-    main()
