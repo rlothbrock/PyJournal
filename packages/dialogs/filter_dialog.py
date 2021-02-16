@@ -6,6 +6,7 @@ from packages.UI.filters_form import Ui_Dialog as Ui_Filter_Dialog
 
 from packages.dialogs.auxiliar_dialogs import MessageBox
 from packages.dialogs.common_tool_dialogs import tool_launcher, HelpOfflineDialog
+from packages.dialogs.filter_options_dialog import FilterOptions
 from packages.modules.db_templates_manager import regexp
 
 modify_field_label_template = 'Modificar el resultado de: {}'
@@ -130,16 +131,10 @@ class FilterDialog(QDialog):
         self.helpButton.clicked.connect(lambda: tool_launcher(self, HelpOfflineDialog, filter_help_text_template))
         self.resetButton.clicked.connect(self.on_reset_button_clicked)
         self.applyButton.clicked.connect(lambda: self.on_apply_button_clicked(parent))
+        self.ui.toolButton_filter_options.clicked.connect(self.show_options_routine)
 
-        # todo
-        self.ui.toolButton_filter_options.clicked.connect(self.debug_printer_delete_after_finish)
 
     # Slots ________________________
-    @Slot()  # todo delete this debug slot...
-    def debug_printer_delete_after_finish(self):
-        print('Slot to do')
-        return
-
     @Slot()
     def item_selected_reaction(self, item):
         self.modificar_data_dict_y_actualizar_textEdit()
@@ -158,13 +153,6 @@ class FilterDialog(QDialog):
             self.manejar_mensaje_en_las_labels_segun_estado_del_campo(item)
         return
 
-    # ---------- todo
-    def show_options_routine(self):
-        # esta fun se lanza para mostrar los botones de salvar y cargar los filtros
-        pass
-
-    # regular methods___________________
-
     def build_listWidget_field_manager(self):
         __items_for_field_list = list(map(lambda i: QListWidgetItem(i), self.parent_fields))
         self.ui.listWidget_field_manager.clear()
@@ -175,9 +163,15 @@ class FilterDialog(QDialog):
             self.ui.listWidget_field_manager.addItem(item)
             item.setSelected(next(selected_state_generator))
 
+    # regular methods___________________
+
     def modificar_data_dict_y_actualizar_textEdit(self):
         self.actualizar_los_valores_de_data_dict()
         self.update_textedit_display_filter()
+
+    def show_options_routine(self):
+        options = FilterOptions(self)
+        options.exec_()
 
     def manejar_estado_habilitado_condicional_de_combo_y_lineEdit(self, selected_item):
         self.ui.comboBox_field_modificator.setEnabled(selected_item.checkState() is Qt.CheckState.Checked)

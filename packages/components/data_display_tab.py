@@ -7,7 +7,7 @@ from packages.modules.crud_sqlite import crud_driver
 from packages.modules.db_templates_manager import get_template_fields, get_format_of_field
 
 
-def execute_display_table(self, table_name):
+def execute_display_table(self, table_name, silent=False):
     self.table_on_target = table_name
     self.headers_for_tab1 = get_template_fields(table_name)
     if table_name != 'diary':
@@ -16,7 +16,8 @@ def execute_display_table(self, table_name):
     self.data_to_display_on_tab1 = crud_driver(self, table_name, 'read', {'pick_all': True})
     self.display_table_signal.emit()
     self.ui.tabWidget.setCurrentIndex(0)
-    selfCloseInterface(
+    if not silent:
+        selfCloseInterface(
         'tabla: {} ha sido cargada con exito'.format(table_name), 1, 1,
         'Ver {}'.format(table_name)
     )

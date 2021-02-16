@@ -8,7 +8,7 @@ def multiply(self,
              result_container,
              amount_container,
              bill_value_container,
-             exchange_rate=1,
+             exchange_rate,
              bill_value_container_is_text=True,
              result_emitter=None
              ):
@@ -27,11 +27,18 @@ def multiply(self,
         if type(bill_value_container) is not int and type(bill_value_container) is not float:
             bill_value = bill_value_container.value()
     result = bill_value * exchange_rate * amount
+    result_container.setText(locale.format_string('$ %.2f', result, True, True))
     if result_emitter is not None:
         result_emitter.emit()
-        result_container.setText(locale.format_string('$ %.2f', result, True, True))
     if not result_emitter:
         return result
+
+
+def get_rate(self):
+    print('debug: value of spinBox{}'.format(self.ui.doubleSpinBox_tasa_de_cambio_USD.value()))
+    return self.ui.doubleSpinBox_tasa_de_cambio_USD.value() if \
+        self.ui.doubleSpinBox_tasa_de_cambio_USD.value() != 0 else \
+        self.status.get('exc_rate') # todo set this property on status template
 
 
 def set_bill_calculator(self):
@@ -52,7 +59,7 @@ def set_bill_calculator(self):
     self.ui.spinBox_cuc1.valueChanged.connect(
         lambda: multiply(self, self.ui.cuc1sumlabel, self.ui.spinBox_cuc1, 1, 1, False, self.value_changed_signal))
     self.ui.spinBox_cuc3.valueChanged.connect(
-        lambda: multiply(self, self.ui.cuc3sumlabel, self.ui.spinBox_cuc3, 3, 1, False, self.value_changed_signal))
+        lambda: multiply(self, self.ui.cuc3sumlabel, self.ui.spinBox_cuc3, 2, 1, False, self.value_changed_signal))
     self.ui.spinBox_cuc5.valueChanged.connect(
         lambda: multiply(self, self.ui.cuc5sumlabel, self.ui.spinBox_cuc5, 5, 1, False, self.value_changed_signal))
     self.ui.spinBox_cuc10.valueChanged.connect(
@@ -67,34 +74,34 @@ def set_bill_calculator(self):
 
     # cuc to cup column
     self.ui.spinBox_cuc5cent.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup5centlabel, self.ui.spinBox_cuc5cent, 0.05, 24, False,
+        lambda: multiply(self, self.ui.cucTocup5centlabel, self.ui.spinBox_cuc5cent, 0.05, get_rate(self), False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc10cent.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup10centlabel, self.ui.spinBox_cuc10cent, 0.1, 24, False,
+        lambda: multiply(self, self.ui.cucTocup10centlabel, self.ui.spinBox_cuc10cent, 0.1, get_rate(self), False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc25cent.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup25centlabel, self.ui.spinBox_cuc25cent, 0.25, 24, False,
+        lambda: multiply(self, self.ui.cucTocup25centlabel, self.ui.spinBox_cuc25cent, 0.25, get_rate(self), False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc50cent.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup50centlabel, self.ui.spinBox_cuc50cent, 0.5, 24, False,
+        lambda: multiply(self, self.ui.cucTocup50centlabel, self.ui.spinBox_cuc50cent, 0.5, get_rate(self), False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc1.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup1label, self.ui.spinBox_cuc1, 1, 24, False, self.value_changed_signal))
+        lambda: multiply(self, self.ui.cucTocup1label, self.ui.spinBox_cuc1, 1, get_rate(self), False, self.value_changed_signal))
     self.ui.spinBox_cuc3.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup3label, self.ui.spinBox_cuc3, 3, 24, False, self.value_changed_signal))
+        lambda: multiply(self, self.ui.cucTocup3label, self.ui.spinBox_cuc3, 2, get_rate(self), False, self.value_changed_signal))
     self.ui.spinBox_cuc5.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup5label, self.ui.spinBox_cuc5, 5, 24, False, self.value_changed_signal))
+        lambda: multiply(self, self.ui.cucTocup5label, self.ui.spinBox_cuc5, 5, get_rate(self), False, self.value_changed_signal))
     self.ui.spinBox_cuc10.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup10label, self.ui.spinBox_cuc10, 10, 24, False,
+        lambda: multiply(self, self.ui.cucTocup10label, self.ui.spinBox_cuc10,10, get_rate(self), False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc20.valueChanged.connect(
         lambda: multiply(self, self.ui.cucTocup20label, self.ui.spinBox_cuc20, 20, 24, False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc50.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup50label, self.ui.spinBox_cuc50, 50, 24, False,
+        lambda: multiply(self, self.ui.cucTocup50label, self.ui.spinBox_cuc50, 50, get_rate(self), False,
                          self.value_changed_signal))
     self.ui.spinBox_cuc100.valueChanged.connect(
-        lambda: multiply(self, self.ui.cucTocup100label, self.ui.spinBox_cuc100, 100, 24, False,
+        lambda: multiply(self, self.ui.cucTocup100label, self.ui.spinBox_cuc100, 100, get_rate(self), False,
                          self.value_changed_signal))
 
     # cup to cup column
@@ -124,6 +131,9 @@ def set_bill_calculator(self):
     self.ui.checkBox_use_calculator.clicked.connect(
         lambda: self.ui.frame_calculator.setEnabled(self.ui.checkBox_use_calculator.isChecked())
     )
+    # todo test this line
+    self.ui.doubleSpinBox_tasa_de_cambio_USD.valueChanged.connect(lambda: self.value_changed_signal.emit())
+    self.ui.doubleSpinBox_tasa_de_cambio_USD.valueChanged.connect(lambda: show_totals(self))
 
 
 def show_totals(self):
@@ -133,7 +143,7 @@ def show_totals(self):
         multiply(self, self.ui.cuc25centsumlabel, self.ui.spinBox_cuc25cent, 0.25, 1, False),
         multiply(self, self.ui.cuc50centsumlabel, self.ui.spinBox_cuc50cent, 0.5, 1, False),
         multiply(self, self.ui.cuc1sumlabel, self.ui.spinBox_cuc1, 1, 1, False),
-        multiply(self, self.ui.cuc3sumlabel, self.ui.spinBox_cuc3, 3, 1, False),
+        multiply(self, self.ui.cuc3sumlabel, self.ui.spinBox_cuc3, 2, 1, False),
         multiply(self, self.ui.cuc5sumlabel, self.ui.spinBox_cuc5, 5, 1, False),
         multiply(self, self.ui.cuc10sumlabel, self.ui.spinBox_cuc10, 10, 1, False),
         multiply(self, self.ui.cuc20sumlabel, self.ui.spinBox_cuc20, 20, 1, False),
@@ -141,17 +151,17 @@ def show_totals(self):
         multiply(self, self.ui.cuc100sumlabel, self.ui.spinBox_cuc100, 100, 1, False)
     ])
     cuc_convertido = sum([
-        multiply(self, self.ui.cucTocup5centlabel, self.ui.spinBox_cuc5cent, 0.05, 24, False),
-        multiply(self, self.ui.cucTocup10centlabel, self.ui.spinBox_cuc10cent, 0.1, 24, False),
-        multiply(self, self.ui.cucTocup25centlabel, self.ui.spinBox_cuc25cent, 0.25, 24, False),
-        multiply(self, self.ui.cucTocup50centlabel, self.ui.spinBox_cuc50cent, 0.5, 24, False),
-        multiply(self, self.ui.cucTocup1label, self.ui.spinBox_cuc1, 1, 24, False),
-        multiply(self, self.ui.cucTocup3label, self.ui.spinBox_cuc3, 3, 24, False),
-        multiply(self, self.ui.cucTocup5label, self.ui.spinBox_cuc5, 5, 24, False),
-        multiply(self, self.ui.cucTocup10label, self.ui.spinBox_cuc10, 10, 24, False),
-        multiply(self, self.ui.cucTocup20label, self.ui.spinBox_cuc20, 20, 24, False),
-        multiply(self, self.ui.cucTocup50label, self.ui.spinBox_cuc50, 50, 24, False),
-        multiply(self, self.ui.cucTocup100label, self.ui.spinBox_cuc100, 100, 24, False)
+        multiply(self, self.ui.cucTocup5centlabel, self.ui.spinBox_cuc5cent, 0.05, get_rate(self), False),
+        multiply(self, self.ui.cucTocup10centlabel, self.ui.spinBox_cuc10cent, 0.1, get_rate(self), False),
+        multiply(self, self.ui.cucTocup25centlabel, self.ui.spinBox_cuc25cent, 0.25, get_rate(self), False),
+        multiply(self, self.ui.cucTocup50centlabel, self.ui.spinBox_cuc50cent, 0.5, get_rate(self), False),
+        multiply(self, self.ui.cucTocup1label, self.ui.spinBox_cuc1, 1, get_rate(self), False),
+        multiply(self, self.ui.cucTocup3label, self.ui.spinBox_cuc3, 2, get_rate(self), False),
+        multiply(self, self.ui.cucTocup5label, self.ui.spinBox_cuc5, 5, get_rate(self), False),
+        multiply(self, self.ui.cucTocup10label, self.ui.spinBox_cuc10, 10, get_rate(self), False),
+        multiply(self, self.ui.cucTocup20label, self.ui.spinBox_cuc20, 20, get_rate(self), False),
+        multiply(self, self.ui.cucTocup50label, self.ui.spinBox_cuc50, 50, get_rate(self), False),
+        multiply(self, self.ui.cucTocup100label, self.ui.spinBox_cuc100, 100, get_rate(self), False),
     ])
     cup_parcial = sum([
         multiply(self, self.ui.label_cup1, self.ui.spinBox_cup1, 1, 1, False),

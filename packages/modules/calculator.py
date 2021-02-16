@@ -27,7 +27,7 @@ symbols = list(event_keys.values())
 
 def set_calculator(self):
     print('loading calculator module... done')
-    self.ui.label_calc_result.setText('0')
+    self.ui.label_calc_result.setText('{:,.2f}'.format(0))
     self.ui.label_calc_operation.setText('0')
     self.ui.pushButton_calc_0.clicked.connect(lambda: operation_builder(self, '0'))
     self.ui.pushButton_calc_1.clicked.connect(lambda: operation_builder(self, '1'))
@@ -57,25 +57,25 @@ def operation_builder(self, modifier: str):
     self.ui.label_calc_operation.setText(self.operation)
     try:
         if self.operation == '':
-            self.ui.label_calc_result.setText(str(0))
+            self.ui.label_calc_result.setText('{:,.2f}'.format(0))
             return
         if self.operation[-2] in ['+', '-']:
             partial_result = eval('%s 0 ' % self.operation)
-            self.ui.label_calc_result.setText(str(partial_result))
+            self.ui.label_calc_result.setText('{:,.2f}'.format(partial_result))
             return
         if self.operation[-2] in ['*', '/']:
             partial_result = eval('%s 1 ' % self.operation)
-            self.ui.label_calc_result.setText(str(partial_result))
+            self.ui.label_calc_result.setText('{:,.2f}'.format(partial_result))
             return
         partial_result = eval(self.operation)
-        self.ui.label_calc_result.setText(str(partial_result))
+        self.ui.label_calc_result.setText('{:,.2f}'.format(partial_result))
         return
     except:
         return
 
 
 def operation_clearer(self):
-    self.ui.label_calc_result.setText(str(0))
+    self.ui.label_calc_result.setText('{:,.2f}'.format(0))
     self.ui.label_calc_operation.setText(str(0))
     self.operation = ''
     return
@@ -85,7 +85,7 @@ def operation_resolver(self):
     print('operation to eval: ', self.operation)
     result = eval(self.operation)
     print(result)
-    self.ui.label_calc_result.setText(str(result))
+    self.ui.label_calc_result.setText('{:,.2f}'.format(result))
     self.ui.doubleSpinBox_dineroEsperado.setValue(result)  # this line trigger multiply --> deactivates the calc
     operation_clearer(self)
 

@@ -64,8 +64,8 @@ class MainWindow(QMainWindow):
             nd, 3, 1, 'Fecha de trabajo cambiada', '\n\n *Las entradas tendran esa fecha')
         return
 
-    def append_data_to_diary(self, data):
-        append_data_to_diary_routine(self, data)
+    def append_data_to_diary(self, data,silent=False):
+        append_data_to_diary_routine(self, data, silent)
 
     @Slot()
     def save_window_size(self):

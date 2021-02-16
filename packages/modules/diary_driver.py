@@ -5,7 +5,7 @@ from packages.modules.db_templates_manager import get_index_in_template, get_tem
 from packages.routines.create_unique_id import unique_id_creator
 
 
-def append_data_to_diary_routine(self,data):
+def append_data_to_diary_routine(self,data,silent=False):
     data[get_index_in_template('diary','entry_counter')] = entry_counter_creator(self)
     data[get_index_in_template('diary','id')] = unique_id_creator(self)
     data[get_index_in_template('diary','unique_id')] = unique_id_creator(self)
@@ -15,5 +15,5 @@ def append_data_to_diary_routine(self,data):
         'value': tuple(data)
     })
     self.recalculate_tables_signal.emit()
-    execute_display_table(self, 'diary')
+    execute_display_table(self, 'diary',silent)
     return

@@ -9,6 +9,7 @@ from packages.modules.data_import_export import import_data_to_diary, export_dat
 from packages.modules.db_templates_manager import connect_toDB
 from packages.routines.change_session_date import manage_date_session
 from packages.routines.database_saver import database_saver_routine
+from packages.routines.fix_exc_rate import fix_exc_rate_routine
 from packages.routines.quit_app import quit_app_routine
 from packages.routines.status_saver import status_saver_routine
 
@@ -38,6 +39,7 @@ def set_menus(self):
     self.ui.actionVer_Diario.triggered.connect(lambda: execute_display_table(self, 'diary'))
     self.ui.actionCambiar_la_fecha_de_la_sesion.triggered.connect(lambda: manage_date_session(self))
     self.ui.actionUsar_verificacion_de_datos.triggered.connect(lambda: lock_entry(self))
+    self.ui.actionFijar_tasa_de_cambio_del_USD.triggered.connect(lambda: fix_exc_rate_routine(self))
 
     # menu Help
     self.ui.actionAyuda_offline.triggered.connect(lambda: tool_launcher(self, HelpOfflineDialog,main_help_text_template))

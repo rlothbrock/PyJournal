@@ -28,7 +28,7 @@ class PurchasesFormDialog(QDialog):
         #
         self.init_ui(parent)
 
-    def accept_routine(self, parent, is_bulk=False, bulk_data=None):
+    def accept_routine(self, parent, is_bulk=False, bulk_data=None, silent=True):
         # props alias...
         data_len__ = get_template_fields('diary')
         date__ = get_index_in_template('diary', 'date')
@@ -113,12 +113,12 @@ class PurchasesFormDialog(QDialog):
         msg_str = 'comprar {} {} por ${:,.2f} cada uno'.format(data[quantity__], data[item_name__], data[price__])
         if parent.use_secure_entry and not is_bulk:
             confirm = MessageBox(
-                lambda: parent.append_data_to_diary(data),
+                lambda: parent.append_data_to_diary(data, silent),
                 'Desea confirmar la Entrada?', 'q', 'Confirmar Entrada', msg_str
             )
             confirm.show()
         else:
-            parent.append_data_to_diary(data)
+            parent.append_data_to_diary(data, silent)
             if not is_bulk:
                 selfCloseInterface(msg_str, 4, 1, 'Operacion Realizada',
                                    'Cambios Insertados en la Base de Datos')
@@ -223,9 +223,12 @@ class PurchasesFormDialog(QDialog):
                 .split(';')
             for line in open(file_to_import[0]).readlines()
         ))
-        total_to_pay = eval(str.join(' + ', list((str(item[2]) for item in data_to_import))))
+        total_to_pay = sum(
+            (float(item[2] if '$' not in item[2] else item[2].split('$')[1]) for item in data_to_import)
+        )
         cash__ = get_index_in_template('diary', 'cash_')
         last_row_data__ = crud_driver(parent, 'diary', 'read', {})[-1]
+        print('debug: cash: {} total to pay: {}'.format(cash__, total_to_pay))
         if last_row_data__[cash__] < total_to_pay:
             return selfCloseInterface(
                 'la compra que desea realizar no puede ser completada\n'

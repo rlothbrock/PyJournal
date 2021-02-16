@@ -1,13 +1,5 @@
-importante:
-    usar en el folder donde esta localizado setup.py el siguiente comand:
-    python3 -m build
-
-    leer la pagina guardada de la doc para ver project structure
-
-
 
 tareas
-    empezar a trabajar sobre los filtros de la aplicacion : done
     y las botoneras de exportacion...
 
 tarea actual... implmentar el funcionamiento del boton de cargar filtros y de guardarlos
@@ -20,3 +12,25 @@ elaborar dentro de la misma herramienta la posibilidad de eliminar por id, para 
         confirmar deleting -> return if False else:
         crud_driver(self, diary, delete, {field: id, opertor: = value: (id,)})
 
+elaborar un widget que muestre la carga de elementos para sustituir las ventanas de alertas(molestan)
+
+ver por que en windows no se cargan los iconos de las herramientas
+
+tengo que modificar los evaluadores de los filtros para que me sean capaces de reconocer las cadenas a la misma vez que los enteros o los floats
+
+tengo que ordenar la salida de la combobox del filtro porque sale desordenada
+
+cuando venda tengo que poner la entrada en modo silente para que la tabla no saque la alerta cuando se muestre
+
+tengo que ordenar lso elementos del form de ventas para que se desplacen correctamente con el tab
+
+añadir en la funcion de formato en las booleanas una cadena para el False  (Venta/Compra)
+
+añadir en las estadisticas una formula para dias trabajados y que me saque un promedio de ganancias contra dias trabajados
+
+tengo que aprender a crear recursos en QT para poder usar los iconos.
+
+
+luego:
+
+implementar las funciones de los botones...

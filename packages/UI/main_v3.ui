@@ -28,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
@@ -226,7 +226,7 @@
        <rect>
         <x>10</x>
         <y>30</y>
-        <width>421</width>
+        <width>501</width>
         <height>20</height>
        </rect>
       </property>
@@ -245,27 +245,55 @@
         <x>10</x>
         <y>60</y>
         <width>681</width>
-        <height>448</height>
+        <height>459</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_20">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
          <item>
-          <widget class="QLabel" name="l005Label_7">
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>CUC</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="l005Label_9">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>USD</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>Tasa: 1 USD X </string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_tasa_de_cambio_USD">
+             <property name="minimum">
+              <double>1.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>1000.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>CUP</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
-          <widget class="Line" name="line_22">
+          <widget class="Line" name="line_7">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
@@ -373,7 +401,7 @@
                 </font>
                </property>
                <property name="text">
-                <string>$3.00</string>
+                <string>$2.00</string>
                </property>
               </widget>
              </item>
@@ -1546,6 +1574,38 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>10</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Tasa: 1 USD X {} CUP</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="l005Label_7">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>0</y>
+        <width>330</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>USD</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -2322,8 +2382,11 @@
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
-     <string>Archivo</string>
+     <string>&amp;Archivo</string>
     </property>
     <addaction name="actionGuardar_el_estado_de_la_aplicacion"/>
     <addaction name="separator"/>
@@ -2334,12 +2397,13 @@
    </widget>
    <widget class="QMenu" name="menuHerramientas">
     <property name="title">
-     <string>Herramientas</string>
+     <string>&amp;Herramientas</string>
     </property>
     <addaction name="actionA_adir_Compras_2"/>
     <addaction name="actionA_adir_Ventas_2"/>
     <addaction name="actionModificar_la_inversion"/>
     <addaction name="actionCambiar_la_fecha_de_la_sesion"/>
+    <addaction name="actionFijar_tasa_de_cambio_del_USD"/>
     <addaction name="actionUsar_verificacion_de_datos"/>
     <addaction name="separator"/>
     <addaction name="actionVer_Inventario"/>
@@ -2349,17 +2413,17 @@
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
-     <string>Ayuda</string>
+     <string>A&amp;yuda</string>
     </property>
     <addaction name="actionAyuda_offline"/>
    </widget>
    <widget class="QMenu" name="menuBase_de_Datos">
     <property name="title">
-     <string>Base de Datos</string>
+     <string>&amp;Base de Datos</string>
     </property>
     <widget class="QMenu" name="menuCambiar_a">
      <property name="title">
-      <string>Cambiar a: </string>
+      <string>&amp;Cambiar a: </string>
      </property>
      <addaction name="action_connect_Celulares"/>
      <addaction name="action_connect_Zapatos"/>
@@ -2386,8 +2450,12 @@
    </property>
   </action>
   <action name="actionA_adir_Compras_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/cart.png</normaloff>icons/cart.png</iconset>
+   </property>
    <property name="text">
-    <string>Añadir Compras</string>
+    <string>Añadir &amp;Compras</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+C</string>
@@ -2397,8 +2465,12 @@
    </property>
   </action>
   <action name="actionA_adir_Ventas_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/dolar_green.png</normaloff>icons/dolar_green.png</iconset>
+   </property>
    <property name="text">
-    <string>Añadir Ventas</string>
+    <string>&amp;Añadir Ventas</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+V</string>
@@ -2408,8 +2480,12 @@
    </property>
   </action>
   <action name="actionModificar_la_inversion">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/dolar_blue.png</normaloff>icons/dolar_blue.png</iconset>
+   </property>
    <property name="text">
-    <string>Modificar la inversion</string>
+    <string>&amp;Modificar la inversion</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+M</string>
@@ -2439,8 +2515,12 @@
    </property>
   </action>
   <action name="actionGuardar_el_estado_de_la_aplicacion">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/save_black.png</normaloff>icons/save_black.png</iconset>
+   </property>
    <property name="text">
-    <string>Guardar el estado de la aplicacion</string>
+    <string>&amp;Guardar el estado de la aplicacion</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+G</string>
@@ -2455,16 +2535,24 @@
    </property>
   </action>
   <action name="actionCrear_nueva">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/add_black.png</normaloff>icons/add_black.png</iconset>
+   </property>
    <property name="text">
-    <string>Crear nueva</string>
+    <string>Crear &amp;nueva</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionSalvar_el_estado_de_la_DB_actual">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/save_white.png</normaloff>icons/save_white.png</iconset>
+   </property>
    <property name="text">
-    <string>Salvar el estado de la DB actual</string>
+    <string>&amp;Salvar el estado de la DB actual</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -2472,7 +2560,7 @@
   </action>
   <action name="action_connect_Celulares">
    <property name="text">
-    <string>Celulares</string>
+    <string>&amp;Celulares</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+C</string>
@@ -2480,7 +2568,7 @@
   </action>
   <action name="action_connect_Zapatos">
    <property name="text">
-    <string>Zapatos</string>
+    <string>&amp;Zapatos</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Z</string>
@@ -2488,15 +2576,19 @@
   </action>
   <action name="action_connect_Bisuteria">
    <property name="text">
-    <string>Bisuteria</string>
+    <string>&amp;Bisuteria</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+B</string>
    </property>
   </action>
   <action name="actionCerrar_la_aplicacion">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/quit_red.png</normaloff>icons/quit_red.png</iconset>
+   </property>
    <property name="text">
-    <string>Cerrar la aplicacion</string>
+    <string>&amp;Cerrar la aplicacion</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -2506,8 +2598,12 @@
    </property>
   </action>
   <action name="actionExportar_Diario_hacia_CSV">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/export_black.png</normaloff>icons/export_black.png</iconset>
+   </property>
    <property name="text">
-    <string>Exportar Diario hacia archivo .CSV</string>
+    <string>&amp;Exportar Diario hacia archivo .CSV</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+E</string>
@@ -2517,8 +2613,12 @@
    </property>
   </action>
   <action name="actionImportar_datos_desde_CSV">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/import_black.png</normaloff>icons/import_black.png</iconset>
+   </property>
    <property name="text">
-    <string>Importar datos desde archivo .CSV</string>
+    <string>&amp;Importar datos desde archivo .CSV</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+I</string>
@@ -2528,14 +2628,22 @@
    </property>
   </action>
   <action name="actionCambiar_la_fecha_de_la_sesion">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/calendar_black.png</normaloff>icons/calendar_black.png</iconset>
+   </property>
    <property name="text">
-    <string>Cambiar la fecha de la sesion</string>
+    <string>Cambiar la &amp;fecha de la sesion</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Alt+F</string>
    </property>
   </action>
   <action name="actionAyuda_offline">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/question_mark.png</normaloff>icons/question_mark.png</iconset>
+   </property>
    <property name="text">
     <string>Ayuda offline</string>
    </property>
@@ -2554,30 +2662,55 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Usar verificacion de datos</string>
+    <string>Usar &amp;verificacion de datos</string>
    </property>
    <property name="shortcut">
     <string>F6</string>
    </property>
   </action>
   <action name="actionVer_Inventario">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/l_green.png</normaloff>icons/l_green.png</iconset>
+   </property>
    <property name="text">
-    <string>Ver Inventario</string>
+    <string>Ver &amp;Inventario</string>
    </property>
   </action>
   <action name="actionVer_Ventas">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/l_blue.png</normaloff>icons/l_blue.png</iconset>
+   </property>
    <property name="text">
-    <string>Ver Ventas</string>
+    <string>Ver Venta&amp;s</string>
    </property>
   </action>
   <action name="actionVer_Capital">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/l_purple.png</normaloff>icons/l_purple.png</iconset>
+   </property>
    <property name="text">
-    <string>Ver Capital</string>
+    <string>Ver Ca&amp;pital</string>
    </property>
   </action>
   <action name="actionVer_Diario">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/l_black.png</normaloff>icons/l_black.png</iconset>
+   </property>
    <property name="text">
-    <string>Ver Diario</string>
+    <string>Ver &amp;Diario</string>
+   </property>
+  </action>
+  <action name="actionFijar_tasa_de_cambio_del_USD">
+   <property name="icon">
+    <iconset>
+     <normaloff>icons/exc_rate.png</normaloff>icons/exc_rate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fijar tasa de cambio del USD</string>
    </property>
   </action>
  </widget>

@@ -32,6 +32,7 @@ class Ui_Dialog(object):
         self.lineEdit = QLineEdit(Dialog)
         self.lineEdit.setObjectName(u"lineEdit")
         self.lineEdit.setGeometry(QRect(10, 150, 421, 41))
+        self.lineEdit.setClearButtonEnabled(True)
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
