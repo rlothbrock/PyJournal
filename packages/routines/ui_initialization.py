@@ -7,7 +7,7 @@ from packages.components.status import current_date
 from packages.dialogs.auxiliar_dialogs import selfCloseInterface
 from packages.modules.accountant import calculate_auxiliar_tabs
 from packages.modules.app_clock import app_clock
-from packages.modules.calculator import set_calculator
+from packages.modules.calculator import set_calculator_ui
 from packages.modules.crud_sqlite import crud_driver
 from packages.modules.data_import_export import export_data_displayed_on_tab1
 from packages.modules.money_calc import set_bill_calculator
@@ -39,7 +39,7 @@ def ui_init_routine(self):
     })
     set_menus(self)
     app_clock(self, self.ui.label_app_clock)
-    set_calculator(self)
+    set_calculator_ui(self)
     set_bill_calculator(self)
 
     # ui initialization

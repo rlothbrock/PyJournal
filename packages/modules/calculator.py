@@ -25,8 +25,8 @@ codes = list(event_keys.keys())
 symbols = list(event_keys.values())
 
 
-def set_calculator(self):
-    print('loading calculator module... done')
+def set_calculator_ui(self):
+    self.ui.doubleSpinBox_tasa_de_cambio_USD.setValue(self.status.get('exc_rate'))
     self.ui.label_calc_result.setText('{:,.2f}'.format(0))
     self.ui.label_calc_operation.setText('0')
     self.ui.pushButton_calc_0.clicked.connect(lambda: operation_builder(self, '0'))

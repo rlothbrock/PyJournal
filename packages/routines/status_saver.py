@@ -10,7 +10,6 @@ def status_saver_routine(self,silent=False):
     current_database = self.status.get('connected_to')
     connect_toDB(self, statusDB_name, False, True)
     try:
-        # print('debug: attempting to create new table for saving app status')
         create_tables_onDb(self, status_table_template)
     except sqlite3.Error as error:
         print('info: %s' % error)

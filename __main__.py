@@ -46,6 +46,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         ui_init_routine(self)
 
+
     def keyPressEvent(self, event: PySide2.QtGui.QKeyEvent):
         super(MainWindow, self).keyPressEvent(event)
         self.key_pressed_signal.emit(event.key())

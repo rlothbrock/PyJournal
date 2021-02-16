@@ -10,7 +10,6 @@ def status_loader_routine(self):
         status = crud_driver(self, 'saved_status', 'read', {'pick_all': True})
         print('done.....')
         connect_toDB(self, status[-1][0],True,False)
-        # print('debug: status found: {}'.format(dict(list(zip(status_props,status[-1])))))
         return dict(list(zip(status_props,status[-1])))
     except BaseException as err:
         print('not found....\nreturning default values')

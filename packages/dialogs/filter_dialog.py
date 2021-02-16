@@ -133,7 +133,6 @@ class FilterDialog(QDialog):
         self.applyButton.clicked.connect(lambda: self.on_apply_button_clicked(parent))
         self.ui.toolButton_filter_options.clicked.connect(self.show_options_routine)
 
-
     # Slots ________________________
     @Slot()
     def item_selected_reaction(self, item):
