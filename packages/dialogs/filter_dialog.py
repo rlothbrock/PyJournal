@@ -1,4 +1,4 @@
-from PySide2.QtCore import Slot
+from PySide2.QtCore import Slot, Signal
 from PySide2.QtGui import Qt
 from PySide2.QtWidgets import QDialog, QDialogButtonBox, QListWidgetItem
 
@@ -40,13 +40,6 @@ El boton Reset limpia los filtros y reestablece a los valores originales a todos
 
 '''
 len_of_results_label_template = 'Los resultados abarcan {} filas.'
-
-# deprecated function ... to be eliminated on next versions
-# def replace__(iterable_, index_, data_):
-#     iter__ = list(iterable_).copy()
-#     iter__.pop(index_)
-#     iter__.insert(index_, data_)
-#     return iter__
 
 
 def operation_eval(operator__, value__, context):  # must return a boolean...
@@ -132,6 +125,7 @@ class FilterDialog(QDialog):
         self.resetButton.clicked.connect(self.on_reset_button_clicked)
         self.applyButton.clicked.connect(lambda: self.on_apply_button_clicked(parent))
         self.ui.toolButton_filter_options.clicked.connect(self.show_options_routine)
+        self.load_filter_apply_signal.connect(lambda: self.on_apply_button_clicked(parent))
 
     # Slots ________________________
     @Slot()
@@ -152,6 +146,8 @@ class FilterDialog(QDialog):
             self.manejar_mensaje_en_las_labels_segun_estado_del_campo(item)
         return
 
+    # regular methods___________________
+
     def build_listWidget_field_manager(self):
         __items_for_field_list = list(map(lambda i: QListWidgetItem(i), self.parent_fields))
         self.ui.listWidget_field_manager.clear()
@@ -161,8 +157,6 @@ class FilterDialog(QDialog):
             item.setCheckState(Qt.Checked)
             self.ui.listWidget_field_manager.addItem(item)
             item.setSelected(next(selected_state_generator))
-
-    # regular methods___________________
 
     def modificar_data_dict_y_actualizar_textEdit(self):
         self.actualizar_los_valores_de_data_dict()
@@ -340,9 +334,9 @@ class FilterDialog(QDialog):
                         lambda row: operation_eval(operator__, value__, row[self.filtered_fields.index(name__)]),
                         self.filtered_data
                     )).copy()
-                    print('debug: parcial con:\nfield_dict: {}\noper: {}\nvalue: {}\ndata: {}'.format(
-                        field_dict,operator__,value__,self.filtered_data
-                    )+'\n'+'-'*100)
+                    # print('debug: parcial con:\nfield_dict: {}\noper: {}\nvalue: {}\ndata: {}'.format(
+                    #     field_dict,operator__,value__,self.filtered_data
+                    # )+'\n'+'-'*100)
                 except BaseException as err:
                     print('>>>>>err:\n{} '.format(err))
                     continue
@@ -378,3 +372,5 @@ class FilterDialog(QDialog):
         parent.data_to_display_on_tab1 = self.filtered_data.copy()
         self.accept()
         return
+
+    load_filter_apply_signal = Signal()

@@ -54,6 +54,7 @@ class Ui_Dialog(object):
 
         self.doubleSpinBox = QDoubleSpinBox(self.horizontalLayoutWidget)
         self.doubleSpinBox.setObjectName(u"doubleSpinBox")
+        self.doubleSpinBox.setMinimum(1.000000000000000)
         self.doubleSpinBox.setMaximum(1000.000000000000000)
 
         self.horizontalLayout.addWidget(self.doubleSpinBox)

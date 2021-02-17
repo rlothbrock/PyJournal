@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'main_v3.ui'
+## Form generated from reading UI file 'MainUi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.1
 ##
@@ -275,6 +275,8 @@ class Ui_MainWindow(object):
 
         self.doubleSpinBox_tasa_de_cambio_USD = QDoubleSpinBox(self.verticalLayoutWidget_16)
         self.doubleSpinBox_tasa_de_cambio_USD.setObjectName(u"doubleSpinBox_tasa_de_cambio_USD")
+        self.doubleSpinBox_tasa_de_cambio_USD.setMinimum(1.000000000000000)
+        self.doubleSpinBox_tasa_de_cambio_USD.setMaximum(1000.000000000000000)
 
         self.horizontalLayout_2.addWidget(self.doubleSpinBox_tasa_de_cambio_USD)
 

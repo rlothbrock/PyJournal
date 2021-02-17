@@ -4,7 +4,7 @@ import os
 import sys
 
 import PySide2
-from packages.UI.Main import Ui_MainWindow
+from packages.UI.MainUi import Ui_MainWindow
 from PySide2.QtCore import Signal, Slot
 from PySide2.QtWidgets import QMainWindow, QApplication
 from packages.components.status import current_date

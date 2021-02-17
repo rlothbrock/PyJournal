@@ -35,10 +35,9 @@ def multiply(self,
 
 
 def get_rate(self):
-    print('debug: value of spinBox{}'.format(self.ui.doubleSpinBox_tasa_de_cambio_USD.value()))
     return self.ui.doubleSpinBox_tasa_de_cambio_USD.value() if \
         self.ui.doubleSpinBox_tasa_de_cambio_USD.value() != 0 else \
-        self.status.get('exc_rate') # todo set this property on status template
+        self.status.get('exc_rate')
 
 
 def set_bill_calculator(self):

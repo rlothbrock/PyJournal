@@ -34,7 +34,6 @@ def selfCloseInterface(
     QTimer.singleShot(time_to_close*1000, alert, SLOT('accept()'))
     return alert.exec_()
 
-
 class MessageBox(QMessageBox):
     def __init__(self, slot_yes, text, icon='q', title='Alert', info=None, slot_no=None):
         super(MessageBox, self).__init__()

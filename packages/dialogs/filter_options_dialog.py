@@ -45,44 +45,38 @@ class FilterOptions(QDialog):
         filter_file.close()
         selfCloseInterface(
             'Filtro salvado como: {}'.format(filename.get('name')),
-            2,1,'Filtro Salvado','\n\npara cargar los datos use la opcion Abrir'
+            2, 1, 'Filtro Salvado', '\n\npara cargar los datos use la opcion Abrir'
         )
-        print('data: {}\nfilename:{}'.format(str_from_data_to_save, filename))
+        # print('data: {}\nfilename:{}'.format(str_from_data_to_save, filename))
         self.accept()
         return
 
     def on_open(self, parent):
-        #       sale el directorio donde estan todos los dicts guardados
-        #       escoger el filename
-        #       leer el filename
-        #       new_dict = eval(data)
-        #       dict = new_dict
-        #   cerrar sin guardar
-        #       cerrar el dialog y ya reject()
         filename = QFileDialog.getOpenFileName(
             self,
             'Open Filter File: ',
             '.databases',
             '*.flt'
         )
-        data = open(filename[0],'r').readlines()[0]
-        print('debug data: {}'.format(data))
+        data = open(filename[0], 'r').readlines()[0]
         new_dict = eval(data)
         parent_keys = list((field.get('name') for field in parent.filter_data_dict))
         new_keys = list((field.get('name') for field in new_dict))
         if any((key not in parent_keys for key in new_keys)):
             selfCloseInterface(
                 'el filtro que intenta cargar no es compatible con la tabla de datos que se muestra actualmente',
-                5,3,'Error: Filtro incorrecto',
+                5, 3, 'Error: Filtro incorrecto',
                 'El filtro que ha seleccionado contiene campos que no estan presentes'
                 'en la tabla que se encuentra actualmente en uso.\n Posibles soluciones:\n> Cambiar La '
                 'tabla para que sea compatible con el filtro sleleccionado: Herramientas> Ver'
                 '\n> Cambiar el nombre del filtro que desea cargar: Opciones > Abrir'
             )
             return
+
         parent.filter_data_dict = new_dict.copy()
-        # todo relaunch build data on list ??
         self.accept()
+        parent.load_filter_apply_signal.emit()
+        return
 
     def on_discard(self):
         self.reject()
