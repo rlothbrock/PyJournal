@@ -34,7 +34,7 @@ def transform_imported_data(
 def import_data(self, with_headers=True):
     # this functions reads the file and retrieves data as structured array to self.imported_data property
     # print('preparing for importing...')
-    filename = QFileDialog.getOpenFileName(self, 'Open CSV File: ', os.pardir, '*.csv')
+    filename = QFileDialog.getOpenFileName(self, 'Open CSV File: ', os.environ.get('HOME'), '*.csv')
     # print('collecting data from {}'.format(filename))
     data_to_import = open(filename[0]).readlines()
     contents = data_to_import[1:] if not with_headers else data_to_import
@@ -52,14 +52,19 @@ def export_data(self, source=None, with_headers=True):
         self.table_on_target,
         datetime.datetime.now().__str__().replace('-', '').replace(' ', '-').replace('.', '').replace(':', '')
     )
-    default_source = os.path.join(os.pardir, 'Exported Tables')
+    default_source = os.path.join(os.environ.get('HOME'), 'Exported Tables')
 
     try:
         dst = QFileDialog.getExistingDirectory(
             self, 'Select Export Folder:', default_source
         )
-        if len(dst) == 0: raise Exception('no dst')
-        dst = os.path.join(dst, exported_table_filename)
+        if dst == '':
+            selfCloseInterface(
+                'la operacion ha sido cancelada',1,1,'Exportacion Cancelada',
+            )
+            return
+        else:
+            dst = os.path.join(dst, exported_table_filename)
     except:
         # tries to create folder
         try:
@@ -76,10 +81,13 @@ def export_data(self, source=None, with_headers=True):
         try:
             prime_data = self.data_to_export if source is None else source
             data = csv_data_maker(self, prime_data, with_headers)
-            exported_file = open(dst, 'w')
-            exported_file.write(data)
-            exported_file.close()
-            return dst
+            if dst == '':
+                return
+            else:
+                exported_file = open(dst, 'w')
+                exported_file.write(data)
+                exported_file.close()
+                return dst
         except FileNotFoundError as fileError:
             raise Exception(fileError)
 
@@ -128,15 +136,15 @@ def import_data_to_diary(self):
 
 
 def export_data_from_diary(self):
-    # steps:
-    # 1- read the diary table
-    # 2- export the data using export function.
     try:
         filename_path = export_data(self, crud_driver(self, 'diary', 'read', {'pick_all': True}))
-        print('data saved on {}'.format(filename_path))
-        selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
+        if filename_path is None:
+            return
+        else:
+            print('data saved on {}'.format(filename_path))
+            selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
                            'Data saved on: {}'.format(filename_path))
-        return
+            return
     except BaseException as error:
         print('export failed : {}'.format(error))
         selfCloseInterface('Failed on Exporting Data from Diary Table', 4, 2, 'Export Failed')
@@ -146,10 +154,13 @@ def export_data_from_diary(self):
 def export_data_displayed_on_tab1(self):
     try:
         filename_path = export_data(self, self.data_to_display_on_tab1.copy() )
-        print('data saved on {}'.format(filename_path))
-        selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
+        if filename_path is None:
+            return
+        else:
+            print('data saved on {}'.format(filename_path))
+            selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
                            'Data saved on: {}'.format(filename_path))
-        return
+            return
     except BaseException as error:
         print('export failed : {}'.format(error))
         selfCloseInterface('Failed on Exporting Data from Diary Table', 4, 2, 'Export Failed')

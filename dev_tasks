@@ -2,7 +2,7 @@
 tareas
     y las botoneras de exportacion...
 
-tarea actual... implmentar el funcionamiento del boton de cargar filtros y de guardarlos
+
 
 todo
 elaborar una herramienta que elimine una entrada por su id, insertar el id de la entrada y eliminar
@@ -14,7 +14,7 @@ elaborar dentro de la misma herramienta la posibilidad de eliminar por id, para 
 
 elaborar un widget que muestre la carga de elementos para sustituir las ventanas de alertas(molestan)
 
-ver por que en windows no se cargan los iconos de las herramientas
+ver por que no se carga en los S.O. no se cargan los iconos de las herramientas
 
 tengo que modificar los evaluadores de los filtros para que me sean capaces de reconocer las cadenas a la misma vez que los enteros o los floats
 
