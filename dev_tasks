@@ -1,6 +1,6 @@
 
 tareas
-    y las botoneras de exportacion...
+    trabajar sobre los botones de la pagina de estadisticas
 
 
 
@@ -15,14 +15,6 @@ elaborar dentro de la misma herramienta la posibilidad de eliminar por id, para 
 elaborar un widget que muestre la carga de elementos para sustituir las ventanas de alertas(molestan)
 
 ver por que no se carga en los S.O. no se cargan los iconos de las herramientas
-
-tengo que modificar los evaluadores de los filtros para que me sean capaces de reconocer las cadenas a la misma vez que los enteros o los floats
-
-tengo que ordenar la salida de la combobox del filtro porque sale desordenada
-
-cuando venda tengo que poner la entrada en modo silente para que la tabla no saque la alerta cuando se muestre
-
-tengo que ordenar lso elementos del form de ventas para que se desplacen correctamente con el tab
 
 añadir en la funcion de formato en las booleanas una cadena para el False  (Venta/Compra)
 

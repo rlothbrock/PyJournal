@@ -120,12 +120,12 @@ class SalesFormDialog(QDialog):
         msg_str = 'vender {} {} por ${:,.2f}'.format(data[quantity__], data[item_name__], data[sell_price__])
         if parent.use_secure_entry:
             confirm = MessageBox(
-                lambda: parent.append_data_to_diary(data),
+                lambda: parent.append_data_to_diary(data,True),
                 'Desea confirmar la Entrada?', 'q', 'Confirmar Entrada', msg_str
             )
             confirm.show()
         else:
-            parent.append_data_to_diary(data)
+            parent.append_data_to_diary(data, True)
             selfCloseInterface(msg_str, 4, 1, 'Operacion Realizada',
                                'Cambios Insertados en la Base de Datos')
 

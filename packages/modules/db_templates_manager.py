@@ -8,10 +8,10 @@ from packages.dialogs.auxiliar_dialogs import selfCloseInterface
 statusDB_name = 'appStatusDB.db'
 
 cells_formats = {
-    'currency': lambda v__, __: '$ {:,.2f}'.format(return_float_or_zero(v__)),
-    'bool': lambda v__, key_word: '{}'.format(key_word if return_int_or_zero(v__) == 1 else ''),
-    'text': lambda v__, __: '{}'.format(v__),
-    'integer': lambda v__, __: '{}'.format(return_int_or_zero(v__))
+    'currency': lambda value, __: '$ {:,.2f}'.format(return_float_or_zero(value)),
+    'bool': lambda value, key_word: '{}'.format(key_word[0] if return_int_or_zero(value) == 1 else key_word[1]),
+    'text': lambda value, __: '{}'.format(value),
+    'integer': lambda value, __: '{}'.format(return_int_or_zero(value))
 }
 
 
@@ -35,9 +35,9 @@ table_templates = [
         'fields': [
             {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY'], 'format_like': 'text'},
             {'name': 'date', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
-            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Nuevo'},
-            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Venta'},
-            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Consignacion'},
+            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Nuevo', '') },
+            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Venta', 'Compra')},
+            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Consignacion','')},
             {'name': 'quantity', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
             {'name': 'item_name', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
             {'name': 'price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
@@ -53,7 +53,7 @@ table_templates = [
         'fields': [
             {'name': 'id', 'props': ['TEXT', 'PRIMARY KEY'], 'format_like': 'text'},
             {'name': 'date', 'props': ['TEXT'], 'format_like': 'text'},
-            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Consignacion'},
+            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Consignacion','')},
             {'name': 'item_code', 'props': ['TEXT', 'NOT NULL', 'UNIQUE'], 'format_like': 'text'},
             {'name': 'item_name', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
             {'name': 'price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
@@ -104,9 +104,9 @@ table_templates = [
             {'name': 'id', 'props': ['TEXT'], 'format_like': 'text'},
             {'name': 'entry_counter', 'props': ['TEXT'], 'format_like': 'text'},
             {'name': 'date', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
-            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Nuevo'},
-            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Venta'},
-            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': 'Consignacion'},
+            {'name': 'is_new', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Nuevo','')},
+            {'name': 'is_sale', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Venta','Compra')},
+            {'name': 'is_consignation', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'bool', 'key_word': ('Consignacion','')},
             {'name': 'quantity', 'props': ['INTEGER', 'NOT NULL'], 'format_like': 'integer'},
             {'name': 'item_name', 'props': ['TEXT', 'NOT NULL'], 'format_like': 'text'},
             {'name': 'price', 'props': ['REAL', 'NOT NULL'], 'format_like': 'currency'},
@@ -201,7 +201,6 @@ def get_format_of_field(table: str, field_or_index_in_table): # returns a functi
                 type(field_or_index_in_table)
             )
         )
-
 
 
 def on_diary_table_find_index_and_fields_of(self, table: str):

@@ -1,5 +1,4 @@
 #!/usr/bin/python3.8
-
 import os
 import sys
 
@@ -82,7 +81,9 @@ class MainWindow(QMainWindow):
     date_changed_signal = Signal(str)
     counter_updated_signal = Signal()
     recalculate_tables_signal = Signal()
-
+    show_progress_bar_signal = Signal()
+    update_progress_bar_signal = Signal(float)
+    close_progress_bar_signal = Signal()
 
 if __name__ == "__main__":
     try:

@@ -11,6 +11,7 @@ from packages.modules.calculator import set_calculator_ui
 from packages.modules.crud_sqlite import crud_driver
 from packages.modules.data_import_export import export_data_displayed_on_tab1
 from packages.modules.money_calc import set_bill_calculator
+from packages.routines.set_progressBar import set_progress_bar
 from packages.routines.status_loader import status_loader_routine
 from packages.routines.status_saver import status_saver_routine
 
@@ -41,6 +42,7 @@ def ui_init_routine(self):
     app_clock(self, self.ui.label_app_clock)
     set_calculator_ui(self)
     set_bill_calculator(self)
+    set_progress_bar(self)
 
     # ui initialization
     self.ui.tabWidget.setCurrentIndex(self.status.get('active_tab'))
