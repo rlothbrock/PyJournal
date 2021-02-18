@@ -60,6 +60,7 @@ def find_exceptions(value, context):
 
 
 def find_all(value, context):
+    # always return True
     return True
 
 
@@ -130,20 +131,20 @@ class FilterDialog(QDialog):
     # Slots ________________________
     @Slot()
     def item_selected_reaction(self, item):
-        self.modificar_data_dict_y_actualizar_textEdit()
-        self.manejar_estado_habilitado_condicional_de_combo_y_lineEdit(item)
-        self.manejar_mensaje_en_las_labels_segun_estado_del_campo(item)
+        self.modify_data_dict_and_update_textEdit()
+        self.handle_conditional_enabling_of_combo_and_lineEdit(item)
+        self.handle_msg_on_labels_according_to_field_state(item)
         return
 
     @Slot()
     def item_check_state_changed(self, item):
-        self.modificar_data_dict_y_actualizar_textEdit()
+        self.modify_data_dict_and_update_textEdit()
         if any([
             self.ui.listWidget_field_manager.currentItem() == item,
             item in self.ui.listWidget_field_manager.selectedItems()
         ]):
-            self.manejar_estado_habilitado_condicional_de_combo_y_lineEdit(item)
-            self.manejar_mensaje_en_las_labels_segun_estado_del_campo(item)
+            self.handle_conditional_enabling_of_combo_and_lineEdit(item)
+            self.handle_msg_on_labels_according_to_field_state(item)
         return
 
     # regular methods___________________
@@ -158,7 +159,7 @@ class FilterDialog(QDialog):
             self.ui.listWidget_field_manager.addItem(item)
             item.setSelected(next(selected_state_generator))
 
-    def modificar_data_dict_y_actualizar_textEdit(self):
+    def modify_data_dict_and_update_textEdit(self):
         self.actualizar_los_valores_de_data_dict()
         self.update_textedit_display_filter()
 
@@ -166,7 +167,7 @@ class FilterDialog(QDialog):
         options = FilterOptions(self)
         options.exec_()
 
-    def manejar_estado_habilitado_condicional_de_combo_y_lineEdit(self, selected_item):
+    def handle_conditional_enabling_of_combo_and_lineEdit(self, selected_item):
         self.ui.comboBox_field_modificator.setEnabled(selected_item.checkState() is Qt.CheckState.Checked)
         self.ui.lineEdit_valor_del_campo_modificado.setEnabled(
             all([
@@ -183,7 +184,7 @@ class FilterDialog(QDialog):
         )
         self.ui.label_3.setEnabled(selected_item.checkState() is Qt.CheckState.Checked)
 
-    def manejar_mensaje_en_las_labels_segun_estado_del_campo(self, selected_item):
+    def handle_msg_on_labels_according_to_field_state(self, selected_item):
         if selected_item.checkState() is Qt.CheckState.Unchecked:
             self.ui.label_modificar_field.setText('el campo "{}" esta desactivado'.format(selected_item.text()))
             self.ui.label_descriptor_del_filtro.setText('el campo "{}" esta desactivado'.format(selected_item.text()))
@@ -235,7 +236,7 @@ class FilterDialog(QDialog):
 
     def actualizar_los_valores_de_data_dict(self):
         # esta primera funcion altera los valores de operator y value (el resto de la fun es para checked y name)
-        self.modificar_operator_y_value_en_data_dict()
+        self.update_operator_and_value_on_data_dict()
         # items__ is a list with all listWidget_field_manager items
         items__ = list((
             self.ui.listWidget_field_manager.item(row) for row in range(self.ui.listWidget_field_manager.count())
@@ -260,7 +261,7 @@ class FilterDialog(QDialog):
         # self.apply_filter_on_data()
         return
 
-    def modificar_operator_y_value_en_data_dict(self):
+    def update_operator_and_value_on_data_dict(self):
         # this function changes operator and value in the corresponding item (dict) of data_dict (list)
         current__ = self.ui.listWidget_field_manager.currentItem()
         name = current__.text() if current__ is not None else self.ui.listWidget_field_manager.selectedItems()[0].text()
@@ -295,10 +296,12 @@ class FilterDialog(QDialog):
         index__ = self.ui.listWidget_field_manager.currentRow() if \
             self.ui.listWidget_field_manager.currentRow() is not None else 0
         index = index__ if fixed_index is None or type(fixed_index) is not int else fixed_index
-        values = set(map(
+        values = list(set(map(
             lambda item: str(item[index]),
             self.parent_data
-        )).copy()
+        )).copy())
+        values.sort()
+
         self.ui.comboBox_valor_del_filtro.clear()
         self.ui.comboBox_valor_del_filtro.addItems(values)
         return
