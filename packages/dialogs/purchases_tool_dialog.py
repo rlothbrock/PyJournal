@@ -243,6 +243,7 @@ class PurchasesFormDialog(QDialog):
                 'y aumente la cantidad de dinero disponible para cubrir la suma'
             )
         else:
+            self.setHidden(True)
             parent.show_progress_bar_signal.emit()
             for index, purchase in enumerate(data_to_import):
                 self.accept_routine(parent, True, purchase)
@@ -251,5 +252,6 @@ class PurchasesFormDialog(QDialog):
                 #     'procesando datos {} de {} ...'.format(index, len(data_to_import)),
                 #     0.3,1,'Procesando')
         parent.close_progress_bar_signal.emit()
+        self.setHidden(False)
         selfCloseInterface('Operacion de Compra en Bloque realizada con exito', 4, 1, 'Compra Realizada')
         return

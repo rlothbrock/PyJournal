@@ -1,8 +1,9 @@
 import datetime
 
+from PySide2 import QtCore
 from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QDialog, QDialogButtonBox
-from packages.UI.old_session_dialog import Ui_Dialog
+from packages.UI.old_session_dialog import Ui_Dialog as Ui_DateManagerDialog
 
 
 class DateManager(QDialog):
@@ -10,10 +11,17 @@ class DateManager(QDialog):
     def __init__(self, target):
         super(DateManager, self).__init__()
 
-        self.ui = Ui_Dialog()
+        self.ui = Ui_DateManagerDialog()
         self.ui.setupUi(self)
         self.Reject_Btn = self.ui.buttonBox.button(QDialogButtonBox.Cancel)
         self.Accept_Btn = self.ui.buttonBox.button(QDialogButtonBox.Ok)
+        self.ui.dateEditSession.setDate(
+            QtCore.QDate(
+                *tuple(
+                    (int(n) for n in target.date_session.split('-'))
+                )
+            )
+        )
 
         self.Reject_Btn.clicked.connect(lambda: self.reject)
         self.Accept_Btn.clicked.connect(lambda: self.accept_(target))

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1318</width>
-    <height>609</height>
+    <width>1311</width>
+    <height>676</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,23 +24,23 @@
       <x>0</x>
       <y>0</y>
       <width>1311</width>
-      <height>581</height>
+      <height>621</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
-      <string>Datos</string>
+      <string>&amp;Datos</string>
      </attribute>
      <widget class="QTableWidget" name="tableWidget_table_display">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>50</y>
         <width>1291</width>
-        <height>471</height>
+        <height>521</height>
        </rect>
       </property>
      </widget>
@@ -150,14 +150,18 @@
        <item>
         <widget class="QToolButton" name="toolButton_filter">
          <property name="text">
-          <string>Filtrar...</string>
+          <string>&amp;Filtrar...</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="pushButton_export_table">
          <property name="text">
-          <string>Exportar tabla</string>
+          <string>E&amp;xportar tabla</string>
+         </property>
+         <property name="icon">
+          <iconset resource="icons/qrc/app_icons.qrc">
+           <normaloff>:/icons/fileexport</normaloff>:/icons/fileexport</iconset>
          </property>
         </widget>
        </item>
@@ -165,6 +169,10 @@
         <widget class="QPushButton" name="pushButton_print_table">
          <property name="text">
           <string>Imprimir</string>
+         </property>
+         <property name="icon">
+          <iconset theme="fileprint">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </widget>
        </item>
@@ -206,7 +214,7 @@
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Calculadora de billetes</string>
+      <string>&amp;Calculadora de billetes</string>
      </attribute>
      <widget class="Line" name="line_40">
       <property name="geometry">
@@ -1343,9 +1351,9 @@
       <property name="geometry">
        <rect>
         <x>710</x>
-        <y>280</y>
+        <y>290</y>
         <width>391</width>
-        <height>241</height>
+        <height>281</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1609,7 +1617,7 @@
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
-      <string>Estadisticas</string>
+      <string>E&amp;stadisticas</string>
      </attribute>
      <widget class="QWidget" name="verticalLayoutWidget">
       <property name="geometry">
@@ -2377,8 +2385,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1318</width>
-     <height>26</height>
+     <width>1311</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -2432,8 +2440,21 @@
     <addaction name="menuCambiar_a"/>
     <addaction name="actionCrear_nueva"/>
     <addaction name="actionSalvar_el_estado_de_la_DB_actual"/>
+    <addaction name="actionCargar_una_Salva_Previa"/>
+   </widget>
+   <widget class="QMenu" name="menu_Edicion">
+    <property name="title">
+     <string>&amp;Edicion</string>
+    </property>
+    <addaction name="actionDeshacer"/>
+    <addaction name="actionRehacer"/>
+    <addaction name="separator"/>
+    <addaction name="actionEliminar_Ultima_Operacion"/>
+    <addaction name="actionEliminar_por_Id"/>
+    <addaction name="actionEliminar_visibles"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menu_Edicion"/>
    <addaction name="menuBase_de_Datos"/>
    <addaction name="menuHerramientas"/>
    <addaction name="menuAyuda"/>
@@ -2451,8 +2472,8 @@
   </action>
   <action name="actionA_adir_Compras_2">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/cart.png</normaloff>icons/cart.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/dolar_blue</normaloff>:/icons/dolar_blue</iconset>
    </property>
    <property name="text">
     <string>Añadir &amp;Compras</string>
@@ -2466,8 +2487,8 @@
   </action>
   <action name="actionA_adir_Ventas_2">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/dolar_green.png</normaloff>icons/dolar_green.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/cart</normaloff>:/icons/cart</iconset>
    </property>
    <property name="text">
     <string>&amp;Añadir Ventas</string>
@@ -2481,8 +2502,8 @@
   </action>
   <action name="actionModificar_la_inversion">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/dolar_blue.png</normaloff>icons/dolar_blue.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/dolar_green</normaloff>:/icons/dolar_green</iconset>
    </property>
    <property name="text">
     <string>&amp;Modificar la inversion</string>
@@ -2516,7 +2537,7 @@
   </action>
   <action name="actionGuardar_el_estado_de_la_aplicacion">
    <property name="icon">
-    <iconset>
+    <iconset theme="filesave">
      <normaloff>icons/save_black.png</normaloff>icons/save_black.png</iconset>
    </property>
    <property name="text">
@@ -2536,7 +2557,7 @@
   </action>
   <action name="actionCrear_nueva">
    <property name="icon">
-    <iconset>
+    <iconset theme="filenew">
      <normaloff>icons/add_black.png</normaloff>icons/add_black.png</iconset>
    </property>
    <property name="text">
@@ -2548,8 +2569,8 @@
   </action>
   <action name="actionSalvar_el_estado_de_la_DB_actual">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/save_white.png</normaloff>icons/save_white.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/save_black</normaloff>:/icons/save_black</iconset>
    </property>
    <property name="text">
     <string>&amp;Salvar el estado de la DB actual</string>
@@ -2584,7 +2605,7 @@
   </action>
   <action name="actionCerrar_la_aplicacion">
    <property name="icon">
-    <iconset>
+    <iconset theme="exit">
      <normaloff>icons/quit_red.png</normaloff>icons/quit_red.png</iconset>
    </property>
    <property name="text">
@@ -2599,8 +2620,8 @@
   </action>
   <action name="actionExportar_Diario_hacia_CSV">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/export_black.png</normaloff>icons/export_black.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/fileexport</normaloff>:/icons/fileexport</iconset>
    </property>
    <property name="text">
     <string>&amp;Exportar Diario hacia archivo .CSV</string>
@@ -2614,8 +2635,8 @@
   </action>
   <action name="actionImportar_datos_desde_CSV">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/import_black.png</normaloff>icons/import_black.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/fileimport</normaloff>:/icons/fileimport</iconset>
    </property>
    <property name="text">
     <string>&amp;Importar datos desde archivo .CSV</string>
@@ -2629,8 +2650,8 @@
   </action>
   <action name="actionCambiar_la_fecha_de_la_sesion">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/calendar_black.png</normaloff>icons/calendar_black.png</iconset>
+    <iconset theme="calendar">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Cambiar la &amp;fecha de la sesion</string>
@@ -2641,7 +2662,7 @@
   </action>
   <action name="actionAyuda_offline">
    <property name="icon">
-    <iconset>
+    <iconset theme="help">
      <normaloff>icons/question_mark.png</normaloff>icons/question_mark.png</iconset>
    </property>
    <property name="text">
@@ -2670,8 +2691,8 @@
   </action>
   <action name="actionVer_Inventario">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/l_green.png</normaloff>icons/l_green.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/l_green</normaloff>:/icons/l_green</iconset>
    </property>
    <property name="text">
     <string>Ver &amp;Inventario</string>
@@ -2679,8 +2700,8 @@
   </action>
   <action name="actionVer_Ventas">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/l_blue.png</normaloff>icons/l_blue.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/l_blue</normaloff>:/icons/l_blue</iconset>
    </property>
    <property name="text">
     <string>Ver Venta&amp;s</string>
@@ -2688,8 +2709,8 @@
   </action>
   <action name="actionVer_Capital">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/l_purple.png</normaloff>icons/l_purple.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/l_purple</normaloff>:/icons/l_purple</iconset>
    </property>
    <property name="text">
     <string>Ver Ca&amp;pital</string>
@@ -2697,8 +2718,8 @@
   </action>
   <action name="actionVer_Diario">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/l_black.png</normaloff>icons/l_black.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/l_black</normaloff>:/icons/l_black</iconset>
    </property>
    <property name="text">
     <string>Ver &amp;Diario</string>
@@ -2706,14 +2727,66 @@
   </action>
   <action name="actionFijar_tasa_de_cambio_del_USD">
    <property name="icon">
-    <iconset>
-     <normaloff>icons/exc_rate.png</normaloff>icons/exc_rate.png</iconset>
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/exc_rate</normaloff>:/icons/exc_rate</iconset>
    </property>
    <property name="text">
-    <string>Fijar tasa de cambio del USD</string>
+    <string>Fijar tasa de cambio del &amp;USD</string>
+   </property>
+  </action>
+  <action name="actionDeshacer">
+   <property name="icon">
+    <iconset theme="undo">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Deshacer</string>
+   </property>
+  </action>
+  <action name="actionEliminar_por_Id">
+   <property name="icon">
+    <iconset theme="remove"/>
+   </property>
+   <property name="text">
+    <string>Eliminar por &amp;Id</string>
+   </property>
+  </action>
+  <action name="actionEliminar_visibles">
+   <property name="icon">
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/redcross</normaloff>:/icons/redcross</iconset>
+   </property>
+   <property name="text">
+    <string>Eliminar &amp;visibles</string>
+   </property>
+  </action>
+  <action name="actionEliminar_Ultima_Operacion">
+   <property name="icon">
+    <iconset theme="clock"/>
+   </property>
+   <property name="text">
+    <string>Eliminar &amp;Ultima Operacion</string>
+   </property>
+  </action>
+  <action name="actionRehacer">
+   <property name="icon">
+    <iconset theme="redo"/>
+   </property>
+   <property name="text">
+    <string>Rehacer</string>
+   </property>
+  </action>
+  <action name="actionCargar_una_Salva_Previa">
+   <property name="icon">
+    <iconset theme="fileopen"/>
+   </property>
+   <property name="text">
+    <string>Cargar una Salva Previa</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons/qrc/app_icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

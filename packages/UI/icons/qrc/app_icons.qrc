@@ -1,0 +1,17 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="icons">
+        <file alias="fileimport">png/import_black.png</file>
+        <file alias="fileexport">png/export_black.png</file>
+        <file alias="cart">png/cart.png</file>
+        <file alias="dolar_green">png/dolar_green.png</file>
+        <file alias="dolar_blue">png/dolar_blue.png</file>
+        <file alias="save_black">png/save_black.png</file>
+        <file alias="l_black">png/l_black.png</file>
+        <file alias="l_green">png/l_green.png</file>
+        <file alias="l_purple">png/l_purple.png</file>
+        <file alias="l_blue">png/l_blue.png</file>
+        <file alias="exc_rate">png/exc_rate.png</file>
+        <file alias="redcross">png/red_cross.png</file>
+    </qresource>
+</RCC>

@@ -12,11 +12,8 @@ elaborar dentro de la misma herramienta la posibilidad de eliminar por id, para 
         confirmar deleting -> return if False else:
         crud_driver(self, diary, delete, {field: id, opertor: = value: (id,)})
 
-elaborar un widget que muestre la carga de elementos para sustituir las ventanas de alertas(molestan)
 
 ver por que no se carga en los S.O. no se cargan los iconos de las herramientas
-
-añadir en la funcion de formato en las booleanas una cadena para el False  (Venta/Compra)
 
 añadir en las estadisticas una formula para dias trabajados y que me saque un promedio de ganancias contra dias trabajados
 
