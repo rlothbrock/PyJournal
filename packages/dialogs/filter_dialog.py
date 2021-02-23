@@ -56,7 +56,8 @@ def operation_eval(operator__, value__, context):  # must return a boolean...
 
 
 def find_exceptions(value, context):
-    return not (value == context)
+    return not find_equal(value,context)
+
 
 
 def find_all(value, context):
@@ -65,7 +66,7 @@ def find_all(value, context):
 
 
 def find_equal(value, context):
-    return value == context
+    return any([str(value) == context, value == context, value == str(context)])
 
 
 class FilterDialog(QDialog):
