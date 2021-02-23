@@ -1,8 +1,5 @@
-import subprocess
-
-from PySide2 import QtGui, QtCore
-from PySide2.QtPrintSupport import QPrinter, QPrintDialog, QPrintPreviewWidget, QPrintPreviewDialog
-from PySide2.QtWidgets import QDialog
+from PySide2 import QtGui
+from PySide2.QtPrintSupport import QPrinter, QPrintPreviewDialog
 
 from packages.components.status import current_date
 

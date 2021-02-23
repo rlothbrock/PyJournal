@@ -1,6 +1,6 @@
 from PySide2 import QtGui
 
-from packages.components.data_printer import data_printer
+from packages.components.printing_service import data_printer
 from packages.components.status import current_date
 from packages.modules.accountant import calculate_statistics
 

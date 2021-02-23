@@ -2,7 +2,7 @@ from packages.components.active_table_filter import filter_active_table
 from packages.components.app_counter import update_counter
 from packages.components.data_display_tab import display_active_table_on_data_display
 from packages.components.menus import set_menus
-from packages.components.statistics_display_tab import display_statistics_on_tab
+from packages.components.statistics_display_tab import display_statistics_on_tab, export_statistics_page
 from packages.components.status import current_date
 from packages.dialogs.auxiliar_dialogs import selfCloseInterface
 from packages.modules.accountant import calculate_auxiliar_tabs
@@ -75,6 +75,7 @@ def ui_init_routine(self):
     self.ui.pushButton_update_stats_tab.clicked.connect(lambda: display_statistics_on_tab(self))
     self.ui.pushButton_update_stats_tab.clicked.connect(lambda: selfCloseInterface('Estadisticas Actualizadas',alert_level=1,title='Completado!'))
     self.ui.pushButton_print_stats_tab.clicked.connect(lambda: print_stats_table_routine(self))
+    self.ui.pushButton_export_stats_tab.clicked.connect(lambda: export_statistics_page(self))
 
 
 def tab_index_reaction(self, index: int):

@@ -1,4 +1,4 @@
-from packages.components.data_printer import data_printer
+from packages.components.printing_service import data_printer
 
 
 def print_active_table_routine(self):

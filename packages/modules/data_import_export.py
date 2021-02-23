@@ -8,10 +8,6 @@ from packages.modules.crud_sqlite import crud_driver
 from packages.modules.db_templates_manager import table_templates, get_index_in_template, get_template_fields
 
 
-# possible args:
-# data_target: 'diary',
-# field_to_change: 'entry_counter'
-# data_pipe: entry_counter_creator.
 def transform_imported_data(
         self,
         data_destination: str,
@@ -43,7 +39,7 @@ def import_data(self, with_headers=True):
     return
 
 
-def export_data(self, source=None, with_headers=True):
+def set_export(self, source=None, with_headers=True,export_name=None,set_headers=None):
     global dst
     # this function returns the name of destination for the alert in further pipe
     db_group = self.status.get('connected_to').split('.')[0]
@@ -51,7 +47,7 @@ def export_data(self, source=None, with_headers=True):
         db_group,
         self.table_on_target,
         datetime.datetime.now().__str__().replace('-', '').replace(' ', '-').replace('.', '').replace(':', '')
-    )
+    ) if not export_name else export_name
     default_source = os.path.join(os.environ.get('HOME'), 'Exported Tables')
 
     try:
@@ -60,7 +56,7 @@ def export_data(self, source=None, with_headers=True):
         )
         if dst == '':
             selfCloseInterface(
-                'la operacion ha sido cancelada',1,1,'Exportacion Cancelada',
+                'la operacion ha sido cancelada', 1, 1, 'Exportacion Cancelada',
             )
             return
         else:
@@ -80,7 +76,7 @@ def export_data(self, source=None, with_headers=True):
     finally:
         try:
             prime_data = self.data_to_export if source is None else source
-            data = csv_data_maker(self, prime_data, with_headers)
+            data = csv_data_maker(self, prime_data, with_headers,set_headers)
             if dst == '':
                 return
             else:
@@ -92,24 +88,29 @@ def export_data(self, source=None, with_headers=True):
             raise Exception(fileError)
 
 
-def csv_data_maker(self, data, with_headers=True):
-    csv_string = csv_header_builder(self) if with_headers else ''
+def csv_data_maker(self, data, with_headers=True, set_headers=None):
+    csv_string = csv_header_builder(self,set_headers) if with_headers else ''
+
     for row in data:
-        quoted_fields = ('"%s"' % field if isinstance(field, str) else '%s' % field for field in row)
+        quoted_fields = ('"{}"'.format(field) if isinstance(field, str) else '{}'.format(field) for field in row)
         csv_string = csv_string + str.join(';', list(quoted_fields)) + '\n'
     return csv_string
 
 
-def csv_header_builder(self):
-    table_name = self.table_on_target
-    table_dict = None
-    for table_ in table_templates:
-        if table_.get('name') == table_name:
-            table_dict = table_
-            break
-    header = ';'.join('"%s"' % field.get('name') for field in table_dict.get('fields')) \
-        if table_dict is not None else ''
-    header += '\n'
+def csv_header_builder(self,set_headers=None):
+    if not set_headers:
+        table_name = self.table_on_target
+        table_dict = None
+        for table_ in table_templates:
+            if table_.get('name') == table_name:
+                table_dict = table_
+                break
+        header = ';'.join(('"%s"' % field.get('name') for field in table_dict.get('fields'))) \
+            if table_dict is not None else ''
+        header += '\n'
+    else:
+        header = ';'.join(('"{}"'.format(header_) for header_ in set_headers))
+        header += '\n'
     # print('table: {}, header:{}'.format(table_name, header))
     return header
 
@@ -119,9 +120,9 @@ def csv_header_builder(self):
 def import_data_to_diary(self):
     try:
         import_data(self, False)  # imports the data and writes the array self.imported_data
-        transform_imported_data(self,'diary','entry_counter',entry_counter_creator)
+        transform_imported_data(self, 'diary', 'entry_counter', entry_counter_creator)
         data_to_import = self.imported_data.copy()
-        crud_driver(self,'diary','create',{
+        crud_driver(self, 'diary', 'create', {
             'fields': get_template_fields('diary'),
             'value_list': data_to_import,
             'multi': True
@@ -130,20 +131,20 @@ def import_data_to_diary(self):
         selfCloseInterface('Data imported to Diary Table', 3, 1, 'Import Success')
         return
     except BaseException as error:
-        selfCloseInterface('Failed on Importing Data to Diary Table', 3, 2, 'Import Failed',str(error))
+        selfCloseInterface('Failed on Importing Data to Diary Table', 3, 2, 'Import Failed', str(error))
         print('failed import of data')
         raise error
 
 
 def export_data_from_diary(self):
     try:
-        filename_path = export_data(self, crud_driver(self, 'diary', 'read', {'pick_all': True}))
+        filename_path = set_export(self, crud_driver(self, 'diary', 'read', {'pick_all': True}))
         if filename_path is None:
             return
         else:
             print('data saved on {}'.format(filename_path))
             selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
-                           'Data saved on: {}'.format(filename_path))
+                               'Data saved on: {}'.format(filename_path))
             return
     except BaseException as error:
         print('export failed : {}'.format(error))
@@ -153,16 +154,15 @@ def export_data_from_diary(self):
 
 def export_data_displayed_on_tab1(self):
     try:
-        filename_path = export_data(self, self.data_to_display_on_tab1.copy() )
+        filename_path = set_export(self, self.data_to_display_on_tab1.copy())
         if filename_path is None:
             return
         else:
             print('data saved on {}'.format(filename_path))
             selfCloseInterface('Diary Table Data Exported ', 6, 1, 'Export Success',
-                           'Data saved on: {}'.format(filename_path))
+                               'Data saved on: {}'.format(filename_path))
             return
     except BaseException as error:
         print('export failed : {}'.format(error))
         selfCloseInterface('Failed on Exporting Data from Diary Table', 4, 2, 'Export Failed')
         raise Exception(error)
-
