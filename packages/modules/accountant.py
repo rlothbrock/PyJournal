@@ -139,11 +139,12 @@ def calculate_statistics(self):
         invertido_total = last_row_on_diary[get_index_in_template('diary', 'total_')]
         capital_de_robert = last_row_on_diary[get_index_in_template('diary', 'robert_')]
         capital_de_ariadna = last_row_on_diary[get_index_in_template('diary', 'ariadna_')]
-
+        worked_days = __rent_tot
+        gain_per_day = ganancias_reales_totales/worked_days
         return (capital_total, capital_invertido, cash_en_caja, ventas_del_dia, retorno_inversion, ganancias_netas,
                 salario_total, renta, ganancias_reales_comun, ganancias_reales_parte, compras_del_dia,
                 ventas_totales, ganancias_totales, ganancias_reales_totales, invertido_total, capital_de_robert,
-                capital_de_ariadna, session_consignations)
+                capital_de_ariadna, session_consignations,worked_days,gain_per_day)
     except:
         return tuple((0 / i for i in range(1, 19)))
 

@@ -28,7 +28,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="tab_1">
      <attribute name="title">
@@ -1625,7 +1625,7 @@
         <x>670</x>
         <y>170</y>
         <width>601</width>
-        <height>191</height>
+        <height>271</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -1768,6 +1768,54 @@
           <widget class="QLabel" name="label_plac_total_ary_capital">
            <property name="text">
             <string>$0.00</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_40">
+         <item>
+          <widget class="QLabel" name="label_38">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Dias Trabajados</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_plac_total_dias_trabajados">
+           <property name="text">
+            <string>0</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_48">
+         <item>
+          <widget class="QLabel" name="label_40">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Promedio de Ganancia por Dia Trabajado</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_plac_total_gan_per_day">
+           <property name="text">
+            <string>$ 0.00</string>
            </property>
           </widget>
          </item>
@@ -2039,7 +2087,7 @@
       <property name="geometry">
        <rect>
         <x>950</x>
-        <y>380</y>
+        <y>460</y>
         <width>131</width>
         <height>26</height>
        </rect>
@@ -2062,7 +2110,7 @@
       <property name="geometry">
        <rect>
         <x>1100</x>
-        <y>380</y>
+        <y>460</y>
         <width>141</width>
         <height>26</height>
        </rect>
@@ -2143,7 +2191,7 @@
       <property name="geometry">
        <rect>
         <x>670</x>
-        <y>380</y>
+        <y>460</y>
         <width>281</width>
         <height>23</height>
        </rect>
@@ -2156,7 +2204,7 @@
       <property name="geometry">
        <rect>
         <x>660</x>
-        <y>470</y>
+        <y>550</y>
         <width>301</width>
         <height>25</height>
        </rect>
@@ -2169,7 +2217,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>470</y>
+        <y>550</y>
         <width>301</width>
         <height>25</height>
        </rect>
@@ -2182,7 +2230,7 @@
       <property name="geometry">
        <rect>
         <x>670</x>
-        <y>420</y>
+        <y>500</y>
         <width>251</width>
         <height>21</height>
        </rect>
@@ -2201,7 +2249,7 @@
       <property name="geometry">
        <rect>
         <x>930</x>
-        <y>420</y>
+        <y>500</y>
         <width>311</width>
         <height>25</height>
        </rect>
@@ -2745,7 +2793,8 @@
   </action>
   <action name="actionEliminar_por_Id">
    <property name="icon">
-    <iconset theme="remove"/>
+    <iconset theme="remove">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Eliminar por &amp;Id</string>
@@ -2762,7 +2811,8 @@
   </action>
   <action name="actionEliminar_Ultima_Operacion">
    <property name="icon">
-    <iconset theme="clock"/>
+    <iconset theme="clock">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Eliminar &amp;Ultima Operacion</string>
@@ -2770,15 +2820,17 @@
   </action>
   <action name="actionRehacer">
    <property name="icon">
-    <iconset theme="redo"/>
+    <iconset theme="redo">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Rehacer</string>
+    <string>&amp;Rehacer</string>
    </property>
   </action>
   <action name="actionCargar_una_Salva_Previa">
    <property name="icon">
-    <iconset theme="fileopen"/>
+    <iconset theme="fileopen">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Cargar una Salva Previa</string>

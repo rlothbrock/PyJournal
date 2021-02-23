@@ -11,6 +11,8 @@ from packages.modules.calculator import set_calculator_ui
 from packages.modules.crud_sqlite import crud_driver
 from packages.modules.data_import_export import export_data_displayed_on_tab1
 from packages.modules.money_calc import set_bill_calculator
+from packages.routines.print_active_table import print_active_table_routine
+from packages.routines.print_stats_table import print_stats_table_routine
 from packages.routines.set_progressBar import set_progress_bar
 from packages.routines.status_loader import status_loader_routine
 from packages.routines.status_saver import status_saver_routine
@@ -67,10 +69,12 @@ def ui_init_routine(self):
     # tab1 buttons
     self.ui.pushButton_export_table.clicked.connect(lambda: export_data_displayed_on_tab1(self))
     self.ui.toolButton_filter.clicked.connect(lambda: filter_active_table(self))
+    self.ui.pushButton_print_table.clicked.connect(lambda: print_active_table_routine(self))
 
     # statistics tab buttons
     self.ui.pushButton_update_stats_tab.clicked.connect(lambda: display_statistics_on_tab(self))
     self.ui.pushButton_update_stats_tab.clicked.connect(lambda: selfCloseInterface('Estadisticas Actualizadas',alert_level=1,title='Completado!'))
+    self.ui.pushButton_print_stats_tab.clicked.connect(lambda: print_stats_table_routine(self))
 
 
 def tab_index_reaction(self, index: int):

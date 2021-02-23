@@ -171,7 +171,13 @@ class Ui_MainWindow(object):
         self.actionDeshacer.setIcon(icon17)
         self.actionEliminar_por_Id = QAction(MainWindow)
         self.actionEliminar_por_Id.setObjectName(u"actionEliminar_por_Id")
-        icon18 = QIcon(QIcon.fromTheme(u"remove"))
+        icon18 = QIcon()
+        iconThemeName = u"remove"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon18 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon18.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+        
         self.actionEliminar_por_Id.setIcon(icon18)
         self.actionEliminar_visibles = QAction(MainWindow)
         self.actionEliminar_visibles.setObjectName(u"actionEliminar_visibles")
@@ -180,15 +186,33 @@ class Ui_MainWindow(object):
         self.actionEliminar_visibles.setIcon(icon19)
         self.actionEliminar_Ultima_Operacion = QAction(MainWindow)
         self.actionEliminar_Ultima_Operacion.setObjectName(u"actionEliminar_Ultima_Operacion")
-        icon20 = QIcon(QIcon.fromTheme(u"clock"))
+        icon20 = QIcon()
+        iconThemeName = u"clock"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon20 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon20.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+        
         self.actionEliminar_Ultima_Operacion.setIcon(icon20)
         self.actionRehacer = QAction(MainWindow)
         self.actionRehacer.setObjectName(u"actionRehacer")
-        icon21 = QIcon(QIcon.fromTheme(u"redo"))
+        icon21 = QIcon()
+        iconThemeName = u"redo"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon21 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon21.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+        
         self.actionRehacer.setIcon(icon21)
         self.actionCargar_una_Salva_Previa = QAction(MainWindow)
         self.actionCargar_una_Salva_Previa.setObjectName(u"actionCargar_una_Salva_Previa")
-        icon22 = QIcon(QIcon.fromTheme(u"fileopen"))
+        icon22 = QIcon()
+        iconThemeName = u"fileopen"
+        if QIcon.hasThemeIcon(iconThemeName):
+            icon22 = QIcon.fromTheme(iconThemeName)
+        else:
+            icon22.addFile(u".", QSize(), QIcon.Normal, QIcon.Off)
+        
         self.actionCargar_una_Salva_Previa.setIcon(icon22)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -1211,7 +1235,7 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName(u"tab_3")
         self.verticalLayoutWidget = QWidget(self.tab_3)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(670, 170, 601, 191))
+        self.verticalLayoutWidget.setGeometry(QRect(670, 170, 601, 271))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -1310,6 +1334,38 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_13)
+
+        self.horizontalLayout_40 = QHBoxLayout()
+        self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
+        self.label_38 = QLabel(self.verticalLayoutWidget)
+        self.label_38.setObjectName(u"label_38")
+        self.label_38.setFont(font)
+
+        self.horizontalLayout_40.addWidget(self.label_38)
+
+        self.label_plac_total_dias_trabajados = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_dias_trabajados.setObjectName(u"label_plac_total_dias_trabajados")
+
+        self.horizontalLayout_40.addWidget(self.label_plac_total_dias_trabajados)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_40)
+
+        self.horizontalLayout_48 = QHBoxLayout()
+        self.horizontalLayout_48.setObjectName(u"horizontalLayout_48")
+        self.label_40 = QLabel(self.verticalLayoutWidget)
+        self.label_40.setObjectName(u"label_40")
+        self.label_40.setFont(font)
+
+        self.horizontalLayout_48.addWidget(self.label_40)
+
+        self.label_plac_total_gan_per_day = QLabel(self.verticalLayoutWidget)
+        self.label_plac_total_gan_per_day.setObjectName(u"label_plac_total_gan_per_day")
+
+        self.horizontalLayout_48.addWidget(self.label_plac_total_gan_per_day)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_48)
 
         self.label_45 = QLabel(self.tab_3)
         self.label_45.setObjectName(u"label_45")
@@ -1470,12 +1526,12 @@ class Ui_MainWindow(object):
         self.pushButton_update_stats_tab.setGeometry(QRect(730, 80, 191, 25))
         self.dateEdit_intervalo_start = QDateEdit(self.tab_3)
         self.dateEdit_intervalo_start.setObjectName(u"dateEdit_intervalo_start")
-        self.dateEdit_intervalo_start.setGeometry(QRect(950, 380, 131, 26))
+        self.dateEdit_intervalo_start.setGeometry(QRect(950, 460, 131, 26))
         self.dateEdit_intervalo_start.setCalendarPopup(True)
         self.dateEdit_intervalo_start.setDate(QDate(2020, 1, 1))
         self.dateEdit_intervalo_stop = QDateEdit(self.tab_3)
         self.dateEdit_intervalo_stop.setObjectName(u"dateEdit_intervalo_stop")
-        self.dateEdit_intervalo_stop.setGeometry(QRect(1100, 380, 141, 26))
+        self.dateEdit_intervalo_stop.setGeometry(QRect(1100, 460, 141, 26))
         self.dateEdit_intervalo_stop.setCalendarPopup(True)
         self.dateEdit_intervalo_stop.setDate(QDate(2020, 1, 1))
         self.line_4 = QFrame(self.tab_3)
@@ -1499,16 +1555,16 @@ class Ui_MainWindow(object):
         self.line_6.setFrameShadow(QFrame.Sunken)
         self.checkBox_ver_solo_intervalo = QCheckBox(self.tab_3)
         self.checkBox_ver_solo_intervalo.setObjectName(u"checkBox_ver_solo_intervalo")
-        self.checkBox_ver_solo_intervalo.setGeometry(QRect(670, 380, 281, 23))
+        self.checkBox_ver_solo_intervalo.setGeometry(QRect(670, 460, 281, 23))
         self.pushButton_generar_tabla_totales = QPushButton(self.tab_3)
         self.pushButton_generar_tabla_totales.setObjectName(u"pushButton_generar_tabla_totales")
-        self.pushButton_generar_tabla_totales.setGeometry(QRect(660, 470, 301, 25))
+        self.pushButton_generar_tabla_totales.setGeometry(QRect(660, 550, 301, 25))
         self.pushButton_generate_table_all_days = QPushButton(self.tab_3)
         self.pushButton_generate_table_all_days.setObjectName(u"pushButton_generate_table_all_days")
-        self.pushButton_generate_table_all_days.setGeometry(QRect(10, 470, 301, 25))
+        self.pushButton_generate_table_all_days.setGeometry(QRect(10, 550, 301, 25))
         self.label_67 = QLabel(self.tab_3)
         self.label_67.setObjectName(u"label_67")
-        self.label_67.setGeometry(QRect(670, 420, 251, 21))
+        self.label_67.setGeometry(QRect(670, 500, 251, 21))
         self.label_67.setFont(font)
         self.comboBox_ambito_de_tabla = QComboBox(self.tab_3)
         self.comboBox_ambito_de_tabla.addItem("")
@@ -1517,7 +1573,7 @@ class Ui_MainWindow(object):
         self.comboBox_ambito_de_tabla.addItem("")
         self.comboBox_ambito_de_tabla.addItem("")
         self.comboBox_ambito_de_tabla.setObjectName(u"comboBox_ambito_de_tabla")
-        self.comboBox_ambito_de_tabla.setGeometry(QRect(930, 420, 311, 25))
+        self.comboBox_ambito_de_tabla.setGeometry(QRect(930, 500, 311, 25))
         self.frame = QFrame(self.tab_3)
         self.frame.setObjectName(u"frame")
         self.frame.setGeometry(QRect(9, 30, 701, 101))
@@ -1649,7 +1705,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1733,7 +1789,7 @@ class Ui_MainWindow(object):
         self.actionEliminar_por_Id.setText(QCoreApplication.translate("MainWindow", u"Eliminar por &Id", None))
         self.actionEliminar_visibles.setText(QCoreApplication.translate("MainWindow", u"Eliminar &visibles", None))
         self.actionEliminar_Ultima_Operacion.setText(QCoreApplication.translate("MainWindow", u"Eliminar &Ultima Operacion", None))
-        self.actionRehacer.setText(QCoreApplication.translate("MainWindow", u"Rehacer", None))
+        self.actionRehacer.setText(QCoreApplication.translate("MainWindow", u"&Rehacer", None))
         self.actionCargar_una_Salva_Previa.setText(QCoreApplication.translate("MainWindow", u"Cargar una Salva Previa", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Conectado a: ", None))
         self.label_current_database.setText(QCoreApplication.translate("MainWindow", u"{           db}", None))
@@ -1857,6 +1913,10 @@ class Ui_MainWindow(object):
         self.label_plac_total_rob_capital.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
         self.label_35.setText(QCoreApplication.translate("MainWindow", u"Capital de Ariadna", None))
         self.label_plac_total_ary_capital.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))
+        self.label_38.setText(QCoreApplication.translate("MainWindow", u"Dias Trabajados", None))
+        self.label_plac_total_dias_trabajados.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_40.setText(QCoreApplication.translate("MainWindow", u"Promedio de Ganancia por Dia Trabajado", None))
+        self.label_plac_total_gan_per_day.setText(QCoreApplication.translate("MainWindow", u"$ 0.00", None))
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"Resumen de las estadisticas del dia", None))
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"Ventas", None))
         self.label_plac_day_ventas.setText(QCoreApplication.translate("MainWindow", u"$0.00", None))

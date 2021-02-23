@@ -9,7 +9,10 @@ from packages.modules.data_import_export import import_data_to_diary, export_dat
 from packages.modules.db_templates_manager import connect_toDB
 from packages.routines.change_session_date import manage_date_session
 from packages.routines.database_saver import database_saver_routine
+from packages.routines.edit_redo import edit_redo_routine
+from packages.routines.edit_undo import edit_undo_routine, edit_remove_last, edit_remove_by_id, edit_remove_visible
 from packages.routines.fix_exc_rate import fix_exc_rate_routine
+from packages.routines.load_saved_db import load_saved_db_routine
 from packages.routines.quit_app import quit_app_routine
 from packages.routines.status_saver import status_saver_routine
 
@@ -22,12 +25,20 @@ def set_menus(self):
     self.ui.actionExportar_Diario_hacia_CSV.triggered.connect(lambda: export_data_from_diary(self))
     self.ui.actionCerrar_la_aplicacion.triggered.connect(lambda: quit_app_routine(self))
 
+    # menu Edit
+    self.ui.actionDeshacer.triggered.connect(lambda: edit_undo_routine(self) )
+    self.ui.actionRehacer.triggered.connect(lambda: edit_redo_routine(self))
+    self.ui.actionEliminar_Ultima_Operacion.triggered.connect(lambda: edit_remove_last(self))
+    self.ui.actionEliminar_por_Id.triggered.connect(lambda: edit_remove_by_id(self))
+    self.ui.actionEliminar_visibles.triggered.connect(lambda: edit_remove_visible(self))
+
     # menu Databases
     self.ui.action_connect_Celulares.triggered.connect(lambda: connect_toDB(self, 'cellsDB.db'))
     self.ui.action_connect_Zapatos.triggered.connect(lambda: connect_toDB(self, 'shoesDB.db'))
     self.ui.action_connect_Bisuteria.triggered.connect(lambda: connect_toDB(self, 'bisutDB.db'))
     self.ui.actionCrear_nueva.triggered.connect(lambda: print('todo'))  # todo
     self.ui.actionSalvar_el_estado_de_la_DB_actual.triggered.connect(lambda: database_saver_routine(self))
+    self.ui.actionCargar_una_Salva_Previa.triggered.connect(lambda: load_saved_db_routine(self))
 
     # menu Tools
     self.ui.actionA_adir_Compras_2.triggered.connect(lambda: tool_launcher(self, PurchasesFormDialog))

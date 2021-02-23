@@ -20,3 +20,5 @@ def display_statistics_on_tab(self):
     self.ui.label_plac_total_rob_capital.setText('$ {:,.2f}'.format(data[15]))
     self.ui.label_plac_total_ary_capital.setText('$ {:,.2f}'.format(data[16]))
     self.ui.label_plac_day_consignation.setText('$ {:,.2f}'.format(data[17]))
+    self.ui.label_plac_total_dias_trabajados.setText('{:n}'.format(data[18]))
+    self.ui.label_plac_total_gan_per_day.setText('$ {:,.2f}'.format(data[19]))
