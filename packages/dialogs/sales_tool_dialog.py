@@ -18,12 +18,21 @@ class SalesFormDialog(QDialog):
         self.applyButton = self.ui.buttonBox.button(QDialogButtonBox.Apply)
         self.resetButton = self.ui.buttonBox.button(QDialogButtonBox.Reset)
 
-        # renaming form widgets for further ordering on init_ui
+        # renaming form widgets for further sort
         self.name__ = self.ui.nombreDelProductoComboBox
         self.code__ = self.ui.codigoDelProductoComboBox
         self.price__ = self.ui.precioDeVentaDoubleSpinBox
         self.howMany__ = self.ui.cantidadVendidaComboBox
         self.comments__ = self.ui.comentariosLineEdit
+
+        # sorting tab
+        self.name__.setTabOrder(self.ui.buttonBox,self.code__)
+        self.code__.setTabOrder(self.name__,self.howMany__)
+        self.howMany__.setTabOrder(self.code__, self.price__)
+        self.price__.setTabOrder(self.howMany__, self.comments__)
+        self.comments__.setTabOrder(self.price__, self.ui.buttonBox)
+        self.ui.buttonBox.setTabOrder(self.price__,self.name__)
+        self.name__.setFocus()
 
         self.applyButton.setText('&Apply')
         self.applyButton.clicked.connect(lambda: self.apply_routine(parent))
@@ -159,13 +168,6 @@ class SalesFormDialog(QDialog):
         self.combo_filler()
         self.quantity_combo_filler()
 
-        self.name__.setTabOrder(self.ui.buttonBox,self.code__)
-        self.code__.setTabOrder(self.name__,self.howMany__)
-        self.howMany__.setTabOrder(self.code__, self.price__)
-        self.price__.setTabOrder(self.howMany__, self.comments__)
-        self.comments__.setTabOrder(self.price__, self.ui.buttonBox)
-        self.ui.buttonBox.setTabOrder(self.price__,self.name__)
-        self.name__.setFocus()
 
         self.ui.nombreDelProductoComboBox.currentIndexChanged.connect(
             lambda: buddy_sync(

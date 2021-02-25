@@ -63,7 +63,7 @@ class MainWindow(QMainWindow):
             nd, 3, 1, 'Fecha de trabajo cambiada', '\n\n *Las entradas tendran esa fecha')
         return
 
-    def append_data_to_diary(self, data,silent=False):
+    def append_data_to_diary(self, data, silent=False):
         append_data_to_diary_routine(self, data, silent)
 
     @Slot()
@@ -84,6 +84,7 @@ class MainWindow(QMainWindow):
     update_progress_bar_signal = Signal(float)
     close_progress_bar_signal = Signal()
 
+
 if __name__ == "__main__":
     try:
         db_dir = os.path.join(os.getcwd(), '.databases')
@@ -98,4 +99,3 @@ if __name__ == "__main__":
     window.show()
     app.aboutToQuit.connect(about_to_quit_routine)
     sys.exit(app.exec_())
-

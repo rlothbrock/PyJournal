@@ -56,7 +56,7 @@ diary_vertical_headers_template = [
 ]
 
 totals_vertical_header_templates = [
-    'Ventas', 'Ganancias', 'Ganancias Totales', 'Capital Invertido Total',
+    'Ventas', 'Ganancias Totales', 'Ganancias Totales Reales', 'Capital Invertido Total',
     'Capital de Robert', 'Capital de Ariadna', 'Dias Trabajados',
     'Promedio de Ganancias por Dia Trabajado'
 ]

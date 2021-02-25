@@ -15,6 +15,7 @@ class CapitalFormDialog(QDialog):
 
         self.data_for_diary = []
         self.apply_button = self.ui.buttonBox.button(QDialogButtonBox.Apply)
+        self.apply_button.setText('&Apply')
         self.close_button = self.ui.buttonBox.button(QDialogButtonBox.Close)
         self.reset_button = self.ui.buttonBox.button(QDialogButtonBox.Reset)
 
