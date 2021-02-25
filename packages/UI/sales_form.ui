@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>531</width>
-    <height>316</height>
+    <width>610</width>
+    <height>323</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
     <rect>
      <x>10</x>
      <y>280</y>
-     <width>511</width>
+     <width>591</width>
      <height>32</height>
     </rect>
    </property>
@@ -44,8 +44,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>511</width>
-     <height>261</height>
+     <width>591</width>
+     <height>248</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -85,6 +85,9 @@
          <string>Cantidad Vendida</string>
         </property>
        </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="cantidadVendidaComboBox"/>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="precioDeVentaLabel">
@@ -131,9 +134,6 @@
          <bool>false</bool>
         </property>
        </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QComboBox" name="cantidadVendidaComboBox"/>
       </item>
      </layout>
     </item>

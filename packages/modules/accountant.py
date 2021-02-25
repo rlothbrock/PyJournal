@@ -112,7 +112,7 @@ def calculate_statistics(self):
         retorno_inversion = (float(session_resume[1]) - float(session_consignations)) if session_resume[
                                                                                              1] is not None else 0
         ganancias_netas = float(ventas_del_dia) - float(retorno_inversion) - float(session_consignations)
-        salario_total = session_resume[2] if session_resume[2] is not None else 0
+        salario_total = session_resume[2] or (0,)[0]
         renta = 125  # ajustar este valor luego desde el dialog
         ganancias_reales_comun = ganancias_netas - renta - float(salario_total)
         ganancias_reales_parte = ganancias_reales_comun / 2

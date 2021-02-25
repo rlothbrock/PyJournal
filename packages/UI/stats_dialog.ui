@@ -24,7 +24,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="filter_dialog_stats_table">
+     <widget class="QPushButton" name="pushButtonfilter_dialog_stats_table">
       <property name="text">
        <string>&amp;Filter...</string>
       </property>
@@ -44,14 +44,14 @@
      </spacer>
     </item>
     <item>
-     <widget class="QPushButton" name="export_dialog_stats_table">
+     <widget class="QPushButton" name="pushButtonexport_dialog_stats_table">
       <property name="text">
        <string>&amp;Export</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="Print_dialog_stats_table">
+     <widget class="QPushButton" name="pushButtonprint_dialog_stats_table">
       <property name="text">
        <string>&amp;Print</string>
       </property>

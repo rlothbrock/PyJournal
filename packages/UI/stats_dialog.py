@@ -24,24 +24,24 @@ class Ui_Dialog(object):
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.filter_dialog_stats_table = QPushButton(self.horizontalLayoutWidget)
-        self.filter_dialog_stats_table.setObjectName(u"filter_dialog_stats_table")
+        self.pushButtonfilter_dialog_stats_table = QPushButton(self.horizontalLayoutWidget)
+        self.pushButtonfilter_dialog_stats_table.setObjectName(u"pushButtonfilter_dialog_stats_table")
 
-        self.horizontalLayout.addWidget(self.filter_dialog_stats_table)
+        self.horizontalLayout.addWidget(self.pushButtonfilter_dialog_stats_table)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.export_dialog_stats_table = QPushButton(self.horizontalLayoutWidget)
-        self.export_dialog_stats_table.setObjectName(u"export_dialog_stats_table")
+        self.pushButtonexport_dialog_stats_table = QPushButton(self.horizontalLayoutWidget)
+        self.pushButtonexport_dialog_stats_table.setObjectName(u"pushButtonexport_dialog_stats_table")
 
-        self.horizontalLayout.addWidget(self.export_dialog_stats_table)
+        self.horizontalLayout.addWidget(self.pushButtonexport_dialog_stats_table)
 
-        self.Print_dialog_stats_table = QPushButton(self.horizontalLayoutWidget)
-        self.Print_dialog_stats_table.setObjectName(u"Print_dialog_stats_table")
+        self.pushButtonprint_dialog_stats_table = QPushButton(self.horizontalLayoutWidget)
+        self.pushButtonprint_dialog_stats_table.setObjectName(u"pushButtonprint_dialog_stats_table")
 
-        self.horizontalLayout.addWidget(self.Print_dialog_stats_table)
+        self.horizontalLayout.addWidget(self.pushButtonprint_dialog_stats_table)
 
         self.line = QFrame(Dialog)
         self.line.setObjectName(u"line")
@@ -59,8 +59,8 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.filter_dialog_stats_table.setText(QCoreApplication.translate("Dialog", u"&Filter...", None))
-        self.export_dialog_stats_table.setText(QCoreApplication.translate("Dialog", u"&Export", None))
-        self.Print_dialog_stats_table.setText(QCoreApplication.translate("Dialog", u"&Print", None))
+        self.pushButtonfilter_dialog_stats_table.setText(QCoreApplication.translate("Dialog", u"&Filter...", None))
+        self.pushButtonexport_dialog_stats_table.setText(QCoreApplication.translate("Dialog", u"&Export", None))
+        self.pushButtonprint_dialog_stats_table.setText(QCoreApplication.translate("Dialog", u"&Print", None))
     # retranslateUi
 

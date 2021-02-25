@@ -18,19 +18,19 @@ class Ui_Dialog_sales_form(object):
         if not Dialog_sales_form.objectName():
             Dialog_sales_form.setObjectName(u"Dialog_sales_form")
         Dialog_sales_form.setWindowModality(Qt.ApplicationModal)
-        Dialog_sales_form.resize(531, 316)
+        Dialog_sales_form.resize(610, 323)
         icon = QIcon()
         icon.addFile(u"icon.png", QSize(), QIcon.Normal, QIcon.Off)
         Dialog_sales_form.setWindowIcon(icon)
         Dialog_sales_form.setModal(False)
         self.buttonBox = QDialogButtonBox(Dialog_sales_form)
         self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setGeometry(QRect(10, 280, 511, 32))
+        self.buttonBox.setGeometry(QRect(10, 280, 591, 32))
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Apply|QDialogButtonBox.Close|QDialogButtonBox.Reset)
         self.verticalLayoutWidget_5 = QWidget(Dialog_sales_form)
         self.verticalLayoutWidget_5.setObjectName(u"verticalLayoutWidget_5")
-        self.verticalLayoutWidget_5.setGeometry(QRect(10, 10, 511, 261))
+        self.verticalLayoutWidget_5.setGeometry(QRect(10, 10, 591, 248))
         self.verticalLayout_5 = QVBoxLayout(self.verticalLayoutWidget_5)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
@@ -63,6 +63,11 @@ class Ui_Dialog_sales_form(object):
 
         self.formLayout_sales.setWidget(2, QFormLayout.LabelRole, self.cantidadVendidaLabel)
 
+        self.cantidadVendidaComboBox = QComboBox(self.verticalLayoutWidget_5)
+        self.cantidadVendidaComboBox.setObjectName(u"cantidadVendidaComboBox")
+
+        self.formLayout_sales.setWidget(2, QFormLayout.FieldRole, self.cantidadVendidaComboBox)
+
         self.precioDeVentaLabel = QLabel(self.verticalLayoutWidget_5)
         self.precioDeVentaLabel.setObjectName(u"precioDeVentaLabel")
 
@@ -87,11 +92,6 @@ class Ui_Dialog_sales_form(object):
         self.comentariosLineEdit.setClearButtonEnabled(False)
 
         self.formLayout_sales.setWidget(4, QFormLayout.FieldRole, self.comentariosLineEdit)
-
-        self.cantidadVendidaComboBox = QComboBox(self.verticalLayoutWidget_5)
-        self.cantidadVendidaComboBox.setObjectName(u"cantidadVendidaComboBox")
-
-        self.formLayout_sales.setWidget(2, QFormLayout.FieldRole, self.cantidadVendidaComboBox)
 
 
         self.verticalLayout_5.addLayout(self.formLayout_sales)
