@@ -13,5 +13,6 @@
         <file alias="l_blue">png/l_blue.png</file>
         <file alias="exc_rate">png/exc_rate.png</file>
         <file alias="redcross">png/red_cross.png</file>
+        <file alias="mainicon">png/icon.png</file>
     </qresource>
 </RCC>

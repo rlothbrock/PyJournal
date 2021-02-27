@@ -14,6 +14,7 @@ from packages.routines.edit_undo import edit_undo_routine, edit_remove_last, edi
 from packages.routines.fix_exc_rate import fix_exc_rate_routine
 from packages.routines.load_saved_db import load_saved_db_routine
 from packages.routines.quit_app import quit_app_routine
+from packages.routines.set_rent_or_salary import set_rent_or_salary_routine
 from packages.routines.status_saver import status_saver_routine
 
 
@@ -51,6 +52,7 @@ def set_menus(self):
     self.ui.actionCambiar_la_fecha_de_la_sesion.triggered.connect(lambda: manage_date_session(self))
     self.ui.actionUsar_verificacion_de_datos.triggered.connect(lambda: lock_entry(self))
     self.ui.actionFijar_tasa_de_cambio_del_USD.triggered.connect(lambda: fix_exc_rate_routine(self))
+    self.ui.actionModificar_Salario_o_Renta.triggered.connect(lambda: set_rent_or_salary_routine(self))
 
     # menu Help
     self.ui.actionAyuda_offline.triggered.connect(lambda: tool_launcher(self, HelpOfflineDialog,main_help_text_template))

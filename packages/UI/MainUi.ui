@@ -2434,7 +2434,7 @@
      <x>0</x>
      <y>0</y>
      <width>1311</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -2458,12 +2458,14 @@
     <addaction name="actionA_adir_Compras_2"/>
     <addaction name="actionA_adir_Ventas_2"/>
     <addaction name="actionModificar_la_inversion"/>
+    <addaction name="separator"/>
     <addaction name="actionCambiar_la_fecha_de_la_sesion"/>
     <addaction name="actionFijar_tasa_de_cambio_del_USD"/>
+    <addaction name="actionModificar_Salario_o_Renta"/>
     <addaction name="actionUsar_verificacion_de_datos"/>
     <addaction name="separator"/>
-    <addaction name="actionVer_Inventario"/>
     <addaction name="actionVer_Ventas"/>
+    <addaction name="actionVer_Inventario"/>
     <addaction name="actionVer_Capital"/>
     <addaction name="actionVer_Diario"/>
    </widget>
@@ -2834,6 +2836,15 @@
    </property>
    <property name="text">
     <string>Cargar una Salva Previa</string>
+   </property>
+  </action>
+  <action name="actionModificar_Salario_o_Renta">
+   <property name="icon">
+    <iconset resource="icons/qrc/app_icons.qrc">
+     <normaloff>:/icons/exc_rate</normaloff>:/icons/exc_rate</iconset>
+   </property>
+   <property name="text">
+    <string>Modificar Salario o &amp;Renta</string>
    </property>
   </action>
  </widget>
